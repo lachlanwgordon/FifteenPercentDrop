@@ -1,0 +1,38 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<ContentPage
+    xmlns="http://xamarin.com/schemas/2014/forms"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:ios="clr-namespace:Xamarin.Forms.PlatformConfiguration.iOSSpecific;assembly=Xamarin.Forms.Core"
+    ios:Page.UseSafeArea="True"
+    xmlns:vm="clr-namespace:FifteenPercentDrop.Core.ViewModels;assembly=FifteenPercentDrop.Core"
+    x:Class="FifteenPercentDrop.Views.CalculatorPage">
+    <ContentPage.BindingContext>
+        <vm:CalculatorViewModel x:Name="VM"/>
+    </ContentPage.BindingContext>
+    <ContentPage.Content>
+        <StackLayout>
+            <Label Text="Bike Tyre Pressure Calculator for 15%"/>
+            <Label Text="{Binding RiderWeight, StringFormat='Rider Weight:  {0:F2}kg'}" />
+            <Slider Value="{Binding RiderWeight}" Maximum="200" Minimum="30"/>
+            <Label Text="{Binding BikeWeight, StringFormat='Bike Weight:  {0:F2}kg'}" />
+            <Slider Value="{Binding BikeWeight}" Maximum="40" Minimum="1"/>
+            <Label Text="{Binding TotalWeight, StringFormat='Total Weight:  {0:F2}kg'}" />
+            <Slider Value="{Binding TotalWeight}" Maximum="250" Minimum="1"/>
+            <Label Text="{Binding PercentageOnFront, StringFormat='Load distribution:  {0:F2}% on front wheel'}" />
+            <Slider Value="{Binding PercentageOnFront}" Maximum="100" Minimum="0"/>
+            <Label Text="{Binding FrontLoad, StringFormat='Front Load:  {0:F2}kg'}" />
+            <Slider Value="{Binding FrontLoad}" Maximum="80" Minimum="30"/>
+            <Label Text="{Binding RearLoad, StringFormat='Rear Load:  {0:F2}kg'}" />
+            <Slider Value="{Binding RearLoad}" Maximum="80" Minimum="30"/>
+            <Label Text="{Binding FrontTyreWidth, StringFormat='Front Tyre Width:  {0:F2}mm'}"/>
+            <Slider Value="{Binding FrontTyreWidth}" Maximum="37" Minimum="20"/>
+            <Label Text="{Binding RearTyreWidth, StringFormat='Rear Tyre Width:  {0:F2}mm'}"/>
+            <Slider Value="{Binding RearTyreWidth}" Maximum="37" Minimum="20"/>
+            <Button Text="Calculate" Command="{Binding CalculateCommand}"/>
+            <Label Text="{Binding FrontPressure, StringFormat='Front Tyre Pressure:  {0:F2}psi'}"/>
+            <Label Text="{Binding RearPressure, StringFormat='Rear Tyre Pressure:  {0:F2}psi'}"/>
+
+
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>
