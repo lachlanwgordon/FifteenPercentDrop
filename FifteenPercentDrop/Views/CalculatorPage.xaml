@@ -4,11 +4,11 @@
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
     xmlns:ios="clr-namespace:Xamarin.Forms.PlatformConfiguration.iOSSpecific;assembly=Xamarin.Forms.Core"
     xmlns:rainbows="clr-namespace:Xamarin.Forms.DebugRainbows;assembly=Xamarin.Forms.DebugRainbows"
-    rainbows:DebugRainbow.IsDebug="false"
+    rainbows:DebugRainbow.IsDebug="False"
     xmlns:yummy="clr-namespace:Xamarin.Forms.PancakeView;assembly=Xamarin.Forms.PancakeView"
     xmlns:vm="clr-namespace:FifteenPercentDrop.Core.ViewModels;assembly=FifteenPercentDrop.Core"
     x:Class="FifteenPercentDrop.Views.CalculatorPage"
-    xmlns:converters="clr-namespace:FifteenPercentDrop.Converters">
+    xmlns:converters="clr-namespace:FifteenPercentDrop.Converters" >
 
     <ContentPage.BindingContext>
         <vm:CalculatorViewModel
@@ -16,7 +16,7 @@
     </ContentPage.BindingContext>
     <ContentPage.Content>
 
-            <!--BackgroundGradientStartColor="#74e14c"-->
+        <!--BackgroundGradientStartColor="#74e14c"-->
 
         <yummy:PancakeView
             Padding="10,50,10,70"
@@ -29,11 +29,8 @@
                     Text="BIKE + RIDER WEIGHT"
                     Style="{StaticResource SectionLabelStyle}" />
                 <yummy:PancakeView
-                    Padding="5"
-                    BorderColor="White"
-                    BorderThickness="1"
-                    HeightRequest="50"
-                    CornerRadius="29">
+                    Style="{StaticResource SectionPancakeStyle}">
+
                     <Grid>
                         <Grid.ColumnDefinitions>
                             <ColumnDefinition
@@ -54,9 +51,10 @@
                             Style="{StaticResource MediumText}"
                             HorizontalTextAlignment="Center"
                             Grid.Column="1"
-                            Text="{Binding TotalWeight, StringFormat='{0:F2}kg'}" >
+                            Text="{Binding TotalWeight, StringFormat='{0:F2}kg'}">
                             <Label.GestureRecognizers>
-                                <TapGestureRecognizer Tapped="FocusWeightKeyboard">
+                                <TapGestureRecognizer
+                                    Tapped="FocusWeightKeyboard">
 
                                 </TapGestureRecognizer>
                             </Label.GestureRecognizers>
@@ -64,9 +62,9 @@
                         <Entry
                             Keyboard="Numeric"
                             x:Name="WeightEntry"
-                            Grid.Column="1"
-                            IsVisible="false"
-                            Text="{Binding TotalWeight}"/>
+                            Grid.Column="3"
+                            IsVisible="true"
+                            Text="{Binding TotalWeight, Converter={StaticResource stringToNullableDoubleConverter}}" />
                         <Button
                             Style="{StaticResource PlusMinusButton}"
                             Command="{Binding IncrementWeightCommand}"
@@ -79,11 +77,7 @@
                     Text="BIKE TYPE"
                     Style="{StaticResource SectionLabelStyle}" />
                 <yummy:PancakeView
-                    Padding="5"
-                    BorderColor="White"
-                    BorderThickness="1"
-                    HeightRequest="50"
-                    CornerRadius="29">
+                    Style="{StaticResource SectionPancakeStyle}">
                     <Grid>
                         <Grid.ColumnDefinitions>
                             <ColumnDefinition
@@ -101,7 +95,7 @@
                             Text="HYBRID" />
                         <Switch
                             OnColor="#147314"
-                            
+                            ThumbColor="White"
                             Grid.Column="1"
                             VerticalOptions="Center"
                             Margin="10,0"
@@ -117,11 +111,7 @@
                     Text="TYRE WIDTH"
                     Style="{StaticResource SectionLabelStyle}" />
                 <yummy:PancakeView
-                    Padding="5"
-                    BorderColor="White"
-                    BorderThickness="1"
-                    HeightRequest="50"
-                    CornerRadius="29">
+                    Style="{StaticResource SectionPancakeStyle}">
                     <Grid>
                         <Grid.ColumnDefinitions>
                             <ColumnDefinition
@@ -157,38 +147,36 @@
                     RowSpacing="0"
                     ColumnSpacing="0">
                     <Grid.ColumnDefinitions>
-                         <ColumnDefinition
-                            Width="*" />
-                        <ColumnDefinition
-                            Width="Auto" />
-                        <ColumnDefinition
-                            Width="Auto" />
                         <ColumnDefinition
                             Width="*" />
                         <ColumnDefinition
                             Width="Auto" />
                         <ColumnDefinition
                             Width="Auto" />
-                         <ColumnDefinition
+                        <ColumnDefinition
+                            Width="*" />
+                        <ColumnDefinition
+                            Width="Auto" />
+                        <ColumnDefinition
+                            Width="Auto" />
+                        <ColumnDefinition
                             Width="*" />
                     </Grid.ColumnDefinitions>
                     <Grid.RowDefinitions>
                         <RowDefinition
                             Height="Auto" />
                         <RowDefinition
-                            Height="60" />
+                            Height="{OnPlatform iOS=60, Android=90}" />
                     </Grid.RowDefinitions>
                     <Label
                         Style="{StaticResource SmallText}"
                         Text="REAR"
-                        Grid.Column="1"
-                        />
+                        Grid.Column="1" />
                     <Label
                         Style="{StaticResource BigText}"
                         Grid.Row="1"
                         Grid.Column="1"
-                        Text="{Binding RearPressure, StringFormat='{0:F0}'}"
-                        />
+                        Text="{Binding RearPressure, StringFormat='{0:F0}'}" />
 
                     <Label
                         Text="PSI"
@@ -215,6 +203,27 @@
     </ContentPage.Content>
     <ContentPage.Resources>
         <ResourceDictionary>
+            <OnPlatform x:Key="BigFontSize" x:TypeArguments="x:Double" Android="58" iOS="62"/>
+            <OnPlatform x:Key="ButtonFontSize" x:TypeArguments="x:Double" Android="28" iOS="32"/>
+            <Style
+                x:Key="SectionPancakeStyle"
+                TargetType="yummy:PancakeView">
+                <Setter
+                    Property="CornerRadius"
+                    Value="29" />
+                <Setter
+                    Property="BorderThickness"
+                    Value="1" />
+                <Setter
+                    Property="BorderColor"
+                    Value="White" />
+                <Setter
+                    Property="Padding"
+                    Value="5" />
+                <Setter
+                    Property="HeightRequest"
+                    Value="50" />
+            </Style>
             <Style
                 x:Key="PickerStyle"
                 TargetType="Picker">
@@ -224,7 +233,7 @@
                 <Setter
                     Property="TextColor"
                     Value="White" />
-                
+
                 <Setter
                     Property="HorizontalOptions"
                     Value="Center" />
@@ -234,6 +243,8 @@
             </Style>
             <converters:DoubleToBooleanConverter
                 x:Key="doubleToBooleanConverter" />
+            <converters:StringToNullableDoubleConverter x:Key="stringToNullableDoubleConverter"/>
+          
 
             <Style
                 x:Key="PlusMinusButton"
@@ -243,13 +254,12 @@
                     Value="White" />
                 <Setter
                     Property="FontSize"
-                    Value="32" />
+                    Value="{StaticResource ButtonFontSize}" />
                 <Setter
                     Property="BackgroundColor"
                     Value="Transparent" />
-                <Setter
-                    Property="Padding"
-                    Value="20" />
+                <Setter Property="VerticalOptions" Value="Center"/>
+                <Setter Property="Padding" Value="0"/>
             </Style>
             <Style
                 x:Key="BaseText"
@@ -267,8 +277,13 @@
                 TargetType="Label">
                 <Setter
                     Property="FontSize"
-                    Value="72" />
-                <Setter Property="VerticalOptions" Value="Start"/>
+                    Value="{StaticResource BigFontSize}" />
+                <Setter
+                    Property="VerticalOptions"
+                    Value="StartAndExpand" />
+                <Setter
+                    Property="VerticalTextAlignment"
+                    Value="Start" />
             </Style>
             <Style
                 x:Key="MediumText"
@@ -284,7 +299,7 @@
                     Property="HorizontalTextAlignment"
                     Value="End" />
             </Style>
-            
+
 
             <Style
                 x:Key="SmallText"
@@ -307,12 +322,17 @@
                 <Setter
                     Property="VerticalTextAlignment"
                     Value="Start" />
+                <Setter
+                    Property="Margin"
+                    Value="{OnPlatform Android='0,20,0,0', iOS=0}" />
             </Style>
             <Style
                 TargetType="Label"
                 x:Key="SectionLabelStyle"
                 BasedOn="{StaticResource SmallText}">
-                <Setter Property="Margin" Value="0,20,0,3"/>
+                <Setter
+                    Property="Margin"
+                    Value="0,20,0,3" />
             </Style>
         </ResourceDictionary>
     </ContentPage.Resources>
