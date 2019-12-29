@@ -16,17 +16,18 @@
     </ContentPage.BindingContext>
     <ContentPage.Content>
 
+            <!--BackgroundGradientStartColor="#74e14c"-->
 
         <yummy:PancakeView
-            Padding="10,50"
-            BackgroundGradientStartColor="#74e14c"
-            BackgroundGradientEndColor="#4cb151"
+            Padding="10,50,10,70"
+            BackgroundGradientStartColor="#71DE4C"
+            BackgroundGradientEndColor="#2c9b12"
             BackgroundGradientAngle="330">
             <StackLayout
-                Spacing="1">
+                Spacing="0">
                 <Label
                     Text="BIKE + RIDER WEIGHT"
-                    Style="{StaticResource SmallText}" />
+                    Style="{StaticResource SectionLabelStyle}" />
                 <yummy:PancakeView
                     Padding="5"
                     BorderColor="White"
@@ -53,7 +54,19 @@
                             Style="{StaticResource MediumText}"
                             HorizontalTextAlignment="Center"
                             Grid.Column="1"
-                            Text="{Binding TotalWeight, StringFormat='{0:F2}kg'}" />
+                            Text="{Binding TotalWeight, StringFormat='{0:F2}kg'}" >
+                            <Label.GestureRecognizers>
+                                <TapGestureRecognizer Tapped="FocusWeightKeyboard">
+
+                                </TapGestureRecognizer>
+                            </Label.GestureRecognizers>
+                        </Label>
+                        <Entry
+                            Keyboard="Numeric"
+                            x:Name="WeightEntry"
+                            Grid.Column="1"
+                            IsVisible="false"
+                            Text="{Binding TotalWeight}"/>
                         <Button
                             Style="{StaticResource PlusMinusButton}"
                             Command="{Binding IncrementWeightCommand}"
@@ -64,7 +77,7 @@
 
                 <Label
                     Text="BIKE TYPE"
-                    Style="{StaticResource SmallText}" />
+                    Style="{StaticResource SectionLabelStyle}" />
                 <yummy:PancakeView
                     Padding="5"
                     BorderColor="White"
@@ -87,7 +100,8 @@
                             HorizontalTextAlignment="End"
                             Text="HYBRID" />
                         <Switch
-                            BackgroundColor="Transparent"
+                            OnColor="#147314"
+                            
                             Grid.Column="1"
                             VerticalOptions="Center"
                             Margin="10,0"
@@ -101,7 +115,7 @@
                 </yummy:PancakeView>
                 <Label
                     Text="TYRE WIDTH"
-                    Style="{StaticResource SmallText}" />
+                    Style="{StaticResource SectionLabelStyle}" />
                 <yummy:PancakeView
                     Padding="5"
                     BorderColor="White"
@@ -123,12 +137,12 @@
                             Style="{StaticResource PlusMinusButton}"
                             Command="{Binding DecrementWidthCommand}"
                             Text="-" />
-                        <Label
-                            BackgroundColor="Transparent"
-                            Style="{StaticResource MediumText}"
-                            HorizontalTextAlignment="Center"
-                            Grid.Column="1"
-                            Text="{Binding TyreWidth, StringFormat='{0:F0}mm'}" />
+                        <Picker
+                            Style="{StaticResource PickerStyle}"
+                            ItemsSource="{Binding TyreSizes}"
+                            SelectedItem="{Binding TyreWidth}"
+                            ItemDisplayBinding="{Binding ., StringFormat='{0:F0}mm'}"
+                            Grid.Column="1" />
                         <Button
                             Style="{StaticResource PlusMinusButton}"
                             Command="{Binding IncrementWithCommand}"
@@ -139,11 +153,12 @@
 
                 <!--Results section-->
                 <Grid
-                    Padding="10"
-                    VerticalOptions="EndAndExpand"
+                    VerticalOptions="CenterAndExpand"
                     RowSpacing="0"
                     ColumnSpacing="0">
                     <Grid.ColumnDefinitions>
+                         <ColumnDefinition
+                            Width="*" />
                         <ColumnDefinition
                             Width="Auto" />
                         <ColumnDefinition
@@ -154,48 +169,72 @@
                             Width="Auto" />
                         <ColumnDefinition
                             Width="Auto" />
+                         <ColumnDefinition
+                            Width="*" />
                     </Grid.ColumnDefinitions>
                     <Grid.RowDefinitions>
                         <RowDefinition
                             Height="Auto" />
                         <RowDefinition
-                            Height="70" />
+                            Height="60" />
                     </Grid.RowDefinitions>
                     <Label
                         Style="{StaticResource SmallText}"
-                        Text="FRONT" />
+                        Text="REAR"
+                        Grid.Column="1"
+                        />
                     <Label
                         Style="{StaticResource BigText}"
                         Grid.Row="1"
-                        Text="{Binding FrontPressure, StringFormat='{0:F0}'}" />
+                        Grid.Column="1"
+                        Text="{Binding RearPressure, StringFormat='{0:F0}'}"
+                        />
 
                     <Label
                         Text="PSI"
                         Style="{StaticResource SuperScript}"
                         Grid.Row="1"
-                        Grid.Column="1" />
+                        Grid.Column="2" />
                     <Label
-                        Text="REAR"
+                        Text="FRONT"
                         Style="{StaticResource SmallText}"
-                        Grid.Column="3" />
+                        Grid.Column="4" />
                     <Label
                         Style="{StaticResource BigText}"
                         Grid.Row="1"
-                        Grid.Column="3"
-                        Text="{Binding RearPressure, StringFormat='{0:F0}'}" />
+                        Grid.Column="4"
+                        Text="{Binding FrontPressure, StringFormat='{0:F0}'}" />
                     <Label
                         Style="{StaticResource SuperScript}"
                         Text="PSI"
                         Grid.Row="1"
-                        Grid.Column="4" />
+                        Grid.Column="5" />
                 </Grid>
             </StackLayout>
         </yummy:PancakeView>
     </ContentPage.Content>
     <ContentPage.Resources>
         <ResourceDictionary>
+            <Style
+                x:Key="PickerStyle"
+                TargetType="Picker">
+                <Setter
+                    Property="FontSize"
+                    Value="27" />
+                <Setter
+                    Property="TextColor"
+                    Value="White" />
+                
+                <Setter
+                    Property="HorizontalOptions"
+                    Value="Center" />
+                <Setter
+                    Property="BackgroundColor"
+                    Value="Transparent" />
+            </Style>
             <converters:DoubleToBooleanConverter
                 x:Key="doubleToBooleanConverter" />
+
             <Style
                 x:Key="PlusMinusButton"
                 TargetType="Button">
@@ -228,10 +267,8 @@
                 TargetType="Label">
                 <Setter
                     Property="FontSize"
-                    Value="75" />
-                <Setter
-                    Property="HorizontalTextAlignment"
-                    Value="End" />
+                    Value="72" />
+                <Setter Property="VerticalOptions" Value="Start"/>
             </Style>
             <Style
                 x:Key="MediumText"
@@ -247,14 +284,7 @@
                     Property="HorizontalTextAlignment"
                     Value="End" />
             </Style>
-            <Style
-                TargetType="Label"
-                x:Key="SuperScript"
-                BasedOn="{StaticResource MediumText}">
-                <Setter
-                    Property="VerticalTextAlignment"
-                    Value="Start" />
-            </Style>
+            
 
             <Style
                 x:Key="SmallText"
@@ -269,6 +299,20 @@
                 <Setter
                     Property="VerticalTextAlignment"
                     Value="Center" />
+            </Style>
+            <Style
+                TargetType="Label"
+                x:Key="SuperScript"
+                BasedOn="{StaticResource SmallText}">
+                <Setter
+                    Property="VerticalTextAlignment"
+                    Value="Start" />
+            </Style>
+            <Style
+                TargetType="Label"
+                x:Key="SectionLabelStyle"
+                BasedOn="{StaticResource SmallText}">
+                <Setter Property="Margin" Value="0,20,0,3"/>
             </Style>
         </ResourceDictionary>
     </ContentPage.Resources>

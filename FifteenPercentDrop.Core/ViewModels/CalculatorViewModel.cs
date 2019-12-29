@@ -10,7 +10,7 @@ namespace FifteenPercentDrop.Core.ViewModels
     public class CalculatorViewModel : BaseViewModel
     {
         private double tyreWidth = 23;
-        private double totalWeight = 80;
+        private double? totalWeight = 80;
         private double bikeWeight = 20;
         private double riderWeight = 60;
         private double percentageOnFront = 40;
@@ -35,7 +35,8 @@ namespace FifteenPercentDrop.Core.ViewModels
             }
         }
 
-        public double TotalWeight
+
+        public double? TotalWeight
         {
             get => totalWeight;
             set
@@ -45,8 +46,8 @@ namespace FifteenPercentDrop.Core.ViewModels
                 OnPropertyChanged(nameof(RearPressure));
             }
         }
-        public double FrontLoad => (PercentageOnFront / 100) * TotalWeight;
-        public double RearLoad => (1 - PercentageOnFront / 100) * TotalWeight;
+        public double FrontLoad => (PercentageOnFront / 100) * TotalWeight ?? 0;
+        public double RearLoad => (1 - PercentageOnFront / 100) * TotalWeight ?? 0;
 
         public double PercentageOnFront
         {
@@ -62,7 +63,7 @@ namespace FifteenPercentDrop.Core.ViewModels
         public double UpdateTotalWeight()
         {
             TotalWeight = RiderWeight + BikeWeight;
-            return TotalWeight;
+            return TotalWeight ?? 0;
         }
 
         public double TyreWidth
@@ -77,7 +78,7 @@ namespace FifteenPercentDrop.Core.ViewModels
             }
         }
 
-        public static double GetRoundedWidth(double value)
+        public double GetRoundedWidth(double value)
         {
             var ordered = TyreSizes.OrderBy(x => Math.Abs(x - value));
             var closest = ordered.FirstOrDefault();
@@ -88,7 +89,7 @@ namespace FifteenPercentDrop.Core.ViewModels
         public double RearPressure => CalculateTyrePressure(RearLoad);
         public double DropPercentage { get; set; } = 15;
 
-        static readonly List<double> TyreSizes = new List<double> { 20, 23, 25, 28, 32, 37 };
+        public List<double> TyreSizes { get; } = new List<double> { 20, 23, 25, 28, 32, 37 };
 
         public ICommand IncrementWeightCommand => new Command(DoIncrementWeightCommand);
         public ICommand DecrementWeightCommand => new Command(DoDecrementWeightCommand);
