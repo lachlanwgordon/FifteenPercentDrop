@@ -135,6 +135,12 @@
     <ImageAsset Include="Assets.xcassets\AppIcon.appiconset\Icon20.png" />
     <ImageAsset Include="Assets.xcassets\AppIcon.appiconset\Icon32.png" />
     <ImageAsset Include="Assets.xcassets\AppIcon.appiconset\Icon180.png" />
+    <ImageAsset Include="Assets.xcassets\splash.imageset\splash%403x.png" />
+    <ImageAsset Include="Assets.xcassets\splash.imageset\splash%402x.png" />
+    <ImageAsset Include="Assets.xcassets\splash.imageset\splash.png" />
+    <ImageAsset Include="Assets.xcassets\splash.imageset\Contents.json">
+      <Visible>False</Visible>
+    </ImageAsset>
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Assets.xcassets\.appiconset\" />
