@@ -3,36 +3,340 @@
     xmlns="http://xamarin.com/schemas/2014/forms"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
     xmlns:ios="clr-namespace:Xamarin.Forms.PlatformConfiguration.iOSSpecific;assembly=Xamarin.Forms.Core"
-    ios:Page.UseSafeArea="True"
+    xmlns:rainbows="clr-namespace:Xamarin.Forms.DebugRainbows;assembly=Xamarin.Forms.DebugRainbows"
+    rainbows:DebugRainbow.IsDebug="false"
+    xmlns:yummy="clr-namespace:Xamarin.Forms.PancakeView;assembly=Xamarin.Forms.PancakeView"
     xmlns:vm="clr-namespace:FifteenPercentDrop.Core.ViewModels;assembly=FifteenPercentDrop.Core"
-    x:Class="FifteenPercentDrop.Views.CalculatorPage">
+    x:Class="FifteenPercentDrop.Views.CalculatorPage" xmlns:converters="clr-namespace:FifteenPercentDrop.Converters">
+
     <ContentPage.BindingContext>
-        <vm:CalculatorViewModel x:Name="VM"/>
+        <vm:CalculatorViewModel
+            x:Name="VM" />
     </ContentPage.BindingContext>
     <ContentPage.Content>
-        <StackLayout>
-            <Label Text="Bike Tyre Pressure Calculator for 15%"/>
-            <Label Text="{Binding RiderWeight, StringFormat='Rider Weight:  {0:F2}kg'}" />
-            <Slider Value="{Binding RiderWeight}" Maximum="200" Minimum="30"/>
-            <Label Text="{Binding BikeWeight, StringFormat='Bike Weight:  {0:F2}kg'}" />
-            <Slider Value="{Binding BikeWeight}" Maximum="40" Minimum="1"/>
-            <Label Text="{Binding TotalWeight, StringFormat='Total Weight:  {0:F2}kg'}" />
-            <Slider Value="{Binding TotalWeight}" Maximum="250" Minimum="1"/>
-            <Label Text="{Binding PercentageOnFront, StringFormat='Load distribution:  {0:F2}% on front wheel'}" />
-            <Slider Value="{Binding PercentageOnFront}" Maximum="100" Minimum="0"/>
-            <Label Text="{Binding FrontLoad, StringFormat='Front Load:  {0:F2}kg'}" />
-            <Slider Value="{Binding FrontLoad}" Maximum="80" Minimum="30"/>
-            <Label Text="{Binding RearLoad, StringFormat='Rear Load:  {0:F2}kg'}" />
-            <Slider Value="{Binding RearLoad}" Maximum="80" Minimum="30"/>
-            <Label Text="{Binding FrontTyreWidth, StringFormat='Front Tyre Width:  {0:F2}mm'}"/>
-            <Slider Value="{Binding FrontTyreWidth}" Maximum="37" Minimum="20"/>
-            <Label Text="{Binding RearTyreWidth, StringFormat='Rear Tyre Width:  {0:F2}mm'}"/>
-            <Slider Value="{Binding RearTyreWidth}" Maximum="37" Minimum="20"/>
-            <Button Text="Calculate" Command="{Binding CalculateCommand}"/>
-            <Label Text="{Binding FrontPressure, StringFormat='Front Tyre Pressure:  {0:F2}psi'}"/>
-            <Label Text="{Binding RearPressure, StringFormat='Rear Tyre Pressure:  {0:F2}psi'}"/>
 
 
-        </StackLayout>
+        <yummy:PancakeView
+            Padding="10,50"
+            BackgroundGradientStartColor="#74e14c"
+            BackgroundGradientEndColor="#4cb151"
+            BackgroundGradientAngle="330">
+            <ScrollView>
+
+                <StackLayout
+                    Spacing="1"
+                    >
+                    <!--<Label
+                        Text="Bike Tyre Pressure Calculator for 15%" />-->
+                    <!--Weight section-->
+                    <!--<Label
+                        Text="{Binding RiderWeight, StringFormat='Rider Weight:  {0:F2}kg'}" />
+                    <Slider
+                        Value="{Binding RiderWeight}"
+                        Maximum="200"
+                        Minimum="30" />
+                    <Label
+                        Text="{Binding BikeWeight, StringFormat='Bike Weight:  {0:F2}kg'}" />
+                    <Slider
+                        Value="{Binding BikeWeight}"
+                        Maximum="40"
+                        Minimum="1" />-->
+                    <Label
+                            Text="BIKE + RIDER WEIGHT"
+                            Style="{StaticResource SmallText}"
+                             />
+                    <yummy:PancakeView
+                        Padding="5"
+                        BorderColor="White"
+                        BorderThickness="1"
+                        HeightRequest="50"
+                        CornerRadius="29">
+                        <Grid>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition
+                                    Width="Auto" />
+                                <ColumnDefinition
+                                    Width="*" />
+                                <ColumnDefinition
+                                    Width="Auto" />
+                            </Grid.ColumnDefinitions>
+                            <Grid.RowDefinitions>
+                            </Grid.RowDefinitions>
+                            <Button
+                                Style="{StaticResource PlusMinusButton}"
+                                Command="{Binding DecrementWeightCommand}"
+                                Text="-" />
+                            <Label
+                                BackgroundColor="Transparent"
+                                Style="{StaticResource MediumText}"
+                                HorizontalTextAlignment="Center"
+                                Grid.Column="1"
+                                Text="{Binding TotalWeight, StringFormat='{0:F2}kg'}" />
+                            <Button
+                                Style="{StaticResource PlusMinusButton}"
+                                Command="{Binding IncrementWeightCommand}"
+                                Text="+"
+                                Grid.Column="2" />
+                        </Grid>
+                    </yummy:PancakeView>
+
+                    <Label
+                            Text="BIKE TYPE"
+                            Style="{StaticResource SmallText}"
+                             />
+                    <yummy:PancakeView
+                        Padding="5"
+                        BorderColor="White"
+                        BorderThickness="1"
+                        HeightRequest="50"
+                        CornerRadius="29">
+                        <Grid>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition
+                                    Width="*" />
+                                <ColumnDefinition
+                                    Width="Auto" />
+                                <ColumnDefinition
+                                    Width="*" />
+                            </Grid.ColumnDefinitions>
+                            <Grid.RowDefinitions>
+                            </Grid.RowDefinitions>
+                            <Label
+                                Style="{StaticResource SmallText}"
+                                HorizontalTextAlignment="End"
+                                Text="HYBRID" />
+                            
+                            <Switch
+                                BackgroundColor="Transparent"
+                                Grid.Column="1"
+                                VerticalOptions="Center"
+                                Margin="10,0"
+                                IsToggled="{Binding PercentageOnFront, Converter={StaticResource doubleToBooleanConverter}}"
+                               />
+                             
+                            <Label
+                                Style="{StaticResource SmallText}"
+                                Grid.Column="2"
+                                Text="ROAD BIKE" />
+                        </Grid>
+                    </yummy:PancakeView>
+
+
+
+                    <!--<Label
+                        Text="{Binding PercentageOnFront, StringFormat='Load distribution:  {0:F2}% on front wheel'}" />
+                    <Slider
+                        Value="{Binding PercentageOnFront}"
+                        Maximum="100"
+                        Minimum="0" />-->
+                    <!--<Label
+                        Text="{Binding FrontLoad, StringFormat='Front Load:  {0:F2}kg'}" />
+                    <Slider
+                        Value="{Binding FrontLoad}"
+                        Maximum="80"
+                        Minimum="30" />
+                    <Label
+                        Text="{Binding RearLoad, StringFormat='Rear Load:  {0:F2}kg'}" />
+                    <Slider
+                        Value="{Binding RearLoad}"
+                        Maximum="80"
+                        Minimum="30" />-->
+
+
+                    <!--Diameter section-->
+
+
+                    <Label
+                            Text="TYRE WIDTH"
+                            Style="{StaticResource SmallText}"
+                             />
+                    <yummy:PancakeView
+                        Padding="5"
+                        BorderColor="White"
+                        BorderThickness="1"
+                        HeightRequest="50"
+                        CornerRadius="29">
+                        <Grid>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition
+                                    Width="Auto" />
+                                <ColumnDefinition
+                                    Width="*" />
+                                <ColumnDefinition
+                                    Width="Auto" />
+                            </Grid.ColumnDefinitions>
+                            <Grid.RowDefinitions>
+                            </Grid.RowDefinitions>
+                            <Button
+                                Style="{StaticResource PlusMinusButton}"
+                                Command="{Binding DecrementWidthCommand}"
+                                Text="-" />
+                            <Label
+                                BackgroundColor="Transparent"
+                                Style="{StaticResource MediumText}"
+                                HorizontalTextAlignment="Center"
+                                Grid.Column="1"
+                                Text="{Binding TyreWidth, StringFormat='{0:F0}mm'}" />
+                            <Button
+                                Style="{StaticResource PlusMinusButton}"
+                                Command="{Binding IncrementWithCommand}"
+                                Text="+"
+                                Grid.Column="2" />
+                        </Grid>
+                    </yummy:PancakeView>
+
+
+
+                    <!--<Label
+                        Text="{Binding FrontTyreWidth, StringFormat='Front Tyre Width:  {0:F2}mm'}" />
+                    <Slider
+                        Value="{Binding FrontTyreWidth}"
+                        Maximum="37"
+                        Minimum="20" />-->
+                    <!--<Label
+                        Text="{Binding RearTyreWidth, StringFormat='Rear Tyre Width:  {0:F2}mm'}" />
+                    <Slider
+                        Value="{Binding RearTyreWidth}"
+                        Maximum="37"
+                        Minimum="20" />-->
+
+
+
+                    <!--Button section maybe not needed-->
+
+                
+
+
+                    <!--Results section-->
+                    <Grid
+                        Padding="20"
+                        VerticalOptions="EndAndExpand"
+                        RowSpacing="0"
+                        ColumnSpacing="0">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition
+                                Width="Auto" />
+                            <ColumnDefinition
+                                Width="Auto" />
+                            <ColumnDefinition
+                                Width="*" />
+                            <ColumnDefinition
+                                Width="Auto" />
+                            <ColumnDefinition
+                                Width="Auto" />
+                        </Grid.ColumnDefinitions>
+                        <Grid.RowDefinitions>
+                            <RowDefinition
+                                Height="Auto" />
+                            <RowDefinition
+                                Height="70" />
+                        </Grid.RowDefinitions>
+
+
+                        <Label
+                            Style="{StaticResource SmallText}"
+                            Text="FRONT" />
+                        <Label
+                            Style="{StaticResource BigText}"
+                            Grid.Row="1"
+                            Text="{Binding FrontPressure, StringFormat='{0:F0}'}" />
+
+                        <Label
+                            Text="PSI"
+                            Style="{StaticResource MediumText}"
+                            Grid.Row="1"
+                            Grid.Column="1" />
+
+
+                        <Label
+                            Text="REAR"
+                            Style="{StaticResource SmallText}"
+                            Grid.Column="3" />
+                        <Label
+                            Style="{StaticResource BigText}"
+                            VerticalOptions="Start"
+                            VerticalTextAlignment="Start"
+                            Grid.Row="1"
+                            Padding="0"
+                            Grid.Column="3"
+                            Text="{Binding RearPressure, StringFormat='{0:F0}'}" />
+                        <Label
+                            Style="{StaticResource MediumText}"
+                            Text="PSI"
+                            Grid.Row="1"
+                            Grid.Column="4" />
+
+                    </Grid>
+                </StackLayout>
+
+            </ScrollView>
+
+        </yummy:PancakeView>
+
+
+
     </ContentPage.Content>
+    <ContentPage.Resources>
+        <ResourceDictionary>
+          <converters:DoubleToBooleanConverter x:Key="doubleToBooleanConverter"/>
+            <Style
+                x:Key="PlusMinusButton"
+                TargetType="Button">
+                <Setter
+                    Property="TextColor"
+                    Value="White" />
+                <Setter Property="FontSize" Value="32"/>
+                <Setter
+                    Property="BackgroundColor"
+                    Value="Transparent" />
+                <Setter Property="Padding" Value="20"/>
+            </Style>
+            <Style
+                x:Key="BaseText"
+                TargetType="Label">
+                <Setter
+                    Property="TextColor"
+                    Value="White" />
+                <Setter
+                    Property="HorizontalTextAlignment"
+                    Value="End" />
+            </Style>
+            <Style
+                x:Key="BigText"
+                BasedOn="{StaticResource BaseText}"
+                TargetType="Label">
+                <Setter
+                    Property="FontSize"
+                    Value="80" />
+                <Setter
+                    Property="HorizontalTextAlignment"
+                    Value="End" />
+            </Style>
+            <Style
+                x:Key="MediumText"
+
+                BasedOn="{StaticResource BaseText}"
+                TargetType="Label">
+                <Setter Property="VerticalTextAlignment" Value="Center"/>
+                <Setter
+                    Property="FontSize"
+                    Value="32" />
+                <Setter
+                    Property="HorizontalTextAlignment"
+                    Value="End" />
+            </Style>
+            <Style
+                x:Key="SmallText"
+                BasedOn="{StaticResource BaseText}"
+                TargetType="Label">
+                <Setter
+                    Property="FontSize"
+                    Value="18" />
+                <Setter
+                    Property="HorizontalTextAlignment"
+                    Value="Start" />
+                <Setter Property="VerticalTextAlignment" Value="Center"/>
+            </Style>
+        </ResourceDictionary>
+    </ContentPage.Resources>
 </ContentPage>

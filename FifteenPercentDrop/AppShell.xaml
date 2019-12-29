@@ -5,6 +5,12 @@
     xmlns:d="http://xamarin.com/schemas/2014/forms/design"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     mc:Ignorable="d"
+    xmlns:ios="clr-namespace:Xamarin.Forms.PlatformConfiguration.iOSSpecific;assembly=Xamarin.Forms.Core"
+
+    ios:Page.UseSafeArea="True"
+    Shell.NavBarIsVisible="False"
+
+
     xmlns:pages="clr-namespace:FifteenPercentDrop.Views"
     Title="FifteenPercentDrop"
     x:Class="FifteenPercentDrop.AppShell">
@@ -54,6 +60,12 @@
     <!-- Your Pages -->
     <TabBar>
         <Tab
+            Title="Calculator"
+            Icon="tab_feed.png">
+            <ShellContent
+                ContentTemplate="{DataTemplate pages:CalculatorPage}" />
+        </Tab>
+         <Tab
             Title="Calculator"
             Icon="tab_feed.png">
             <ShellContent
