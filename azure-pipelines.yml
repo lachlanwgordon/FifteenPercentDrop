@@ -20,6 +20,12 @@ jobs:
     inputs:
       restoreSolution: '**/*.sln'
 
+
+  - task: DotNetCoreCLI@2
+    inputs:
+      command: 'test'
+      projects: '**/*.Tests.csproj'
+
   - task: XamarinAndroid@1
     inputs:
       projectFile: '**/*droid*.csproj'
