@@ -47,11 +47,11 @@ jobs:
   - task: InstallAppleProvisioningProfile@1
     inputs:
       provisioningProfileLocation: 'secureFiles'
-      provProfileSecureFile: '$(Fifteen_Percent_App_Store.mobileprovision)'
+      provProfileSecureFile: 'Fifteen_Percent_App_Store.mobileprovision'
 
   - task: InstallAppleCertificate@2
     inputs:
-      certSecureFile: '$(FifteenPercentCertificates.p12)'
+      certSecureFile: 'FifteenPercentCertificates.p12'
       certPwd: '$(FifteenPercentCertificatesP12Password)'
       keychain: 'temp'
   - task: XamariniOS@2
