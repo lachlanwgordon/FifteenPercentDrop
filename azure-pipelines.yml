@@ -75,7 +75,7 @@ jobs:
 
   - task: PublishBuildArtifacts@1
     inputs:
-      PathtoPublish: '$(Agent.BuildDirectory)'
+      PathtoPublish: '$(Build.BinariesDirectory)'
       ArtifactName: 'dropios'
       publishLocation: 'Container'
 
