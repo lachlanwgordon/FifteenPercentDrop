@@ -9,7 +9,7 @@ namespace FifteenPercentDrop.Views
     {
         public void FocusWeightKeyboard(object sender, EventArgs e)
         {
-            VM.TotalWeight = null;
+            //VM.TotalWeight = null;
             WeightEntry.Focus();
         }
 

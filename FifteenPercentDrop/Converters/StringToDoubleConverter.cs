@@ -6,7 +6,7 @@ using Xamarin.Forms;
 
 namespace FifteenPercentDrop.Converters
 {
-    [ValueConversion(typeof(string), typeof(double))]
+    [ValueConversion(typeof(double?), typeof(string))]
     public class StringToNullableDoubleConverter : IValueConverter
     {
         public object Convert(object value, Type targetType, object parameter, CultureInfo culture)

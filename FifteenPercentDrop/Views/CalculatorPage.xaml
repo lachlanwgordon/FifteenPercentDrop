@@ -8,7 +8,7 @@
     xmlns:yummy="clr-namespace:Xamarin.Forms.PancakeView;assembly=Xamarin.Forms.PancakeView"
     xmlns:vm="clr-namespace:FifteenPercentDrop.Core.ViewModels;assembly=FifteenPercentDrop.Core"
     x:Class="FifteenPercentDrop.Views.CalculatorPage"
-    xmlns:converters="clr-namespace:FifteenPercentDrop.Converters" >
+    xmlns:converters="clr-namespace:FifteenPercentDrop.Converters">
 
     <ContentPage.BindingContext>
         <vm:CalculatorViewModel
@@ -46,25 +46,27 @@
                             Style="{StaticResource PlusMinusButton}"
                             Command="{Binding DecrementWeightCommand}"
                             Text="-" />
-                        <Label
-                            BackgroundColor="Transparent"
-                            Style="{StaticResource MediumText}"
-                            HorizontalTextAlignment="Center"
+                        <StackLayout
+                            Orientation="Horizontal"
+                            HorizontalOptions="Center"
                             Grid.Column="1"
-                            Text="{Binding TotalWeight, StringFormat='{0:F2}kg'}">
-                            <Label.GestureRecognizers>
-                                <TapGestureRecognizer
-                                    Tapped="FocusWeightKeyboard">
+                            Spacing="0">
+                            <Editor
+                                Style="{StaticResource EditorStyle}"
+                                x:Name="WeightEntry"
+                                Text="{Binding TotalWeight, Converter={StaticResource stringToNullableDoubleConverter}}" />
+                            <Label
+                                Text="kg"
+                                Style="{StaticResource MediumText}"
+                                Margin="{OnPlatform Android='0,0,0,7', Default='0'}">
+                                <Label.GestureRecognizers>
+                                    <TapGestureRecognizer
+                                        Tapped="FocusWeightKeyboard">
 
-                                </TapGestureRecognizer>
-                            </Label.GestureRecognizers>
-                        </Label>
-                        <Entry
-                            Keyboard="Numeric"
-                            x:Name="WeightEntry"
-                            Grid.Column="3"
-                            IsVisible="true"
-                            Text="{Binding TotalWeight, Converter={StaticResource stringToNullableDoubleConverter}}" />
+                                    </TapGestureRecognizer>
+                                </Label.GestureRecognizers>
+                            </Label>
+                        </StackLayout>
                         <Button
                             Style="{StaticResource PlusMinusButton}"
                             Command="{Binding IncrementWeightCommand}"
@@ -203,8 +205,42 @@
     </ContentPage.Content>
     <ContentPage.Resources>
         <ResourceDictionary>
-            <OnPlatform x:Key="BigFontSize" x:TypeArguments="x:Double" Android="58" iOS="62"/>
-            <OnPlatform x:Key="ButtonFontSize" x:TypeArguments="x:Double" Android="28" iOS="32"/>
+           
+            <OnPlatform
+                x:Key="BigFontSize"
+                x:TypeArguments="x:Double"
+                Android="58"
+                iOS="62" />
+            <OnPlatform
+                x:Key="ButtonFontSize"
+                x:TypeArguments="x:Double"
+                Android="28"
+                iOS="32" />
+            <OnPlatform
+                x:Key="MediumFontSize"
+                x:TypeArguments="x:Double"
+                Android="25"
+                iOS="27" />
+             <Style
+                x:Key="EditorStyle"
+                TargetType="Editor">
+                <Setter
+                    Property="AutoSize"
+                    Value="TextChanges" />
+                <Setter
+                    Property="TextColor"
+                    Value="White" />
+                <Setter
+                    Property="FontSize"
+                    Value="{StaticResource MediumFontSize}" />
+                <Setter
+                    Property="Keyboard"
+                    Value="Numeric" />
+                <Setter
+                    Property="VerticalOptions"
+                    Value="Center" />
+                 <Setter Property="BackgroundColor" Value="Transparent"/>
+            </Style>
             <Style
                 x:Key="SectionPancakeStyle"
                 TargetType="yummy:PancakeView">
@@ -227,9 +263,9 @@
             <Style
                 x:Key="PickerStyle"
                 TargetType="Picker">
-                <Setter
+                 <Setter
                     Property="FontSize"
-                    Value="27" />
+                    Value="{StaticResource MediumFontSize}" />
                 <Setter
                     Property="TextColor"
                     Value="White" />
@@ -243,8 +279,9 @@
             </Style>
             <converters:DoubleToBooleanConverter
                 x:Key="doubleToBooleanConverter" />
-            <converters:StringToNullableDoubleConverter x:Key="stringToNullableDoubleConverter"/>
-          
+            <converters:StringToNullableDoubleConverter
+                x:Key="stringToNullableDoubleConverter" />
+
 
             <Style
                 x:Key="PlusMinusButton"
@@ -258,8 +295,12 @@
                 <Setter
                     Property="BackgroundColor"
                     Value="Transparent" />
-                <Setter Property="VerticalOptions" Value="Center"/>
-                <Setter Property="Padding" Value="0"/>
+                <Setter
+                    Property="VerticalOptions"
+                    Value="Center" />
+                <Setter
+                    Property="Padding"
+                    Value="0" />
             </Style>
             <Style
                 x:Key="BaseText"
@@ -294,7 +335,7 @@
                     Value="Center" />
                 <Setter
                     Property="FontSize"
-                    Value="27" />
+                    Value="{StaticResource MediumFontSize}" />
                 <Setter
                     Property="HorizontalTextAlignment"
                     Value="End" />
