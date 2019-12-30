@@ -70,6 +70,7 @@ jobs:
       appSlug: 'Lachlan-Gordon/FifteenPercentDrop'
       appFile: '**/*.ipa'
       releaseNotesOption: 'input'
+      releaseNotesInput: '15 % drop app'
       destinationType: 'groups'
       
 
