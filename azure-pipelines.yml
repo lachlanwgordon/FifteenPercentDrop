@@ -47,7 +47,7 @@ jobs:
   - task: InstallAppleProvisioningProfile@1
     inputs:
       provisioningProfileLocation: 'secureFiles'
-      provProfileSecureFile: 'Fifteen_Percent_App_Store.mobileprovision'
+      provProfileSecureFile: 'Fifteen_Percent_Ad_Hoc.mobileprovision'
       removeProfile: false
 
   - task: InstallAppleCertificate@2
@@ -68,7 +68,7 @@ jobs:
     inputs:
       serverEndpoint: 'App Center'
       appSlug: 'Lachlan-Gordon/FifteenPercentDrop'
-      appFile: 
+      appFile: '**/*.ipa'
       releaseNotesOption: 'input'
       destinationType: 'groups'
       
