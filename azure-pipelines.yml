@@ -28,5 +28,5 @@ steps:
   inputs:
     solutionFile: '**/*iOS.csproj'
     configuration: 'Release'
-    buildForSimulator: false
-    packageApp: true
+    buildForSimulator: true
+    packageApp: false
