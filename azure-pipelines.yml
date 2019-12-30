@@ -40,7 +40,9 @@ jobs:
 
   - task: PublishBuildArtifacts@1
     inputs:
-      pathtoPublish: '$(outputDirectory)'
+      PathtoPublish: '$(Build.ArtifactStagingDirectory)'
+      ArtifactName: 'dropDroid'
+      publishLocation: 'Container'
 
 - job: iOS
   pool:
@@ -72,5 +74,5 @@ jobs:
   - task: PublishBuildArtifacts@1
     inputs:
       PathtoPublish: '$(Build.ArtifactStagingDirectory)'
-      ArtifactName: 'drop'
+      ArtifactName: 'dropiOS'
       publishLocation: 'Container'
