@@ -44,7 +44,7 @@ jobs:
       apksignerKeystoreFile: 'FifteenPercent.keystore'
       apksignerKeystorePassword: '$(KeyStorePassword)'
       apksignerKeystoreAlias: '$(KeyStoreAlias)'
-      zipalign: false
+      apksignerKeyPassword: '$(KeyStoreKey)'
 
   - task: InstallAppleProvisioningProfile@1
     inputs:
