@@ -75,6 +75,17 @@ jobs:
       releaseNotesInput: '15 % drop app'
       destinationType: 'groups'
       
+  - task: AppCenterDistribute@3
+    inputs:
+      serverEndpoint: 'App Center'
+      appSlug: 'Lachlan-Gordon/FifteenPercentDropDroid'
+      appFile: '**/*.apk'
+      symbolsOption: 'Android'
+      releaseNotesOption: 'input'
+      releaseNotesInput: 'this is my new app'
+      destinationType: 'groups'
+
+  
 
 
 
