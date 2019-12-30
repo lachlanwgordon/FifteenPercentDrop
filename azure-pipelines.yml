@@ -68,7 +68,7 @@ jobs:
     inputs:
       solutionFile: '**/*.sln'
       configuration: 'Debug'
-      buildForSimulator: false
+      buildForSimulator: true
       packageApp: true
 
   - task: PublishBuildArtifacts@1
@@ -76,3 +76,6 @@ jobs:
       PathtoPublish: '$(Agent.BuildDirectory)'
       ArtifactName: 'dropiOS'
       publishLocation: 'Container'
+
+
+
