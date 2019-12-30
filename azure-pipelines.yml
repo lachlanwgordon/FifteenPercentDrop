@@ -40,9 +40,11 @@ jobs:
 
   - task: AndroidSigning@3
     inputs:
-      apksign: false
-      zipalign: false
       apkFiles: '$(outputDirectory)/*.apk'
+      apksignerKeystoreFile: 'FifteenPercent.keystore'
+      apksignerKeystorePassword: '$(KeyStorePassword)'
+      apksignerKeystoreAlias: '$(KeyStoreAlias)'
+      zipalign: false
 
   - task: InstallAppleProvisioningProfile@1
     inputs:
