@@ -67,12 +67,12 @@ jobs:
   - task: XamariniOS@2
     inputs:
       solutionFile: '**/*.sln'
-      configuration: 'Release'
-      buildForSimulator: true
+      configuration: 'Debug'
+      buildForSimulator: false
       packageApp: true
 
   - task: PublishBuildArtifacts@1
     inputs:
-      PathtoPublish: '$(Build.ArtifactStagingDirectory)'
+      PathtoPublish: '$(Agent.BuildDirectory)'
       ArtifactName: 'dropiOS'
       publishLocation: 'Container'
