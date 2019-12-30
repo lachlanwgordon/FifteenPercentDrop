@@ -7,7 +7,7 @@ jobs:
 
 - job: Android
   pool:
-    vmImage: 'VS2017-Win2016'
+    vmImage: 'VS2019-Win2016'
 
   variables:
     buildConfiguration: 'Release'
