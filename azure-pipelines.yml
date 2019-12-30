@@ -52,7 +52,7 @@ jobs:
   - task: InstallAppleCertificate@2
     inputs:
       certSecureFile: 'FifteenPercentCertificates.p12'
-      certPwd: '$(FifteenPercentCertificatesP12Password)'
+      certPwd: '$(CertPassword)'
       keychain: 'temp'
   - task: XamariniOS@2
     inputs:
