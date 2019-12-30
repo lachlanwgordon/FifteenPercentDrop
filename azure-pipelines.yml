@@ -72,10 +72,16 @@ jobs:
       packageApp: true
       buildForSimulator: true
       runNugetRestore: false
+      
+  - task: CopyFiles@2
+    inputs:
+      SourceFolder: '$(system.defaultworkingdirectory)'
+      Contents: '**/*.ipa'
+      TargetFolder: '$(build.artifactstagingdirectory)'
 
   - task: PublishBuildArtifacts@1
     inputs:
-      PathtoPublish: '$(Build.BinariesDirectory)'
+      PathtoPublish: '$(Build.artifactstagingdirectory)'
       ArtifactName: 'dropios'
       publishLocation: 'Container'
 
