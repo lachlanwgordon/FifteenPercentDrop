@@ -49,7 +49,8 @@ jobs:
     vmImage: 'macOS 10.13'
 
   variables:
-    buildConfiguration: 'Release'
+    buildConfiguration: 'Debug'
+    outputDirectory: '$(build.binariesDirectory)/$(buildConfiguration)'
 
   steps:
   # To manually select a Xamarin SDK version on the Hosted macOS agent, enable this script with the SDK version you want to target
@@ -67,14 +68,14 @@ jobs:
   - task: XamariniOS@2
     inputs:
       solutionFile: '**/*iOS.csproj'
-      configuration: 'Debug'
+      configuration: '$(buildConfiguration)'
       packageApp: true
       buildForSimulator: true
       runNugetRestore: false
 
   - task: PublishBuildArtifacts@1
     inputs:
-      PathtoPublish: '$(Build.ArtifactStagingDirectory)'
+      PathtoPublish: '$(outputDirectory)'
       ArtifactName: 'dropios'
       publishLocation: 'Container'
 
