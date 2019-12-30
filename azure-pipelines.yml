@@ -72,11 +72,11 @@ jobs:
       buildForSimulator: true
       runNugetRestore: false
 
-  - task: PublishBuildArtifacts@1
-    inputs:
-      PathtoPublish: '$(Build.ArtifactStagingDirectory)'
-      ArtifactName: 'dropiOS'
-      publishLocation: 'Container'
+- task: PublishBuildArtifacts@1
+  inputs:
+    PathtoPublish: '$(Build.ArtifactStagingDirectory)'
+    ArtifactName: 'dropios'
+    publishLocation: 'Container'
 
 
 
