@@ -48,6 +48,7 @@ jobs:
     inputs:
       provisioningProfileLocation: 'secureFiles'
       provProfileSecureFile: 'Fifteen_Percent_App_Store.mobileprovision'
+      removeProfile: false
 
   - task: InstallAppleCertificate@2
     inputs:
