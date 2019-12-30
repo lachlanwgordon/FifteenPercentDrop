@@ -140,40 +140,46 @@ namespace FifteenPercentDrop.Tests
         [Test]
         public void RoundedWidthLessThan20()
         {
+            var vm = new CalculatorViewModel();
+
             var expected = 20;
-            var actual = CalculatorViewModel.GetRoundedWidth(19);
+            var actual = vm.GetRoundedWidth(19);
             Assert.AreEqual(expected, actual);
         }
 
         [Test]
         public void RoundedWidth21point4()
         {
+            var vm = new CalculatorViewModel();
             var expected = 20;
-            var actual = CalculatorViewModel.GetRoundedWidth(21.4);
+            var actual = vm.GetRoundedWidth(21.4);
             Assert.AreEqual(expected, actual);
         }
 
         [Test]
         public void RoundedWidth21point6()
         {
+            var vm = new CalculatorViewModel();
             var expected = 23;
-            var actual = CalculatorViewModel.GetRoundedWidth(21.6);
+            var actual = vm.GetRoundedWidth(21.6);
             Assert.AreEqual(expected, actual);
         }
 
         [Test]
         public void RoundedWidth24Point1()
         {
+            var vm = new CalculatorViewModel();
             var expected = 25;
-            var actual = CalculatorViewModel.GetRoundedWidth(24.1);
+            var actual = vm.GetRoundedWidth(24.1);
             Assert.AreEqual(expected, actual);
         }
 
         [Test]
         public void RoundedWidth50()
         {
+            var vm = new CalculatorViewModel();
             var expected = 37;
-            var actual = CalculatorViewModel.GetRoundedWidth(50);
+            var actual = vm.GetRoundedWidth(50);
             Assert.AreEqual(expected, actual);
         }
 
