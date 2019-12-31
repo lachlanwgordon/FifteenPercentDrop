@@ -41,7 +41,7 @@ jobs:
   - task: AndroidSigning@3
     inputs:
       apkFiles: '$(outputDirectory)/*.apk'
-      apksignerKeystoreFile: 'FifteenPercent3.keystore'
+      apksignerKeystoreFile: 'FifteenPercent4.keystore'
       apksignerKeystorePassword: '$(KeyStorePassword)'
       apksignerKeystoreAlias: '$(KeyStoreAlias)'
       apksignerKeyPassword: '$(KeyStoreAliasPassword)'
