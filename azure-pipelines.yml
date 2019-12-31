@@ -41,10 +41,10 @@ jobs:
   - task: AndroidSigning@3
     inputs:
       apkFiles: '$(outputDirectory)/*.apk'
-      apksignerKeystoreFile: 'FifteenPercent4.keystore'
-      apksignerKeystorePassword: '$(KeyStorePassword)'
-      apksignerKeystoreAlias: '$(KeyStoreAlias)'
-      apksignerKeyPassword: '$(KeyStoreAliasPassword)'
+      apksignerKeystoreFile: 'FifteenPercent15.keystore'
+      apksignerKeystorePassword: '$(keystorepass)'
+      apksignerKeystoreAlias: 'fifteenpercentalias'
+      apksignerKeyPassword: '$(keyaliaspass)'
 
   - task: InstallAppleProvisioningProfile@1
     inputs:
