@@ -1,0 +1,69 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<ContentPage
+    xmlns="http://xamarin.com/schemas/2014/forms"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:vm="clr-namespace:FifteenPercentDrop.Core.ViewModels;assembly=FifteenPercentDrop.Core"
+    xmlns:rainbows="clr-namespace:Xamarin.Forms.DebugRainbows;assembly=Xamarin.Forms.DebugRainbows"
+    rainbows:DebugRainbow.IsDebug="False"
+    x:Class="FifteenPercentDrop.Views.AboutPage">
+    <ContentPage.BindingContext>
+        <vm:AboutViewModel x:Name="VM"/>
+    </ContentPage.BindingContext>
+    <ContentPage.Content>
+        <Grid>
+            <TableView Intent="Settings" >
+                <TableRoot>
+                    <TableSection Title="About 15% Drop">
+                            <TextCell Text="Created By"
+                                      Detail="Lachlan Gordon"
+                                      CommandParameter="https://lachlanwgordon.com"
+                                      Command="{Binding WebsiteCommand}" />
+                            <TextCell Text="Development Blog Post"
+                                      Detail="https://lachlanwgordon.com/FifteenPercentDrop"
+                                      CommandParameter="https://lachlanwgordon.com/FifteenPercentDrop"
+                                      Command="{Binding WebsiteCommand}" />
+                            <TextCell Text="Twitter"
+                                      Detail="@lachlanwgordon"
+                                      Command="{Binding WebsiteCommand}"
+                                      CommandParameter="https://twitter.com/lachlanwgordon" />
+                            <TextCell Text="Source Code"
+                                      Command="{Binding WebsiteCommand}"
+                                      CommandParameter="https://github.com/lachlanwgordon/FifteenPercentDrop"
+                                      Detail="https://github.com/lachlanwgordon/FifteenPercentDrop/" />
+                            <TextCell Text="Explanation"
+                                      Command="{Binding WebsiteCommand}"
+                                      
+                                      CommandParameter="https://www.renehersecycles.com/wp-content/uploads/2015/03/BQTireDrop.pdf"
+                                      Detail="Jan Heine – Optimizing Your Tire Pressure for Your Weight">
+                            </TextCell>
+                        
+                        </TableSection>
+                    <TableSection Title="Libraries">
+                            <TextCell Text="Xamarin Forms"
+                                      Command="{Binding WebsiteCommand}"
+                                      CommandParameter="https://docs.microsoft.com/en-us/xamarin/xamarin-forms/"
+                                      Detail="Xamarin" />
+                            <TextCell Text="Xamarin Essentials"
+                                      Command="{Binding WebsiteCommand}"
+                                      CommandParameter="https://docs.microsoft.com/en-us/xamarin/essentials/"
+                                      Detail="Xamarin" />
+                            <TextCell Text="Mvvm Helpers"
+                                      Command="{Binding WebsiteCommand}"
+                                      CommandParameter="https://github.com/jamesmontemagno/mvvm-helpers"
+                                      Detail="James Montemagno" />
+                            <TextCell Text="Pancake View"
+                                      Command="{Binding WebsiteCommand}"
+                                      CommandParameter="https://github.com/sthewissen/Xamarin.Forms.PancakeView"
+                                      Detail="Steven Thewissen" />
+                            <TextCell Text="Debug Rainbows"
+                                      Command="{Binding WebsiteCommand}"
+                                      Tapped="DebugRainbows"
+                                      CommandParameter="https://github.com/sthewissen/Xamarin.Forms.DebugRainbows"
+                                      Detail="Steven Thewissen" />
+                            
+                        </TableSection>
+                </TableRoot>
+            </TableView>
+        </Grid>
+    </ContentPage.Content>
+</ContentPage>

@@ -6,11 +6,9 @@
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     mc:Ignorable="d"
     xmlns:ios="clr-namespace:Xamarin.Forms.PlatformConfiguration.iOSSpecific;assembly=Xamarin.Forms.Core"
-
-    ios:Page.UseSafeArea="True"
+    xmlns:rainbows="clr-namespace:Xamarin.Forms.DebugRainbows;assembly=Xamarin.Forms.DebugRainbows"
+    
     Shell.NavBarIsVisible="False"
-
-
     xmlns:pages="clr-namespace:FifteenPercentDrop.Views"
     Title="FifteenPercentDrop"
     x:Class="FifteenPercentDrop.AppShell">
@@ -66,10 +64,10 @@
                 ContentTemplate="{DataTemplate pages:CalculatorPage}" />
         </Tab>
          <Tab
-            Title="Calculator"
+            Title="About"
             Icon="tab_feed.png">
             <ShellContent
-                ContentTemplate="{DataTemplate pages:CalculatorPage}" />
+                ContentTemplate="{DataTemplate pages:AboutPage}" />
         </Tab>
         
     </TabBar>
