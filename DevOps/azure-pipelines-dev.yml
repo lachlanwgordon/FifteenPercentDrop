@@ -46,6 +46,6 @@ jobs:
     inputs:
       solutionFile: '**/*iOS.csproj'
       configuration: '$(buildConfiguration)'
-      packageApp: true
+      packageApp: false
       runNugetRestore: false
 
