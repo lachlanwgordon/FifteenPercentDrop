@@ -8,16 +8,14 @@
     xmlns:yummy="clr-namespace:Xamarin.Forms.PancakeView;assembly=Xamarin.Forms.PancakeView"
     xmlns:vm="clr-namespace:FifteenPercentDrop.Core.ViewModels;assembly=FifteenPercentDrop.Core"
     x:Class="FifteenPercentDrop.Views.CalculatorPage"
-    xmlns:converters="clr-namespace:FifteenPercentDrop.Converters">
+
+    xmlns:converters="clr-namespace:FifteenPercentDrop.Converters" xmlns:controls="clr-namespace:FifteenPercentDrop.Controls">
 
     <ContentPage.BindingContext>
         <vm:CalculatorViewModel
             x:Name="VM" />
     </ContentPage.BindingContext>
     <ContentPage.Content>
-
-        <!--BackgroundGradientStartColor="#74e14c"-->
-
         <yummy:PancakeView
             Padding="10,50,10,70"
             BackgroundGradientStartColor="#71DE4C"
@@ -28,52 +26,10 @@
                 <Label
                     Text="BIKE + RIDER WEIGHT"
                     Style="{StaticResource SectionLabelStyle}" />
-                <yummy:PancakeView
-                    Style="{StaticResource SectionPancakeStyle}">
 
-                    <Grid>
-                        <Grid.ColumnDefinitions>
-                            <ColumnDefinition
-                                Width="Auto" />
-                            <ColumnDefinition
-                                Width="*" />
-                            <ColumnDefinition
-                                Width="Auto" />
-                        </Grid.ColumnDefinitions>
-                        <Grid.RowDefinitions>
-                        </Grid.RowDefinitions>
-                        <Button
-                            Style="{StaticResource PlusMinusButton}"
-                            Command="{Binding DecrementWeightCommand}"
-                            Text="-" />
-                        <StackLayout
-                            Orientation="Horizontal"
-                            HorizontalOptions="Center"
-                            Grid.Column="1"
-                            Spacing="0">
-                            <Editor
-                                Style="{StaticResource EditorStyle}"
-                                x:Name="WeightEntry"
-                                Text="{Binding TotalWeight, Converter={StaticResource stringToNullableDoubleConverter}}" />
-                            <Label
-                                Text="kg"
-                                Style="{StaticResource MediumText}"
-                                Margin="{OnPlatform Android='0,0,0,7', Default='0'}">
-                                <Label.GestureRecognizers>
-                                    <TapGestureRecognizer
-                                        Tapped="FocusWeightKeyboard">
-
-                                    </TapGestureRecognizer>
-                                </Label.GestureRecognizers>
-                            </Label>
-                        </StackLayout>
-                        <Button
-                            Style="{StaticResource PlusMinusButton}"
-                            Command="{Binding IncrementWeightCommand}"
-                            Text="+"
-                            Grid.Column="2" />
-                    </Grid>
-                </yummy:PancakeView>
+                <controls:WeightEntry
+                    Weight="{Binding TotalWeight}"
+                    />
 
                 <Label
                     Text="BIKE TYPE"
@@ -205,176 +161,10 @@
     </ContentPage.Content>
     <ContentPage.Resources>
         <ResourceDictionary>
-           
-            <OnPlatform
-                x:Key="BigFontSize"
-                x:TypeArguments="x:Double"
-                Android="58"
-                iOS="62" />
-            <OnPlatform
-                x:Key="ButtonFontSize"
-                x:TypeArguments="x:Double"
-                Android="28"
-                iOS="32" />
-            <OnPlatform
-                x:Key="MediumFontSize"
-                x:TypeArguments="x:Double"
-                Android="25"
-                iOS="27" />
-             <Style
-                x:Key="EditorStyle"
-                TargetType="Editor">
-                <Setter
-                    Property="AutoSize"
-                    Value="TextChanges" />
-                <Setter
-                    Property="TextColor"
-                    Value="White" />
-                <Setter
-                    Property="FontSize"
-                    Value="{StaticResource MediumFontSize}" />
-                <Setter
-                    Property="Keyboard"
-                    Value="Numeric" />
-                <Setter
-                    Property="VerticalOptions"
-                    Value="Center" />
-                 <Setter Property="BackgroundColor" Value="Transparent"/>
-            </Style>
-            <Style
-                x:Key="SectionPancakeStyle"
-                TargetType="yummy:PancakeView">
-                <Setter
-                    Property="CornerRadius"
-                    Value="29" />
-                <Setter
-                    Property="BorderThickness"
-                    Value="1" />
-                <Setter
-                    Property="BorderColor"
-                    Value="White" />
-                <Setter
-                    Property="Padding"
-                    Value="5" />
-                <Setter
-                    Property="HeightRequest"
-                    Value="50" />
-            </Style>
-            <Style
-                x:Key="PickerStyle"
-                TargetType="Picker">
-                 <Setter
-                    Property="FontSize"
-                    Value="{StaticResource MediumFontSize}" />
-                <Setter
-                    Property="TextColor"
-                    Value="White" />
-
-                <Setter
-                    Property="HorizontalOptions"
-                    Value="Center" />
-                <Setter
-                    Property="BackgroundColor"
-                    Value="Transparent" />
-            </Style>
             <converters:DoubleToBooleanConverter
                 x:Key="doubleToBooleanConverter" />
             <converters:StringToNullableDoubleConverter
                 x:Key="stringToNullableDoubleConverter" />
-
-
-            <Style
-                x:Key="PlusMinusButton"
-                TargetType="Button">
-                <Setter
-                    Property="TextColor"
-                    Value="White" />
-                <Setter
-                    Property="FontSize"
-                    Value="{StaticResource ButtonFontSize}" />
-                <Setter
-                    Property="BackgroundColor"
-                    Value="Transparent" />
-                <Setter
-                    Property="VerticalOptions"
-                    Value="Center" />
-                <Setter
-                    Property="Padding"
-                    Value="0" />
-            </Style>
-            <Style
-                x:Key="BaseText"
-                TargetType="Label">
-                <Setter
-                    Property="TextColor"
-                    Value="White" />
-                <Setter
-                    Property="HorizontalTextAlignment"
-                    Value="End" />
-            </Style>
-            <Style
-                x:Key="BigText"
-                BasedOn="{StaticResource BaseText}"
-                TargetType="Label">
-                <Setter
-                    Property="FontSize"
-                    Value="{StaticResource BigFontSize}" />
-                <Setter
-                    Property="VerticalOptions"
-                    Value="StartAndExpand" />
-                <Setter
-                    Property="VerticalTextAlignment"
-                    Value="Start" />
-            </Style>
-            <Style
-                x:Key="MediumText"
-                BasedOn="{StaticResource BaseText}"
-                TargetType="Label">
-                <Setter
-                    Property="VerticalTextAlignment"
-                    Value="Center" />
-                <Setter
-                    Property="FontSize"
-                    Value="{StaticResource MediumFontSize}" />
-                <Setter
-                    Property="HorizontalTextAlignment"
-                    Value="End" />
-            </Style>
-
-
-            <Style
-                x:Key="SmallText"
-                BasedOn="{StaticResource BaseText}"
-                TargetType="Label">
-                <Setter
-                    Property="FontSize"
-                    Value="18" />
-                <Setter
-                    Property="HorizontalTextAlignment"
-                    Value="Start" />
-                <Setter
-                    Property="VerticalTextAlignment"
-                    Value="Center" />
-            </Style>
-            <Style
-                TargetType="Label"
-                x:Key="SuperScript"
-                BasedOn="{StaticResource SmallText}">
-                <Setter
-                    Property="VerticalTextAlignment"
-                    Value="Start" />
-                <Setter
-                    Property="Margin"
-                    Value="{OnPlatform Android='0,20,0,0', iOS=0}" />
-            </Style>
-            <Style
-                TargetType="Label"
-                x:Key="SectionLabelStyle"
-                BasedOn="{StaticResource SmallText}">
-                <Setter
-                    Property="Margin"
-                    Value="0,20,0,3" />
-            </Style>
         </ResourceDictionary>
     </ContentPage.Resources>
 </ContentPage>
