@@ -91,38 +91,6 @@ namespace FifteenPercentDrop.Core.ViewModels
 
         public List<double> TyreSizes { get; } = new List<double> { 20, 23, 25, 28, 32, 37 };
 
-        public ICommand IncrementWeightCommand => new Command(DoIncrementWeightCommand);
-        public ICommand DecrementWeightCommand => new Command(DoDecrementWeightCommand);
-        public ICommand IncrementWithCommand => new Command(DoIncrementWidthCommand);
-        public ICommand DecrementWidthCommand => new Command(DoDecrementWidthCommand);
-
-        private void DoIncrementWidthCommand(object obj)
-        {
-            double incremented = TyreSizes.ElementAtOrDefault(TyreSizes.IndexOf(TyreWidth) + 1);
-
-            if (incremented != 0)
-                TyreWidth = incremented;
-        }
-
-
-        private void DoDecrementWidthCommand(object obj)
-        {
-            double incremented = TyreSizes.ElementAtOrDefault(TyreSizes.IndexOf(TyreWidth) - 1);
-
-            if (incremented != 0)
-                TyreWidth = incremented;
-        }
-
-        private void DoDecrementWeightCommand(object obj)
-        {
-            TotalWeight -= 1;
-        }
-
-        private void DoIncrementWeightCommand(object obj)
-        {
-            TotalWeight += 1;
-        }
-
         public (double m, double c) Gradient
         {
             get

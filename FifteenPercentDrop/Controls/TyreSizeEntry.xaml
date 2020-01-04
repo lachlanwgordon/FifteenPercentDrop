@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ContentView xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="FifteenPercentDrop.Controls.TyreSizeEntry"
+             xmlns:ios="clr-namespace:Xamarin.Forms.PlatformConfiguration.iOSSpecific;assembly=Xamarin.Forms.Core"
+             xmlns:rainbows="clr-namespace:Xamarin.Forms.DebugRainbows;assembly=Xamarin.Forms.DebugRainbows"
+             xmlns:yummy="clr-namespace:Xamarin.Forms.PancakeView;assembly=Xamarin.Forms.PancakeView"
+             xmlns:vm="clr-namespace:FifteenPercentDrop.Core.ViewModels;assembly=FifteenPercentDrop.Core"
+             xmlns:converters="clr-namespace:FifteenPercentDrop.Converters"
+             xmlns:controls="clr-namespace:FifteenPercentDrop.Controls">
+  <StackLayout>
+    <Label Text="TYRE WIDTH"
+           Style="{StaticResource SectionLabelStyle}"/>
+    <yummy:PancakeView Style="{StaticResource SectionPancakeStyle}">
+      <Grid>
+        <Grid.ColumnDefinitions>
+          <ColumnDefinition Width="Auto"/>
+          <ColumnDefinition Width="*"/>
+          <ColumnDefinition Width="Auto"/>
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+        </Grid.RowDefinitions>
+        <Button Style="{StaticResource PlusMinusButton}"
+                Clicked="DecrementWidth"
+                Command="{Binding DecrementWidthCommand}"
+                Text="-"/>
+        <Picker Style="{StaticResource PickerStyle}"
+                x:Name="SizePicker"
+                SelectedIndexChanged="SizePicker_SelectedIndexChanged"
+                ItemDisplayBinding="{Binding ., StringFormat='{0:F0}mm'}"
+                Grid.Column="1"/>
+        <Button Style="{StaticResource PlusMinusButton}"
+                Command="{Binding IncrementWithCommand}"
+                Clicked="IncrementWidth"
+                Text="+"
+                Grid.Column="2"/>
+      </Grid>
+    </yummy:PancakeView>
+  </StackLayout>
+</ContentView>
