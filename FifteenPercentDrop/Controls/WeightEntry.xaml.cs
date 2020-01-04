@@ -1,7 +1,5 @@
 using System;
 using Xamarin.Forms;
-using FifteenPercentDrop.Controls;
-
 
 namespace FifteenPercentDrop.Controls
 {

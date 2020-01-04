@@ -18,6 +18,8 @@ namespace FifteenPercentDrop.Views
             var currentState = StateLayout.GetCurrentState(WeightStack);
             var newState = currentState == State.Success ? State.None : State.Success;
             StateLayout.SetCurrentState(WeightStack, newState);
+            StateLayout.SetCurrentState(LoadStack, newState);
+            StateLayout.SetCurrentState(TyreStack, newState);
 
         }
     }

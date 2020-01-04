@@ -8,6 +8,42 @@ namespace FifteenPercentDrop.Controls
 {
     public partial class TyreSizeEntry : ContentView
     {
+        public static readonly BindableProperty TitleProperty = BindableProperty.Create(nameof(Title), typeof(string), typeof(TyreSizeEntry), default(string), propertyChanged: OnTitleChanged);
+        public string Title
+        {
+            get
+            {
+                return GetValue(TitleProperty) as string;
+            }
+
+            set
+            {
+                SetValue(TitleProperty, value);
+            }
+        }
+
+        static void OnTitleChanged(BindableObject bindable, object oldValue, object newValue)
+        {
+            try
+            {
+                var control = (TyreSizeEntry)bindable;
+
+                var value = newValue as string;
+
+                control.ApplyTitle(value);
+            }
+            catch (Exception ex)
+            {
+                // TODO: Handle exception.
+            }
+        }
+
+        void ApplyTitle(string value)
+        {
+            TitleLabel.Text = value;
+        }
+
+
         public static readonly BindableProperty TyreWidthsProperty = BindableProperty.Create(nameof(TyreWidths), typeof(List<double>), typeof(TyreSizeEntry), default(List<double>), propertyChanged: OnTyreWidthsChanged);
         public List<double> TyreWidths
         {
