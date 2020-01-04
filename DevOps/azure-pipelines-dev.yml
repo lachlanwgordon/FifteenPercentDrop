@@ -47,5 +47,6 @@ jobs:
       solutionFile: '**/*iOS.csproj'
       configuration: '$(buildConfiguration)'
       packageApp: false
+      buildForSimulator: true
       runNugetRestore: false
 
