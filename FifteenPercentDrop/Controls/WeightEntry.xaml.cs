@@ -6,7 +6,42 @@ using FifteenPercentDrop.Controls;
 namespace FifteenPercentDrop.Controls
 {
     public partial class WeightEntry : ContentView
-    {
+    {        public static readonly BindableProperty TitleProperty = BindableProperty.Create(nameof(Title), typeof(string), typeof(WeightEntry), default(string), propertyChanged: OnTitleChanged);
+        public string Title
+        {
+            get
+            {
+                return GetValue(TitleProperty) as string;
+            }
+
+            set
+            {
+                SetValue(TitleProperty, value);
+            }
+        }
+
+        static void OnTitleChanged(BindableObject bindable, object oldValue, object newValue)
+        {
+            try
+            {
+                var control = (WeightEntry)bindable;
+
+                var value = newValue as string;
+
+                control.ApplyTitle(value);
+            }
+            catch (Exception ex)
+            {
+                // TODO: Handle exception.
+            }
+        }
+
+        void ApplyTitle(string value)
+        {
+            TitleLabel.Text = value;
+        }
+
+
         public WeightEntry()
         {
             InitializeComponent();

@@ -8,6 +8,7 @@
     xmlns:yummy="clr-namespace:Xamarin.Forms.PancakeView;assembly=Xamarin.Forms.PancakeView"
     xmlns:vm="clr-namespace:FifteenPercentDrop.Core.ViewModels;assembly=FifteenPercentDrop.Core"
     x:Class="FifteenPercentDrop.Views.CalculatorPage"
+    xmlns:state="clr-namespace:Xamarin.Forms.StateSquid;assembly=Xamarin.Forms.StateSquid"
     xmlns:converters="clr-namespace:FifteenPercentDrop.Converters"
     xmlns:controls="clr-namespace:FifteenPercentDrop.Controls">
 
@@ -16,6 +17,7 @@
             x:Name="VM" />
     </ContentPage.BindingContext>
     <ContentPage.Content>
+
         <yummy:PancakeView
             Padding="10,50,10,70"
             BackgroundGradientStartColor="#71DE4C"
@@ -23,13 +25,49 @@
             BackgroundGradientAngle="330">
             <StackLayout
                 Spacing="0">
-                <Label
-                    Text="BIKE + RIDER WEIGHT"
-                    Style="{StaticResource SectionLabelStyle}" />
+                
+                <StackLayout
+                    state:StateLayout.CurrentState="None"
+                    x:Name="WeightStack">
 
-                <controls:WeightEntry
-                    Weight="{Binding TotalWeight}" />
 
+                    <!-- Alt views-->
+                    <state:StateLayout.StateViews>
+                        <!-- Success used in place of Advanced because I can't get custom working-->
+                        <state:StateView
+                            StateKey="Success">
+                            <Grid>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition
+                                        Width="*" />
+                                    <ColumnDefinition
+                                        Width="*" />
+                                </Grid.ColumnDefinitions>
+                                <Grid.RowDefinitions>
+                                    <RowDefinition
+                                        Height="*" />
+                                </Grid.RowDefinitions>
+                                <controls:WeightEntry
+                                    Title="BIKE WEIGHT"
+                                    Weight="{Binding BikeWeight}" />
+
+                                <controls:WeightEntry
+                                    Title="RIDER WEIGHT"
+                                    Grid.Column="1"
+                                    Weight="{Binding RiderWeight}" />
+                            </Grid>
+                        </state:StateView>
+
+                    </state:StateLayout.StateViews>
+
+
+                    
+                </StackLayout>
+
+                <!--Default View-->
+                    <controls:WeightEntry
+                        Title="BIKE + RIDER WEIGHT"
+                        Weight="{Binding TotalWeight}" />
                 <Label
                     Text="BIKE TYPE"
                     Style="{StaticResource SectionLabelStyle}" />
@@ -66,9 +104,16 @@
                 </yummy:PancakeView>
                 <controls:TyreSizeEntry
                     TyreWidth="{Binding TyreWidth}"
-                    TyreWidths="{Binding TyreSizes}"
+                    TyreWidths="{Binding TyreSizes}" />
 
-                    />
+                <Button
+                    Text="..."
+                    Style="{StaticResource PlusMinusButton}"
+                    HorizontalOptions="End"
+                    Clicked="ChangeStateClicked"
+                    >
+
+                </Button>
 
                 <!--Results section-->
                 <Grid

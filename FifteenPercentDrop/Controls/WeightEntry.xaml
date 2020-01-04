@@ -1,45 +1,61 @@
 <?xml version="1.0" encoding="utf-8"?>
-<ContentView xmlns="http://xamarin.com/schemas/2014/forms"
-             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             x:Class="FifteenPercentDrop.Controls.WeightEntry"
-             xmlns:ios="clr-namespace:Xamarin.Forms.PlatformConfiguration.iOSSpecific;assembly=Xamarin.Forms.Core"
-             xmlns:rainbows="clr-namespace:Xamarin.Forms.DebugRainbows;assembly=Xamarin.Forms.DebugRainbows"
-             xmlns:yummy="clr-namespace:Xamarin.Forms.PancakeView;assembly=Xamarin.Forms.PancakeView"
-             xmlns:vm="clr-namespace:FifteenPercentDrop.Core.ViewModels;assembly=FifteenPercentDrop.Core"
-             xmlns:converters="clr-namespace:FifteenPercentDrop.Converters">
-  <yummy:PancakeView Style="{StaticResource SectionPancakeStyle}">
-    <Grid>
-      <Grid.ColumnDefinitions>
-        <ColumnDefinition Width="Auto"/>
-        <ColumnDefinition Width="*"/>
-        <ColumnDefinition Width="Auto"/>
-      </Grid.ColumnDefinitions>
-      <Grid.RowDefinitions>
-      </Grid.RowDefinitions>
-      <Button Style="{StaticResource PlusMinusButton}"
-              Clicked="DecrementWeight"
-              Text="-"/>
-      <StackLayout Orientation="Horizontal"
-                   HorizontalOptions="Center"
-                   Grid.Column="1"
-                   Spacing="0">
-        <Editor Style="{StaticResource EditorStyle}"
-                x:Name="WeightEditor"
-                TextChanged="WeightEditor_TextChanged"
-                />
-        <Label Text="kg"
-               Style="{StaticResource MediumText}"
-               Margin="{OnPlatform Android='0,0,0,7', Default='0'}">
-          <Label.GestureRecognizers>
-            <TapGestureRecognizer Tapped="FocusWeightKeyboard">
-            </TapGestureRecognizer>
-          </Label.GestureRecognizers>
-        </Label>
-      </StackLayout>
-      <Button Style="{StaticResource PlusMinusButton}"
-              Clicked="IncrementWeight"
-              Text="+"
-              Grid.Column="2"/>
-    </Grid>
-  </yummy:PancakeView>
+<ContentView
+    xmlns="http://xamarin.com/schemas/2014/forms"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    x:Class="FifteenPercentDrop.Controls.WeightEntry"
+    xmlns:ios="clr-namespace:Xamarin.Forms.PlatformConfiguration.iOSSpecific;assembly=Xamarin.Forms.Core"
+    xmlns:rainbows="clr-namespace:Xamarin.Forms.DebugRainbows;assembly=Xamarin.Forms.DebugRainbows"
+    xmlns:yummy="clr-namespace:Xamarin.Forms.PancakeView;assembly=Xamarin.Forms.PancakeView"
+    xmlns:vm="clr-namespace:FifteenPercentDrop.Core.ViewModels;assembly=FifteenPercentDrop.Core"
+    xmlns:converters="clr-namespace:FifteenPercentDrop.Converters">
+    <StackLayout>
+        <Label
+            x:Name="TitleLabel"
+            Style="{StaticResource SectionLabelStyle}" />
+        <yummy:PancakeView
+            Style="{StaticResource SectionPancakeStyle}">
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition
+                        Width="Auto" />
+                    <ColumnDefinition
+                        Width="*" />
+                    <ColumnDefinition
+                        Width="Auto" />
+                </Grid.ColumnDefinitions>
+                <Grid.RowDefinitions>
+                </Grid.RowDefinitions>
+                <Button
+                    Style="{StaticResource PlusMinusButton}"
+                    Clicked="DecrementWeight"
+                    Text="-" />
+                <StackLayout
+                    Orientation="Horizontal"
+                    HorizontalOptions="Center"
+                    Grid.Column="1"
+                    Spacing="0">
+                    <Editor
+                        Style="{StaticResource EditorStyle}"
+                        x:Name="WeightEditor"
+                        TextChanged="WeightEditor_TextChanged" />
+                    <Label
+                        Text="kg"
+                        Style="{StaticResource MediumText}"
+                        Margin="{OnPlatform Android='0,0,0,7', Default='0'}">
+                        <Label.GestureRecognizers>
+                            <TapGestureRecognizer
+                                Tapped="FocusWeightKeyboard">
+                            </TapGestureRecognizer>
+                        </Label.GestureRecognizers>
+                    </Label>
+                </StackLayout>
+                <Button
+                    Style="{StaticResource PlusMinusButton}"
+                    Clicked="IncrementWeight"
+                    Text="+"
+                    Grid.Column="2" />
+            </Grid>
+        </yummy:PancakeView>
+    </StackLayout>
+
 </ContentView>
