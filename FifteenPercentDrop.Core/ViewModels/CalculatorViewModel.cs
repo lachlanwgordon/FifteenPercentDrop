@@ -10,10 +10,14 @@ namespace FifteenPercentDrop.Core.ViewModels
     public class CalculatorViewModel : BaseViewModel
     {
         private double tyreWidth = 23;
+        private double frontTyreWidth = 23;
+        private double rearTyreWidth = 23;
         private double? totalWeight = 80;
         private double bikeWeight = 20;
         private double riderWeight = 60;
-        private double percentageOnFront = 40;
+        private int percentageOnFront = 40;
+        private double frontLoad;
+        private double rearLoad;
 
         public double BikeWeight
         {
@@ -42,21 +46,47 @@ namespace FifteenPercentDrop.Core.ViewModels
             set
             {
                 SetProperty(ref totalWeight, value);
+
+                UpdateFrontAndRearWeight();
                 OnPropertyChanged(nameof(FrontPressure));
                 OnPropertyChanged(nameof(RearPressure));
             }
         }
-        public double FrontLoad => (PercentageOnFront / 100) * TotalWeight ?? 0;
-        public double RearLoad => (1 - PercentageOnFront / 100) * TotalWeight ?? 0;
 
-        public double PercentageOnFront
+
+
+        
+        public double FrontLoad
+        {
+            get => frontLoad;
+            set
+            {
+                SetProperty(ref frontLoad, value);
+                OnPropertyChanged(nameof(FrontPressure));
+            }
+        }
+        public double RearLoad
+        {
+            get => rearLoad;
+            set
+            {
+                SetProperty(ref rearLoad, value);
+                OnPropertyChanged(nameof(RearPressure));
+            }
+        }
+
+
+
+        public int PercentageOnFront
         {
             get => percentageOnFront;
             set
             {
                 SetProperty(ref percentageOnFront, value);
+                UpdateFrontAndRearWeight();
                 OnPropertyChanged(nameof(FrontPressure));
                 OnPropertyChanged(nameof(RearPressure));
+
             }
         }
 
@@ -66,6 +96,16 @@ namespace FifteenPercentDrop.Core.ViewModels
             return TotalWeight ?? 0;
         }
 
+        public (double rear,double front) UpdateFrontAndRearWeight()
+        {
+            FrontLoad = ((double)PercentageOnFront / 100) * TotalWeight ?? 0;
+            RearLoad = (1 - (double)PercentageOnFront / 100) * TotalWeight ?? 0;
+
+
+            return (RearLoad, FrontLoad);
+        }
+
+
         public double TyreWidth
         {
             get => tyreWidth;
@@ -73,7 +113,31 @@ namespace FifteenPercentDrop.Core.ViewModels
             {
                 var rounded = GetRoundedWidth(value);
                 SetProperty(ref tyreWidth, rounded);
+                rearTyreWidth = rounded;
+                frontTyreWidth = value;
                 OnPropertyChanged(nameof(FrontPressure));
+                OnPropertyChanged(nameof(RearPressure));
+            }
+        }
+
+        public double FrontTyreWidth
+        {
+            get => frontTyreWidth;
+            set
+            {
+                var rounded = GetRoundedWidth(value);
+                SetProperty(ref frontTyreWidth, rounded);
+                OnPropertyChanged(nameof(FrontPressure));
+            }
+        }
+
+        public double RearTyreWidth
+        {
+            get => rearTyreWidth;
+            set
+            {
+                var rounded = GetRoundedWidth(value);
+                SetProperty(ref rearTyreWidth, rounded);
                 OnPropertyChanged(nameof(RearPressure));
             }
         }
@@ -85,70 +149,33 @@ namespace FifteenPercentDrop.Core.ViewModels
             return closest;
         }
 
-        public double FrontPressure => CalculateTyrePressure(FrontLoad);
-        public double RearPressure => CalculateTyrePressure(RearLoad);
+        public double FrontPressure => CalculateTyrePressure(FrontLoad, frontTyreWidth);
+        public double RearPressure => CalculateTyrePressure(RearLoad, rearTyreWidth);
         public double DropPercentage { get; set; } = 15;
 
         public List<double> TyreSizes { get; } = new List<double> { 20, 23, 25, 28, 32, 37 };
 
-        public ICommand IncrementWeightCommand => new Command(DoIncrementWeightCommand);
-        public ICommand DecrementWeightCommand => new Command(DoDecrementWeightCommand);
-        public ICommand IncrementWithCommand => new Command(DoIncrementWidthCommand);
-        public ICommand DecrementWidthCommand => new Command(DoDecrementWidthCommand);
-
-        private void DoIncrementWidthCommand(object obj)
+        public (double m, double c) GetGradient(double tyreWidth)
         {
-            double incremented = TyreSizes.ElementAtOrDefault(TyreSizes.IndexOf(TyreWidth) + 1);
-
-            if (incremented != 0)
-                TyreWidth = incremented;
-        }
-
-
-        private void DoDecrementWidthCommand(object obj)
-        {
-            double incremented = TyreSizes.ElementAtOrDefault(TyreSizes.IndexOf(TyreWidth) - 1);
-
-            if (incremented != 0)
-                TyreWidth = incremented;
-        }
-
-        private void DoDecrementWeightCommand(object obj)
-        {
-            TotalWeight -= 1;
-        }
-
-        private void DoIncrementWeightCommand(object obj)
-        {
-            TotalWeight += 1;
-        }
-
-        public (double m, double c) Gradient
-        {
-            get
-            {
-
-                if (TyreWidth == 20)
+                if (tyreWidth == 20)
                     return (3.8285714285714287, -54.42857142857143);//(32.5,70), (50,137)
-                else if (TyreWidth == 23)
+                else if (tyreWidth == 23)
                     return (3.2903225806451615, -47.935483870967744);//Points: (32.5,59), (48,110)
-                else if (TyreWidth == 25)
+                else if (tyreWidth == 25)
                     return (2.5625, -35.28125);//(32.5,48), (64.5,130)
-                else if (TyreWidth == 28)
+                else if (tyreWidth == 28)
                     return (1.702127659574468, -2.765957446808514);//Points: (31,50), (54.5,90)
-                else if (TyreWidth == 32)
+                else if (tyreWidth == 32)
                     return (1.3333333333333333, -2);//Points: (39,50), (69,90)
-                else if (TyreWidth == 37)
+                else if (tyreWidth == 37)
                     return (0.9230769230769231, 2.3076923076923066);//(30,30),(62.5,60)
                 else
                     return (0, 0);
-            }
-
         }
 
-        public double CalculateTyrePressure(double load)
+        public double CalculateTyrePressure(double load, double tyreWidth)
         {
-            var (m, c) = Gradient;
+            var (m, c) = GetGradient(tyreWidth);
             var pressure = m * load + c;
             return pressure;
         }

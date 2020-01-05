@@ -17,7 +17,7 @@ namespace FifteenPercentDrop.Tests
                 TyreWidth = 20,
             };
 
-            var gradient = vm.Gradient;
+            var gradient = vm.GetGradient(20);
             var expected = (3.8285714285714287, -54.42857142857143);
             Assert.AreEqual(expected, gradient);
         }
@@ -29,7 +29,7 @@ namespace FifteenPercentDrop.Tests
                 TyreWidth = 23,
             };
 
-            var gradient = vm.Gradient;
+            var gradient = vm.GetGradient(23);
             var expected = (3.2903225806451615, -47.935483870967744);
             Assert.AreEqual(expected, gradient);
         }
@@ -42,7 +42,7 @@ namespace FifteenPercentDrop.Tests
                 TyreWidth = 25,
             };
 
-            var gradient = vm.Gradient;
+            var gradient = vm.GetGradient(25);
             var expected = (2.5625, -35.28125);
             Assert.AreEqual(expected, gradient);
         }
@@ -54,7 +54,7 @@ namespace FifteenPercentDrop.Tests
                 TyreWidth = 28,
             };
 
-            var gradient = vm.Gradient;
+            var gradient = vm.GetGradient(28);
             var expected = (1.702127659574468, -2.765957446808514);
             Assert.AreEqual(expected, gradient);
         }
@@ -67,7 +67,7 @@ namespace FifteenPercentDrop.Tests
                 TyreWidth = 32,
             };
 
-            var gradient = vm.Gradient;
+            var gradient = vm.GetGradient(32);
             var expected = (1.3333333333333333, -2);
             Assert.AreEqual(expected, gradient);
         }
@@ -80,7 +80,7 @@ namespace FifteenPercentDrop.Tests
                 TyreWidth = 37,
             };
 
-            var gradient = vm.Gradient;
+            var gradient = vm.GetGradient(37);
             var expected = (0.9230769230769231, 2.3076923076923066);
             Assert.AreEqual(expected, gradient);
         }
@@ -93,7 +93,7 @@ namespace FifteenPercentDrop.Tests
                 TyreWidth = 25,
             };
 
-            var pressure = vm.CalculateTyrePressure(65);
+            var pressure = vm.CalculateTyrePressure(65,25);
             var expected = 130;
             Assert.Multiple(() =>
             {
@@ -109,7 +109,7 @@ namespace FifteenPercentDrop.Tests
             {
                 TyreWidth = 25,
             };
-            var pressure = vm.CalculateTyrePressure(45);
+            var pressure = vm.CalculateTyrePressure(45,25);
             var expected = 83;
             Assert.Multiple(() =>
             {

@@ -4,19 +4,19 @@
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
     xmlns:ios="clr-namespace:Xamarin.Forms.PlatformConfiguration.iOSSpecific;assembly=Xamarin.Forms.Core"
     xmlns:rainbows="clr-namespace:Xamarin.Forms.DebugRainbows;assembly=Xamarin.Forms.DebugRainbows"
-    rainbows:DebugRainbow.IsDebug="False"
+    rainbows:DebugRainbow.ShowColors="False"
     xmlns:yummy="clr-namespace:Xamarin.Forms.PancakeView;assembly=Xamarin.Forms.PancakeView"
     xmlns:vm="clr-namespace:FifteenPercentDrop.Core.ViewModels;assembly=FifteenPercentDrop.Core"
     x:Class="FifteenPercentDrop.Views.CalculatorPage"
-    xmlns:converters="clr-namespace:FifteenPercentDrop.Converters">
+    xmlns:state="clr-namespace:Xamarin.Forms.StateSquid;assembly=Xamarin.Forms.StateSquid"
+    xmlns:converters="clr-namespace:FifteenPercentDrop.Converters"
+    xmlns:controls="clr-namespace:FifteenPercentDrop.Controls">
 
     <ContentPage.BindingContext>
         <vm:CalculatorViewModel
             x:Name="VM" />
     </ContentPage.BindingContext>
     <ContentPage.Content>
-
-        <!--BackgroundGradientStartColor="#74e14c"-->
 
         <yummy:PancakeView
             Padding="10,50,10,70"
@@ -25,123 +25,195 @@
             BackgroundGradientAngle="330">
             <StackLayout
                 Spacing="0">
-                <Label
-                    Text="BIKE + RIDER WEIGHT"
-                    Style="{StaticResource SectionLabelStyle}" />
-                <yummy:PancakeView
-                    Style="{StaticResource SectionPancakeStyle}">
 
-                    <Grid>
-                        <Grid.ColumnDefinitions>
-                            <ColumnDefinition
-                                Width="Auto" />
-                            <ColumnDefinition
-                                Width="*" />
-                            <ColumnDefinition
-                                Width="Auto" />
-                        </Grid.ColumnDefinitions>
-                        <Grid.RowDefinitions>
-                        </Grid.RowDefinitions>
-                        <Button
-                            Style="{StaticResource PlusMinusButton}"
-                            Command="{Binding DecrementWeightCommand}"
-                            Text="-" />
-                        <StackLayout
-                            Orientation="Horizontal"
-                            HorizontalOptions="Center"
-                            Grid.Column="1"
-                            Spacing="0">
-                            <Editor
-                                Style="{StaticResource EditorStyle}"
-                                x:Name="WeightEntry"
-                                Text="{Binding TotalWeight, Converter={StaticResource stringToNullableDoubleConverter}}" />
+                <StackLayout
+                    x:Name="WeightStack">
+
+                    
+
+                    <!-- Alt views-->
+                    <state:StateLayout.StateViews>
+                        <!-- Success used in place of Advanced because I can't get custom working-->
+                        <state:StateView
+                            StateKey="Success">
+                            <Grid>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition
+                                        Width="*" />
+                                    <ColumnDefinition
+                                        Width="*" />
+                                </Grid.ColumnDefinitions>
+                                <Grid.RowDefinitions>
+                                    <RowDefinition
+                                        Height="*" />
+                                </Grid.RowDefinitions>
+                                <controls:WeightEntry
+                                    Title="BIKE WEIGHT"
+                                    Weight="{Binding BikeWeight}" />
+
+                                <controls:WeightEntry
+                                    Title="RIDER WEIGHT"
+                                    Grid.Column="1"
+                                    Weight="{Binding RiderWeight}" />
+                            </Grid>
+                        </state:StateView>
+                    </state:StateLayout.StateViews>
+                    <!--Default View-->
+                    <controls:WeightEntry
+                        Title="BIKE + RIDER WEIGHT"
+                        Weight="{Binding TotalWeight}" />
+                </StackLayout>
+
+                
+                <StackLayout
+                    x:Name="LoadStack">
+
+                    <Label
+                        Text="BIKE TYPE"
+                        Style="{StaticResource SectionLabelStyle}" />
+
+                    <yummy:PancakeView
+                        Style="{StaticResource SectionPancakeStyle}">
+                        <Grid>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition
+                                    Width="*" />
+                                <ColumnDefinition
+                                    Width="Auto" />
+                                <ColumnDefinition
+                                    Width="*" />
+                            </Grid.ColumnDefinitions>
+                            <Grid.RowDefinitions>
+                            </Grid.RowDefinitions>
                             <Label
-                                Text="kg"
-                                Style="{StaticResource MediumText}"
-                                Margin="{OnPlatform Android='0,0,0,7', Default='0'}">
-                                <Label.GestureRecognizers>
-                                    <TapGestureRecognizer
-                                        Tapped="FocusWeightKeyboard">
+                                Style="{StaticResource SmallText}"
+                                HorizontalTextAlignment="End"
+                                Text="HYBRID" />
+                            <Switch
+                                OnColor="#147314"
+                                ThumbColor="White"
+                                Grid.Column="1"
+                                VerticalOptions="Center"
+                                Margin="10,0"
+                                IsToggled="{Binding PercentageOnFront, Converter={StaticResource doubleToBooleanConverter}}" />
 
-                                    </TapGestureRecognizer>
-                                </Label.GestureRecognizers>
-                            </Label>
-                        </StackLayout>
-                        <Button
-                            Style="{StaticResource PlusMinusButton}"
-                            Command="{Binding IncrementWeightCommand}"
-                            Text="+"
-                            Grid.Column="2" />
-                    </Grid>
-                </yummy:PancakeView>
+                            <Label
+                                Style="{StaticResource SmallText}"
+                                Grid.Column="2"
+                                Text="ROAD BIKE" />
+                        </Grid>
+                    </yummy:PancakeView>
+                    <!-- Alt views-->
 
-                <Label
-                    Text="BIKE TYPE"
-                    Style="{StaticResource SectionLabelStyle}" />
-                <yummy:PancakeView
-                    Style="{StaticResource SectionPancakeStyle}">
-                    <Grid>
-                        <Grid.ColumnDefinitions>
-                            <ColumnDefinition
-                                Width="*" />
-                            <ColumnDefinition
-                                Width="Auto" />
-                            <ColumnDefinition
-                                Width="*" />
-                        </Grid.ColumnDefinitions>
-                        <Grid.RowDefinitions>
-                        </Grid.RowDefinitions>
-                        <Label
-                            Style="{StaticResource SmallText}"
-                            HorizontalTextAlignment="End"
-                            Text="HYBRID" />
-                        <Switch
-                            OnColor="#147314"
-                            ThumbColor="White"
-                            Grid.Column="1"
-                            VerticalOptions="Center"
-                            Margin="10,0"
-                            IsToggled="{Binding PercentageOnFront, Converter={StaticResource doubleToBooleanConverter}}" />
+                    <state:StateLayout.StateViews>
+                        <!-- Success used in place of Advanced because I can't get custom working-->
+                        <state:StateView
+                            StateKey="Success">
+                            <StackLayout>
+                                <Label
+                                    Text="WEIGHT DISTRIBUTION"
+                                    Style="{StaticResource SectionLabelStyle}" />
+                                <yummy:PancakeView
+                                    Style="{StaticResource SectionPancakeStyle}">
+                                    <Grid>
+                                        <Grid.ColumnDefinitions>
+                                            <ColumnDefinition
+                                                Width="Auto" />
+                                            <ColumnDefinition
+                                                Width="*" />
+                                            <ColumnDefinition
+                                                Width="Auto" />
+                                        </Grid.ColumnDefinitions>
+                                        <Grid.RowDefinitions>
+                                        </Grid.RowDefinitions>
+                                        <Label
+                                            Style="{StaticResource SmallText}"
+                                            HorizontalTextAlignment="End"
+                                            Text="{Binding PercentageOnFront, Converter={StaticResource inversePercentageConverter}, StringFormat='REAR {0:F0}%'}" />
+                                        <Slider
+                                            ThumbColor="White"
+                                            Grid.Column="1"
+                                            VerticalOptions="Center"
+                                            Margin="10,0"
+                                            Minimum="0"
+                                            Maximum="100"
+                                            Value="{Binding PercentageOnFront}" />
 
-                        <Label
-                            Style="{StaticResource SmallText}"
-                            Grid.Column="2"
-                            Text="ROAD BIKE" />
-                    </Grid>
-                </yummy:PancakeView>
-                <Label
-                    Text="TYRE WIDTH"
-                    Style="{StaticResource SectionLabelStyle}" />
-                <yummy:PancakeView
-                    Style="{StaticResource SectionPancakeStyle}">
-                    <Grid>
-                        <Grid.ColumnDefinitions>
-                            <ColumnDefinition
-                                Width="Auto" />
-                            <ColumnDefinition
-                                Width="*" />
-                            <ColumnDefinition
-                                Width="Auto" />
-                        </Grid.ColumnDefinitions>
-                        <Grid.RowDefinitions>
-                        </Grid.RowDefinitions>
-                        <Button
-                            Style="{StaticResource PlusMinusButton}"
-                            Command="{Binding DecrementWidthCommand}"
-                            Text="-" />
-                        <Picker
-                            Style="{StaticResource PickerStyle}"
-                            ItemsSource="{Binding TyreSizes}"
-                            SelectedItem="{Binding TyreWidth}"
-                            ItemDisplayBinding="{Binding ., StringFormat='{0:F0}mm'}"
-                            Grid.Column="1" />
-                        <Button
-                            Style="{StaticResource PlusMinusButton}"
-                            Command="{Binding IncrementWithCommand}"
-                            Text="+"
-                            Grid.Column="2" />
-                    </Grid>
-                </yummy:PancakeView>
+                                        <Label
+                                            Style="{StaticResource SmallText}"
+                                            Grid.Column="2"
+                                            Text="{Binding PercentageOnFront, StringFormat='FRONT {0:F0}%'}" />
+                                    </Grid>
+                                </yummy:PancakeView>
+                            </StackLayout>
+
+                        </state:StateView>
+                    </state:StateLayout.StateViews>
+                </StackLayout>
+
+
+                <StackLayout
+                    x:Name="TyreStack">
+                    <controls:TyreSizeEntry
+                        Title="TYRE WIDTH"
+                        TyreWidth="{Binding TyreWidth}"
+                        TyreWidths="{Binding TyreSizes}" />
+
+
+                    <state:StateLayout.StateViews>
+                        <state:StateView
+                            StateKey="Success">
+                            <Grid>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition
+                                        Width="*" />
+                                    <ColumnDefinition
+                                        Width="*" />
+                                </Grid.ColumnDefinitions>
+                                <Grid.RowDefinitions>
+                                    <RowDefinition
+                                        Height="*" />
+                                    <RowDefinition
+                                        Height="*" />
+                                </Grid.RowDefinitions>
+                                <controls:TyreSizeEntry
+                                    Title="REAR TYRE WIDTH"
+                                    TyreWidth="{Binding RearTyreWidth}"
+                                    TyreWidths="{Binding TyreSizes}" />
+                                <controls:TyreSizeEntry
+                                    Title="FRONT TYRE WIDTH"
+                                    TyreWidth="{Binding FrontTyreWidth}"
+                                    Grid.Column="1"
+                                    TyreWidths="{Binding TyreSizes}" />
+                                
+                                <controls:WeightEntry
+                                    Title="REAR LOAD"
+                                    Grid.Row="1"
+                                    Weight="{Binding RearLoad}" />
+                                <controls:WeightEntry
+                                    Title="FRONT LOAD"
+                                    Grid.Row="1"
+                                    Grid.Column="1"
+                                    Weight="{Binding FrontLoad}" />
+
+
+                            </Grid>
+                        </state:StateView>
+                    </state:StateLayout.StateViews>
+
+
+
+                </StackLayout>
+
+
+
+                <Button
+                    Text="..."
+                    Style="{StaticResource PlusMinusButton}"
+                    HorizontalOptions="End"
+                    Clicked="ChangeStateClicked">
+
+                </Button>
 
                 <!--Results section-->
                 <Grid
@@ -205,176 +277,12 @@
     </ContentPage.Content>
     <ContentPage.Resources>
         <ResourceDictionary>
-           
-            <OnPlatform
-                x:Key="BigFontSize"
-                x:TypeArguments="x:Double"
-                Android="58"
-                iOS="62" />
-            <OnPlatform
-                x:Key="ButtonFontSize"
-                x:TypeArguments="x:Double"
-                Android="28"
-                iOS="32" />
-            <OnPlatform
-                x:Key="MediumFontSize"
-                x:TypeArguments="x:Double"
-                Android="25"
-                iOS="27" />
-             <Style
-                x:Key="EditorStyle"
-                TargetType="Editor">
-                <Setter
-                    Property="AutoSize"
-                    Value="TextChanges" />
-                <Setter
-                    Property="TextColor"
-                    Value="White" />
-                <Setter
-                    Property="FontSize"
-                    Value="{StaticResource MediumFontSize}" />
-                <Setter
-                    Property="Keyboard"
-                    Value="Numeric" />
-                <Setter
-                    Property="VerticalOptions"
-                    Value="Center" />
-                 <Setter Property="BackgroundColor" Value="Transparent"/>
-            </Style>
-            <Style
-                x:Key="SectionPancakeStyle"
-                TargetType="yummy:PancakeView">
-                <Setter
-                    Property="CornerRadius"
-                    Value="29" />
-                <Setter
-                    Property="BorderThickness"
-                    Value="1" />
-                <Setter
-                    Property="BorderColor"
-                    Value="White" />
-                <Setter
-                    Property="Padding"
-                    Value="5" />
-                <Setter
-                    Property="HeightRequest"
-                    Value="50" />
-            </Style>
-            <Style
-                x:Key="PickerStyle"
-                TargetType="Picker">
-                 <Setter
-                    Property="FontSize"
-                    Value="{StaticResource MediumFontSize}" />
-                <Setter
-                    Property="TextColor"
-                    Value="White" />
-
-                <Setter
-                    Property="HorizontalOptions"
-                    Value="Center" />
-                <Setter
-                    Property="BackgroundColor"
-                    Value="Transparent" />
-            </Style>
+            <converters:InversePercentageConverter
+                x:Key="inversePercentageConverter" />
             <converters:DoubleToBooleanConverter
                 x:Key="doubleToBooleanConverter" />
             <converters:StringToNullableDoubleConverter
                 x:Key="stringToNullableDoubleConverter" />
-
-
-            <Style
-                x:Key="PlusMinusButton"
-                TargetType="Button">
-                <Setter
-                    Property="TextColor"
-                    Value="White" />
-                <Setter
-                    Property="FontSize"
-                    Value="{StaticResource ButtonFontSize}" />
-                <Setter
-                    Property="BackgroundColor"
-                    Value="Transparent" />
-                <Setter
-                    Property="VerticalOptions"
-                    Value="Center" />
-                <Setter
-                    Property="Padding"
-                    Value="0" />
-            </Style>
-            <Style
-                x:Key="BaseText"
-                TargetType="Label">
-                <Setter
-                    Property="TextColor"
-                    Value="White" />
-                <Setter
-                    Property="HorizontalTextAlignment"
-                    Value="End" />
-            </Style>
-            <Style
-                x:Key="BigText"
-                BasedOn="{StaticResource BaseText}"
-                TargetType="Label">
-                <Setter
-                    Property="FontSize"
-                    Value="{StaticResource BigFontSize}" />
-                <Setter
-                    Property="VerticalOptions"
-                    Value="StartAndExpand" />
-                <Setter
-                    Property="VerticalTextAlignment"
-                    Value="Start" />
-            </Style>
-            <Style
-                x:Key="MediumText"
-                BasedOn="{StaticResource BaseText}"
-                TargetType="Label">
-                <Setter
-                    Property="VerticalTextAlignment"
-                    Value="Center" />
-                <Setter
-                    Property="FontSize"
-                    Value="{StaticResource MediumFontSize}" />
-                <Setter
-                    Property="HorizontalTextAlignment"
-                    Value="End" />
-            </Style>
-
-
-            <Style
-                x:Key="SmallText"
-                BasedOn="{StaticResource BaseText}"
-                TargetType="Label">
-                <Setter
-                    Property="FontSize"
-                    Value="18" />
-                <Setter
-                    Property="HorizontalTextAlignment"
-                    Value="Start" />
-                <Setter
-                    Property="VerticalTextAlignment"
-                    Value="Center" />
-            </Style>
-            <Style
-                TargetType="Label"
-                x:Key="SuperScript"
-                BasedOn="{StaticResource SmallText}">
-                <Setter
-                    Property="VerticalTextAlignment"
-                    Value="Start" />
-                <Setter
-                    Property="Margin"
-                    Value="{OnPlatform Android='0,20,0,0', iOS=0}" />
-            </Style>
-            <Style
-                TargetType="Label"
-                x:Key="SectionLabelStyle"
-                BasedOn="{StaticResource SmallText}">
-                <Setter
-                    Property="Margin"
-                    Value="0,20,0,3" />
-            </Style>
         </ResourceDictionary>
     </ContentPage.Resources>
 </ContentPage>
