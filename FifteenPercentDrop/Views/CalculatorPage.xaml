@@ -19,202 +19,208 @@
     <ContentPage.Content>
 
         <yummy:PancakeView
-            Padding="10,50,10,70"
+            Padding="{OnPlatform iOS='10,50,10,70', Default='10'}"
             BackgroundGradientStartColor="#71DE4C"
             BackgroundGradientEndColor="#2c9b12"
             BackgroundGradientAngle="330">
-            <StackLayout
-                Spacing="0">
+            <StackLayout>
 
-                <StackLayout
-                    x:Name="WeightStack">
+                <ScrollView>
 
-                    
+                    <StackLayout
+                        Spacing="0">
 
-                    <!-- Alt views-->
-                    <state:StateLayout.StateViews>
-                        <!-- Success used in place of Advanced because I can't get custom working-->
-                        <state:StateView
-                            StateKey="Success">
-                            <Grid>
-                                <Grid.ColumnDefinitions>
-                                    <ColumnDefinition
-                                        Width="*" />
-                                    <ColumnDefinition
-                                        Width="*" />
-                                </Grid.ColumnDefinitions>
-                                <Grid.RowDefinitions>
-                                    <RowDefinition
-                                        Height="*" />
-                                </Grid.RowDefinitions>
-                                <controls:WeightEntry
-                                    Title="BIKE WEIGHT"
-                                    Weight="{Binding BikeWeight}" />
+                        <StackLayout
+                            x:Name="WeightStack">
 
-                                <controls:WeightEntry
-                                    Title="RIDER WEIGHT"
-                                    Grid.Column="1"
-                                    Weight="{Binding RiderWeight}" />
-                            </Grid>
-                        </state:StateView>
-                    </state:StateLayout.StateViews>
-                    <!--Default View-->
-                    <controls:WeightEntry
-                        Title="BIKE + RIDER WEIGHT"
-                        Weight="{Binding TotalWeight}" />
-                </StackLayout>
 
-                
-                <StackLayout
-                    x:Name="LoadStack">
 
-                    <Label
-                        Text="BIKE TYPE"
-                        Style="{StaticResource SectionLabelStyle}" />
-
-                    <yummy:PancakeView
-                        Style="{StaticResource SectionPancakeStyle}">
-                        <Grid>
-                            <Grid.ColumnDefinitions>
-                                <ColumnDefinition
-                                    Width="*" />
-                                <ColumnDefinition
-                                    Width="Auto" />
-                                <ColumnDefinition
-                                    Width="*" />
-                            </Grid.ColumnDefinitions>
-                            <Grid.RowDefinitions>
-                            </Grid.RowDefinitions>
-                            <Label
-                                Style="{StaticResource SmallText}"
-                                HorizontalTextAlignment="End"
-                                Text="HYBRID" />
-                            <Switch
-                                OnColor="#147314"
-                                ThumbColor="White"
-                                Grid.Column="1"
-                                VerticalOptions="Center"
-                                Margin="10,0"
-                                IsToggled="{Binding PercentageOnFront, Converter={StaticResource doubleToBooleanConverter}}" />
-
-                            <Label
-                                Style="{StaticResource SmallText}"
-                                Grid.Column="2"
-                                Text="ROAD BIKE" />
-                        </Grid>
-                    </yummy:PancakeView>
-                    <!-- Alt views-->
-
-                    <state:StateLayout.StateViews>
-                        <!-- Success used in place of Advanced because I can't get custom working-->
-                        <state:StateView
-                            StateKey="Success">
-                            <StackLayout>
-                                <Label
-                                    Text="WEIGHT DISTRIBUTION"
-                                    Style="{StaticResource SectionLabelStyle}" />
-                                <yummy:PancakeView
-                                    Style="{StaticResource SectionPancakeStyle}">
+                            <!-- Alt views-->
+                            <state:StateLayout.StateViews>
+                                <!-- Success used in place of Advanced because I can't get custom working-->
+                                <state:StateView
+                                    StateKey="Success">
                                     <Grid>
                                         <Grid.ColumnDefinitions>
                                             <ColumnDefinition
-                                                Width="Auto" />
+                                                Width="*" />
+                                            <ColumnDefinition
+                                                Width="*" />
+                                        </Grid.ColumnDefinitions>
+                                        <Grid.RowDefinitions>
+                                            <RowDefinition
+                                                Height="*" />
+                                        </Grid.RowDefinitions>
+                                        <controls:WeightEntry
+                                            Title="BIKE WEIGHT"
+                                            Weight="{Binding BikeWeight}" />
+
+                                        <controls:WeightEntry
+                                            Title="RIDER WEIGHT"
+                                            Grid.Column="1"
+                                            Weight="{Binding RiderWeight}" />
+                                    </Grid>
+                                </state:StateView>
+                            </state:StateLayout.StateViews>
+                            <!--Default View-->
+                            <controls:WeightEntry
+                                Title="BIKE + RIDER WEIGHT"
+                                Weight="{Binding TotalWeight}" />
+                        </StackLayout>
+
+
+                        <StackLayout
+                            x:Name="LoadStack">
+
+                            <Label
+                                Text="BIKE TYPE"
+                                Style="{StaticResource SectionLabelStyle}" />
+
+                            <yummy:PancakeView
+                                Style="{StaticResource SectionPancakeStyle}">
+                                <Grid>
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition
+                                            Width="*" />
+                                        <ColumnDefinition
+                                            Width="Auto" />
+                                        <ColumnDefinition
+                                            Width="*" />
+                                    </Grid.ColumnDefinitions>
+                                    <Grid.RowDefinitions>
+                                    </Grid.RowDefinitions>
+                                    <Label
+                                        Style="{StaticResource SmallText}"
+                                        HorizontalTextAlignment="End"
+                                        Text="HYBRID" />
+                                    <Switch
+                                        OnColor="#147314"
+                                        ThumbColor="White"
+                                        Grid.Column="1"
+                                        VerticalOptions="Center"
+                                        Margin="10,0"
+                                        IsToggled="{Binding PercentageOnFront, Converter={StaticResource doubleToBooleanConverter}}" />
+
+                                    <Label
+                                        Style="{StaticResource SmallText}"
+                                        Grid.Column="2"
+                                        Text="ROAD BIKE" />
+                                </Grid>
+                            </yummy:PancakeView>
+                            <!-- Alt views-->
+
+                            <state:StateLayout.StateViews>
+                                <!-- Success used in place of Advanced because I can't get custom working-->
+                                <state:StateView
+                                    StateKey="Success">
+                                    <StackLayout>
+                                        <Label
+                                            Text="WEIGHT DISTRIBUTION"
+                                            Style="{StaticResource SectionLabelStyle}" />
+                                        <yummy:PancakeView
+                                            Style="{StaticResource SectionPancakeStyle}">
+                                            <Grid>
+                                                <Grid.ColumnDefinitions>
+                                                    <ColumnDefinition
+                                                        Width="Auto" />
+                                                    <ColumnDefinition
+                                                        Width="*" />
+                                                    <ColumnDefinition
+                                                        Width="Auto" />
+                                                </Grid.ColumnDefinitions>
+                                                <Grid.RowDefinitions>
+                                                </Grid.RowDefinitions>
+                                                <Label
+                                                    Style="{StaticResource SmallText}"
+                                                    HorizontalTextAlignment="End"
+                                                    Text="{Binding PercentageOnFront, Converter={StaticResource inversePercentageConverter}, StringFormat='REAR {0:F0}%'}" />
+                                                <Slider
+                                                    ThumbColor="White"
+                                                    Grid.Column="1"
+                                                    VerticalOptions="Center"
+                                                    Margin="10,0"
+                                                    Minimum="0"
+                                                    Maximum="100"
+                                                    Value="{Binding PercentageOnFront}" />
+
+                                                <Label
+                                                    Style="{StaticResource SmallText}"
+                                                    Grid.Column="2"
+                                                    Text="{Binding PercentageOnFront, StringFormat='FRONT {0:F0}%'}" />
+                                            </Grid>
+                                        </yummy:PancakeView>
+                                    </StackLayout>
+
+                                </state:StateView>
+                            </state:StateLayout.StateViews>
+                        </StackLayout>
+
+
+                        <StackLayout
+                            x:Name="TyreStack">
+                            <controls:TyreSizeEntry
+                                Title="TYRE WIDTH"
+                                TyreWidth="{Binding TyreWidth}"
+                                TyreWidths="{Binding TyreSizes}" />
+
+
+                            <state:StateLayout.StateViews>
+                                <state:StateView
+                                    StateKey="Success">
+                                    <Grid>
+                                        <Grid.ColumnDefinitions>
                                             <ColumnDefinition
                                                 Width="*" />
                                             <ColumnDefinition
-                                                Width="Auto" />
+                                                Width="*" />
                                         </Grid.ColumnDefinitions>
                                         <Grid.RowDefinitions>
+                                            <RowDefinition
+                                                Height="*" />
+                                            <RowDefinition
+                                                Height="*" />
                                         </Grid.RowDefinitions>
-                                        <Label
-                                            Style="{StaticResource SmallText}"
-                                            HorizontalTextAlignment="End"
-                                            Text="{Binding PercentageOnFront, Converter={StaticResource inversePercentageConverter}, StringFormat='REAR {0:F0}%'}" />
-                                        <Slider
-                                            ThumbColor="White"
+                                        <controls:TyreSizeEntry
+                                            Title="REAR TYRE WIDTH"
+                                            TyreWidth="{Binding RearTyreWidth}"
+                                            TyreWidths="{Binding TyreSizes}" />
+                                        <controls:TyreSizeEntry
+                                            Title="FRONT TYRE WIDTH"
+                                            TyreWidth="{Binding FrontTyreWidth}"
                                             Grid.Column="1"
-                                            VerticalOptions="Center"
-                                            Margin="10,0"
-                                            Minimum="0"
-                                            Maximum="100"
-                                            Value="{Binding PercentageOnFront}" />
+                                            TyreWidths="{Binding TyreSizes}" />
 
-                                        <Label
-                                            Style="{StaticResource SmallText}"
-                                            Grid.Column="2"
-                                            Text="{Binding PercentageOnFront, StringFormat='FRONT {0:F0}%'}" />
+                                        <controls:WeightEntry
+                                            Title="REAR LOAD"
+                                            Grid.Row="1"
+                                            Weight="{Binding RearLoad}" />
+                                        <controls:WeightEntry
+                                            Title="FRONT LOAD"
+                                            Grid.Row="1"
+                                            Grid.Column="1"
+                                            Weight="{Binding FrontLoad}" />
+
+
                                     </Grid>
-                                </yummy:PancakeView>
-                            </StackLayout>
-
-                        </state:StateView>
-                    </state:StateLayout.StateViews>
-                </StackLayout>
-
-
-                <StackLayout
-                    x:Name="TyreStack">
-                    <controls:TyreSizeEntry
-                        Title="TYRE WIDTH"
-                        TyreWidth="{Binding TyreWidth}"
-                        TyreWidths="{Binding TyreSizes}" />
-
-
-                    <state:StateLayout.StateViews>
-                        <state:StateView
-                            StateKey="Success">
-                            <Grid>
-                                <Grid.ColumnDefinitions>
-                                    <ColumnDefinition
-                                        Width="*" />
-                                    <ColumnDefinition
-                                        Width="*" />
-                                </Grid.ColumnDefinitions>
-                                <Grid.RowDefinitions>
-                                    <RowDefinition
-                                        Height="*" />
-                                    <RowDefinition
-                                        Height="*" />
-                                </Grid.RowDefinitions>
-                                <controls:TyreSizeEntry
-                                    Title="REAR TYRE WIDTH"
-                                    TyreWidth="{Binding RearTyreWidth}"
-                                    TyreWidths="{Binding TyreSizes}" />
-                                <controls:TyreSizeEntry
-                                    Title="FRONT TYRE WIDTH"
-                                    TyreWidth="{Binding FrontTyreWidth}"
-                                    Grid.Column="1"
-                                    TyreWidths="{Binding TyreSizes}" />
-                                
-                                <controls:WeightEntry
-                                    Title="REAR LOAD"
-                                    Grid.Row="1"
-                                    Weight="{Binding RearLoad}" />
-                                <controls:WeightEntry
-                                    Title="FRONT LOAD"
-                                    Grid.Row="1"
-                                    Grid.Column="1"
-                                    Weight="{Binding FrontLoad}" />
-
-
-                            </Grid>
-                        </state:StateView>
-                    </state:StateLayout.StateViews>
+                                </state:StateView>
+                            </state:StateLayout.StateViews>
 
 
 
-                </StackLayout>
+                        </StackLayout>
 
 
 
-                <Button
-                    Text="..."
-                    Style="{StaticResource PlusMinusButton}"
-                    HorizontalOptions="End"
-                    Clicked="ChangeStateClicked">
+                        <Button
+                            Text="..."
+                            Style="{StaticResource PlusMinusButton}"
+                            HorizontalOptions="End"
+                            Clicked="ChangeStateClicked">
 
-                </Button>
+                        </Button>
 
+                    </StackLayout>
+                </ScrollView>
                 <!--Results section-->
                 <Grid
                     VerticalOptions="CenterAndExpand"
@@ -273,6 +279,7 @@
                         Grid.Column="5" />
                 </Grid>
             </StackLayout>
+
         </yummy:PancakeView>
     </ContentPage.Content>
     <ContentPage.Resources>
