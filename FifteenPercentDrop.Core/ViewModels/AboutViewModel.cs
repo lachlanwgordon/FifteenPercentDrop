@@ -29,6 +29,7 @@ namespace FifteenPercentDrop.Core.ViewModels
                 clickCount = 0;
                 return;
             }
+            clickCount = 0;
 
             var url = obj as string;
             Debug.WriteLine("command");
