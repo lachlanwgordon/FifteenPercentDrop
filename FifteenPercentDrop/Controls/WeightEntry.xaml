@@ -5,6 +5,7 @@
     x:Class="FifteenPercentDrop.Controls.WeightEntry"
     xmlns:ios="clr-namespace:Xamarin.Forms.PlatformConfiguration.iOSSpecific;assembly=Xamarin.Forms.Core"
     xmlns:rainbows="clr-namespace:Xamarin.Forms.DebugRainbows;assembly=Xamarin.Forms.DebugRainbows"
+    rainbows:DebugRainbow.ShowColors="False"
     xmlns:yummy="clr-namespace:Xamarin.Forms.PancakeView;assembly=Xamarin.Forms.PancakeView"
     xmlns:vm="clr-namespace:FifteenPercentDrop.Core.ViewModels;assembly=FifteenPercentDrop.Core"
     xmlns:converters="clr-namespace:FifteenPercentDrop.Converters">
@@ -17,11 +18,11 @@
             <Grid>
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition
-                        Width="Auto" />
-                    <ColumnDefinition
                         Width="*" />
                     <ColumnDefinition
                         Width="Auto" />
+                    <ColumnDefinition
+                        Width="*" />
                 </Grid.ColumnDefinitions>
                 <Grid.RowDefinitions>
                 </Grid.RowDefinitions>
