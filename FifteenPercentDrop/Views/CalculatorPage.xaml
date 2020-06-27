@@ -17,7 +17,7 @@
     </ContentPage.BindingContext>
     <ContentPage.Content>
         <yummy:PancakeView
-            Padding="10,0"
+            Padding="8,0"
             BackgroundGradientStartColor="{StaticResource AccentLight}"
             BackgroundGradientEndColor="{StaticResource AccentDark}"
             BackgroundGradientAngle="330">
@@ -26,6 +26,7 @@
                 Margin="0">
                 <StackLayout
                     Margin="0"
+                    Spacing="0"
                     Padding="0">
 
                     <StackLayout
@@ -144,11 +145,11 @@
                                                 Height="*" />
                                         </Grid.RowDefinitions>
                                         <controls:TyreSizeEntry
-                                            Title="REAR TYRE WIDTH"
+                                            Title="REAR TYRE"
                                             TyreWidth="{Binding RearTyreWidth}"
                                             TyreWidths="{Binding TyreSizes}" />
                                         <controls:TyreSizeEntry
-                                            Title="FRONT TYRE WIDTH"
+                                            Title="FRONT TYRE"
                                             TyreWidth="{Binding FrontTyreWidth}"
                                             Grid.Column="1"
                                             TyreWidths="{Binding TyreSizes}" />
@@ -176,10 +177,10 @@
                     <Button
                         HeightRequest="40"
                         Text="···"
+                        WidthRequest="30"
                         Style="{StaticResource PlusMinusButton}"
                         HorizontalOptions="End"
-
-                        Padding="{OnPlatform Android=0, iOS=10}"
+                        Padding="{OnPlatform Android=0, iOS=0}"
                         Clicked="ChangeStateClicked">
 
                     </Button>
@@ -256,7 +257,7 @@
                             Grid.Column="5" />
                         <Label
                             Style="{StaticResource SmallText}"
-                            Text="*CAUTION: Do not inflate tyre outside manufacturer's recomended range. Over/Underinflated tyres can lead to  dangerous punctures. There is debate about whether 15% drop is ideal."
+                            Text="*CAUTION: Do not inflate tyre outside manufacturer's recommended range. Over/Underinflated tyres can lead to  dangerous punctures. There is debate about whether 15% drop is ideal."
                             Margin="0,5"
                             Grid.Row="3"
                             Grid.ColumnSpan="7" />

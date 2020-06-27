@@ -16,20 +16,15 @@
             Style="{StaticResource MediumText}" />
         <yummy:PancakeView
             Style="{StaticResource SectionPancakeStyle}">
-            <Grid>
-                <Grid.ColumnDefinitions>
-                    <ColumnDefinition
-                        Width="*" />
-                    <ColumnDefinition
-                        Width="*" />
-                    <ColumnDefinition
-                        Width="*" />
-                </Grid.ColumnDefinitions>
-                <Grid.RowDefinitions>
-                </Grid.RowDefinitions>
+            <Grid
+                ColumnSpacing="0"
+                ColumnDefinitions="*,100,*"
+                >
+                
                 <Entry
                     HorizontalTextAlignment="Center"
-                    HorizontalOptions="Center"
+                    HorizontalOptions="FillAndExpand"
+                    Margin="0"
                     Grid.ColumnSpan="3"
                     Style="{StaticResource EntryStyle}"
                     x:Name="InnerWeightEntry"

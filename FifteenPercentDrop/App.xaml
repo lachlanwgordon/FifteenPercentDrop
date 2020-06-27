@@ -11,7 +11,6 @@
             <Thickness x:Key="SectionMargin">0,6,0,6</Thickness>
             <Color x:Key="AccentDark">#2B4CA5</Color>
             <Color x:Key="AccentLight">#5B66DF</Color>
-            
             <OnPlatform
                 x:Key="HugeFontSize"
                 x:TypeArguments="x:Double"
@@ -20,13 +19,13 @@
             <OnPlatform
                 x:Key="LargeFontSize"
                 x:TypeArguments="x:Double"
-                Android="28"
-                iOS="32" />
+                Android="25"
+                iOS="25" />
             <OnPlatform
                 x:Key="MediumFontSize"
                 x:TypeArguments="x:Double"
-                Android="18"
-                iOS="18" />
+                Android="20"
+                iOS="20" />
             <OnPlatform
                 x:Key="SmallFontSize"
                 x:TypeArguments="x:Double"
@@ -116,7 +115,7 @@
                 <Setter
                     Property="TextColor"
                     Value="White" />
-                <Setter Property="FontSize" Value="Large"/>
+                <Setter Property="FontSize" Value="{StaticResource MediumFontSize}"/>
                 
             </Style>
             <Style

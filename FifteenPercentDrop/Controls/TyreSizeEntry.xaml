@@ -17,28 +17,25 @@
             Style="{StaticResource MediumText}" />
         <yummy:PancakeView
             Style="{StaticResource SectionPancakeStyle}">
-            <Grid>
-                <Grid.ColumnDefinitions>
-                    <ColumnDefinition
-                        Width="*" />
-                    <ColumnDefinition
-                        Width="*" />
-                    <ColumnDefinition
-                        Width="*" />
-                </Grid.ColumnDefinitions>
-                <Grid.RowDefinitions>
-                </Grid.RowDefinitions>
+            <Grid
+                ColumnSpacing="0"
+                ColumnDefinitions="*,100,*"
+                >
+
+                <Picker
+                    HorizontalOptions="Center"
+                    Margin="0"
+                    Grid.ColumnSpan="3"
+                    Style="{StaticResource PickerStyle}"
+                    x:Name="SizePicker"
+                    SelectedIndexChanged="SizePicker_SelectedIndexChanged"
+                    ItemDisplayBinding="{Binding ., StringFormat='{0:F0}mm'}"
+                   />
                 <Button
                     Style="{StaticResource PlusMinusButton}"
                     Clicked="DecrementWidth"
                     Command="{Binding DecrementWidthCommand}"
                     Text="-" />
-                <Picker
-                    Style="{StaticResource PickerStyle}"
-                    x:Name="SizePicker"
-                    SelectedIndexChanged="SizePicker_SelectedIndexChanged"
-                    ItemDisplayBinding="{Binding ., StringFormat='{0:F0}mm'}"
-                    Grid.Column="1" />
                 <Button
                     Style="{StaticResource PlusMinusButton}"
                     Command="{Binding IncrementWithCommand}"
