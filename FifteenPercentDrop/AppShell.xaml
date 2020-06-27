@@ -18,7 +18,7 @@
     <Shell.Resources>
         <ResourceDictionary>
             <Color
-                x:Key="NavigationPrimary">#2196F3</Color>
+                x:Key="NavigationPrimary">#3956BC</Color>
             <Style
                 x:Key="BaseStyle"
                 TargetType="Element">

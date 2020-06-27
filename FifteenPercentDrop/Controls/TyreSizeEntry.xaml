@@ -7,23 +7,24 @@
     xmlns:rainbows="clr-namespace:Xamarin.Forms.DebugRainbows;assembly=Xamarin.Forms.DebugRainbows"
     xmlns:yummy="clr-namespace:Xamarin.Forms.PancakeView;assembly=Xamarin.Forms.PancakeView"
     rainbows:DebugRainbow.ShowColors="False"
+                            Margin="{StaticResource SectionMargin}"
     xmlns:vm="clr-namespace:FifteenPercentDrop.Core.ViewModels;assembly=FifteenPercentDrop.Core"
     xmlns:converters="clr-namespace:FifteenPercentDrop.Converters"
     xmlns:controls="clr-namespace:FifteenPercentDrop.Controls">
     <StackLayout>
         <Label
             x:Name="TitleLabel"
-            Style="{StaticResource SectionLabelStyle}" />
+            Style="{StaticResource MediumText}" />
         <yummy:PancakeView
             Style="{StaticResource SectionPancakeStyle}">
             <Grid>
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition
-                        Width="*" />
-                    <ColumnDefinition
                         Width="Auto" />
                     <ColumnDefinition
                         Width="*" />
+                    <ColumnDefinition
+                        Width="Auto" />
                 </Grid.ColumnDefinitions>
                 <Grid.RowDefinitions>
                 </Grid.RowDefinitions>

@@ -112,44 +112,35 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
-    <ImageAsset Include="Assets.xcassets\AppIcon-1.appiconset\Contents.json" />
-    <ImageAsset Include="Assets.xcassets\AppIcon.appiconset\Icon16.png" />
-    <ImageAsset Include="Assets.xcassets\AppIcon.appiconset\Icon167.png" />
-    <ImageAsset Include="Assets.xcassets\AppIcon.appiconset\Icon29.png" />
-    <ImageAsset Include="Assets.xcassets\AppIcon.appiconset\Icon1024.png" />
-    <ImageAsset Include="Assets.xcassets\AppIcon.appiconset\Icon60.png" />
-    <ImageAsset Include="Assets.xcassets\AppIcon.appiconset\Icon76.png" />
-    <ImageAsset Include="Assets.xcassets\AppIcon.appiconset\Icon72.png" />
-    <ImageAsset Include="Assets.xcassets\AppIcon.appiconset\Icon512.png" />
-    <ImageAsset Include="Assets.xcassets\AppIcon.appiconset\Icon100.png" />
-    <ImageAsset Include="Assets.xcassets\AppIcon.appiconset\Icon114.png" />
-    <ImageAsset Include="Assets.xcassets\AppIcon.appiconset\Icon128.png" />
-    <ImageAsset Include="Assets.xcassets\AppIcon.appiconset\Icon58.png" />
-    <ImageAsset Include="Assets.xcassets\AppIcon.appiconset\Icon64.png" />
-    <ImageAsset Include="Assets.xcassets\AppIcon.appiconset\Icon40.png" />
-    <ImageAsset Include="Assets.xcassets\AppIcon.appiconset\Icon80.png" />
-    <ImageAsset Include="Assets.xcassets\AppIcon.appiconset\Icon57.png" />
-    <ImageAsset Include="Assets.xcassets\AppIcon.appiconset\Iconwatch.png" />
-    <ImageAsset Include="Assets.xcassets\AppIcon.appiconset\Contents.json" />
-    <ImageAsset Include="Assets.xcassets\AppIcon.appiconset\Icon50.png" />
-    <ImageAsset Include="Assets.xcassets\AppIcon.appiconset\Icon256.png" />
-    <ImageAsset Include="Assets.xcassets\AppIcon.appiconset\Icon87.png" />
-    <ImageAsset Include="Assets.xcassets\AppIcon.appiconset\Icon120.png" />
-    <ImageAsset Include="Assets.xcassets\AppIcon.appiconset\Icon152.png" />
-    <ImageAsset Include="Assets.xcassets\AppIcon.appiconset\Icon144.png" />
-    <ImageAsset Include="Assets.xcassets\AppIcon.appiconset\Icon20.png" />
-    <ImageAsset Include="Assets.xcassets\AppIcon.appiconset\Icon32.png" />
-    <ImageAsset Include="Assets.xcassets\AppIcon.appiconset\Icon180.png" />
     <ImageAsset Include="Assets.xcassets\splash.imageset\splash%403x.png" />
     <ImageAsset Include="Assets.xcassets\splash.imageset\splash%402x.png" />
     <ImageAsset Include="Assets.xcassets\splash.imageset\splash.png" />
     <ImageAsset Include="Assets.xcassets\splash.imageset\Contents.json">
       <Visible>False</Visible>
     </ImageAsset>
+    <ImageAsset Include="Assets.xcassets\AppIcon.appiconset\icon-20.png" />
+    <ImageAsset Include="Assets.xcassets\AppIcon.appiconset\icon-1024.png" />
+    <ImageAsset Include="Assets.xcassets\AppIcon.appiconset\icon-20@2x.png" />
+    <ImageAsset Include="Assets.xcassets\AppIcon.appiconset\icon-20@3x.png" />
+    <ImageAsset Include="Assets.xcassets\AppIcon.appiconset\icon-29.png" />
+    <ImageAsset Include="Assets.xcassets\AppIcon.appiconset\icon-29@2x.png" />
+    <ImageAsset Include="Assets.xcassets\AppIcon.appiconset\icon-29@3x.png" />
+    <ImageAsset Include="Assets.xcassets\AppIcon.appiconset\icon-40.png" />
+    <ImageAsset Include="Assets.xcassets\AppIcon.appiconset\icon-40@2x.png" />
+    <ImageAsset Include="Assets.xcassets\AppIcon.appiconset\icon-40@3x.png" />
+    <ImageAsset Include="Assets.xcassets\AppIcon.appiconset\icon-60@2x.png" />
+    <ImageAsset Include="Assets.xcassets\AppIcon.appiconset\icon-60@3x.png" />
+    <ImageAsset Include="Assets.xcassets\AppIcon.appiconset\icon-76.png" />
+    <ImageAsset Include="Assets.xcassets\AppIcon.appiconset\icon-76@2x.png" />
+    <ImageAsset Include="Assets.xcassets\AppIcon.appiconset\icon-83.5@2x.png" />
+
+    <ImageAsset Include="Assets.xcassets\iOS\.DS_Store" />
+    <ImageAsset Include="Assets.xcassets\AppIcon.appiconset\Contents.json" />
+    <ImageAsset Include="Assets.xcassets\Image.imageset\Contents.json" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Assets.xcassets\.appiconset\" />
-    <Folder Include="Assets.xcassets\.appiconset\" />
     <Folder Include="Renderers\" />
+    <Folder Include="Assets.xcassets\.imageset\" />
   </ItemGroup>
 </Project>

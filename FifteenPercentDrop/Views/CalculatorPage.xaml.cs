@@ -20,7 +20,11 @@ namespace FifteenPercentDrop.Views
             StateLayout.SetCurrentState(WeightStack, newState);
             StateLayout.SetCurrentState(LoadStack, newState);
             StateLayout.SetCurrentState(TyreStack, newState);
+        }
 
+        protected override void OnAppearing()
+        {
+            base.OnAppearing();
         }
     }
 }

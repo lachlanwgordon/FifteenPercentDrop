@@ -36,6 +36,12 @@
                                       CommandParameter="https://www.renehersecycles.com/wp-content/uploads/2015/03/BQTireDrop.pdf"
                                       Detail="Jan Heine – Optimizing Your Tire Pressure for Your Weight">
                             </TextCell>
+                        <TextCell Text="Support"
+                                      Command="{Binding WebsiteCommand}"
+                                      
+                                      CommandParameter="https://github.com/lachlanwgordon/FifteenPercentDrop/issues"
+                                      Detail="Need Help? Found a bug? Please post a github issue.">
+                            </TextCell>
                         
                         </TableSection>
                     <TableSection Title="Libraries">
@@ -56,10 +62,13 @@
                                       CommandParameter="https://github.com/sthewissen/Xamarin.Forms.PancakeView"
                                       Detail="Steven Thewissen" />
                             <TextCell Text="Debug Rainbows"
-                                      Command="{Binding WebsiteCommand}"
                                       Tapped="DebugRainbows"
                                       CommandParameter="https://github.com/sthewissen/Xamarin.Forms.DebugRainbows"
                                       Detail="Steven Thewissen" />
+                            <TextCell Text="State Squid"
+                                          Command="{Binding WebsiteCommand}"
+                                          CommandParameter="https://github.com/sthewissen/Xamarin.Forms.StateSquid"
+                                          Detail="Steven Thewissen" />
                             
                         </TableSection>
                 </TableRoot>

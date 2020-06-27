@@ -4,14 +4,13 @@
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
     xmlns:ios="clr-namespace:Xamarin.Forms.PlatformConfiguration.iOSSpecific;assembly=Xamarin.Forms.Core"
     xmlns:rainbows="clr-namespace:Xamarin.Forms.DebugRainbows;assembly=Xamarin.Forms.DebugRainbows"
-    rainbows:DebugRainbow.ShowColors="False"
+    ios:Page.UseSafeArea="False"
     xmlns:yummy="clr-namespace:Xamarin.Forms.PancakeView;assembly=Xamarin.Forms.PancakeView"
     xmlns:vm="clr-namespace:FifteenPercentDrop.Core.ViewModels;assembly=FifteenPercentDrop.Core"
     x:Class="FifteenPercentDrop.Views.CalculatorPage"
     xmlns:state="clr-namespace:Xamarin.Forms.StateSquid;assembly=Xamarin.Forms.StateSquid"
     xmlns:converters="clr-namespace:FifteenPercentDrop.Converters"
     xmlns:controls="clr-namespace:FifteenPercentDrop.Controls">
-
     <ContentPage.BindingContext>
         <vm:CalculatorViewModel
             x:Name="VM" />
@@ -19,21 +18,23 @@
     <ContentPage.Content>
 
         <yummy:PancakeView
-            Padding="{OnPlatform iOS='10,50,10,70', Default='10'}"
-            BackgroundGradientStartColor="#71DE4C"
-            BackgroundGradientEndColor="#2c9b12"
+            Margin="0"
+            Padding="{OnPlatform iOS='10,0,10,10', Default='0'}"
+            BackgroundGradientStartColor="{StaticResource AccentLight}"
+            BackgroundGradientEndColor="{StaticResource AccentDark}"
             BackgroundGradientAngle="330">
-            <StackLayout>
+            <ScrollView
+                Padding="0"
+                Margin="0">
 
-                <ScrollView>
+                <StackLayout
+                    Margin="0"
+                    Padding="0">
 
                     <StackLayout
                         Spacing="0">
-
                         <StackLayout
                             x:Name="WeightStack">
-
-
 
                             <!-- Alt views-->
                             <state:StateLayout.StateViews>
@@ -67,56 +68,21 @@
                                 Title="BIKE + RIDER WEIGHT"
                                 Weight="{Binding TotalWeight}" />
                         </StackLayout>
-
-
                         <StackLayout
                             x:Name="LoadStack">
-
-                            <Label
+                            <!--<Label
                                 Text="BIKE TYPE"
-                                Style="{StaticResource SectionLabelStyle}" />
-
-                            <yummy:PancakeView
-                                Style="{StaticResource SectionPancakeStyle}">
-                                <Grid>
-                                    <Grid.ColumnDefinitions>
-                                        <ColumnDefinition
-                                            Width="*" />
-                                        <ColumnDefinition
-                                            Width="Auto" />
-                                        <ColumnDefinition
-                                            Width="*" />
-                                    </Grid.ColumnDefinitions>
-                                    <Grid.RowDefinitions>
-                                    </Grid.RowDefinitions>
-                                    <Label
-                                        Style="{StaticResource SmallText}"
-                                        HorizontalTextAlignment="End"
-                                        Text="HYBRID" />
-                                    <Switch
-                                        OnColor="#147314"
-                                        ThumbColor="White"
-                                        Grid.Column="1"
-                                        VerticalOptions="Center"
-                                        Margin="10,0"
-                                        IsToggled="{Binding PercentageOnFront, Converter={StaticResource doubleToBooleanConverter}}" />
-
-                                    <Label
-                                        Style="{StaticResource SmallText}"
-                                        Grid.Column="2"
-                                        Text="ROAD BIKE" />
-                                </Grid>
-                            </yummy:PancakeView>
-                            <!-- Alt views-->
+                                Style="{StaticResource SectionLabelStyle}" />-->
 
                             <state:StateLayout.StateViews>
                                 <!-- Success used in place of Advanced because I can't get custom working-->
                                 <state:StateView
                                     StateKey="Success">
-                                    <StackLayout>
+                                    <StackLayout
+                                        Margin="{StaticResource SectionMargin}">
                                         <Label
                                             Text="WEIGHT DISTRIBUTION"
-                                            Style="{StaticResource SectionLabelStyle}" />
+                                            Style="{StaticResource MediumText}" />
                                         <yummy:PancakeView
                                             Style="{StaticResource SectionPancakeStyle}">
                                             <Grid>
@@ -131,7 +97,7 @@
                                                 <Grid.RowDefinitions>
                                                 </Grid.RowDefinitions>
                                                 <Label
-                                                    Style="{StaticResource SmallText}"
+                                                    Style="{StaticResource MediumText}"
                                                     HorizontalTextAlignment="End"
                                                     Text="{Binding PercentageOnFront, Converter={StaticResource inversePercentageConverter}, StringFormat='REAR {0:F0}%'}" />
                                                 <Slider
@@ -139,8 +105,8 @@
                                                     Grid.Column="1"
                                                     VerticalOptions="Center"
                                                     Margin="10,0"
-                                                    Minimum="0"
-                                                    Maximum="100"
+                                                    Maximum="90"
+                                                    Minimum="10"
                                                     Value="{Binding PercentageOnFront}" />
 
                                                 <Label
@@ -209,78 +175,100 @@
 
                         </StackLayout>
 
-
-
-                        <Button
-                            Text="..."
-                            Style="{StaticResource PlusMinusButton}"
-                            HorizontalOptions="End"
-                            Clicked="ChangeStateClicked">
-
-                        </Button>
-
                     </StackLayout>
-                </ScrollView>
-                <!--Results section-->
-                <Grid
-                    VerticalOptions="CenterAndExpand"
-                    RowSpacing="0"
-                    ColumnSpacing="0">
-                    <Grid.ColumnDefinitions>
-                        <ColumnDefinition
-                            Width="*" />
-                        <ColumnDefinition
-                            Width="Auto" />
-                        <ColumnDefinition
-                            Width="Auto" />
-                        <ColumnDefinition
-                            Width="*" />
-                        <ColumnDefinition
-                            Width="Auto" />
-                        <ColumnDefinition
-                            Width="Auto" />
-                        <ColumnDefinition
-                            Width="*" />
-                    </Grid.ColumnDefinitions>
-                    <Grid.RowDefinitions>
-                        <RowDefinition
-                            Height="Auto" />
-                        <RowDefinition
-                            Height="{OnPlatform iOS=60, Android=90}" />
-                    </Grid.RowDefinitions>
-                    <Label
-                        Style="{StaticResource SmallText}"
-                        Text="REAR"
-                        Grid.Column="1" />
-                    <Label
-                        Style="{StaticResource BigText}"
-                        Grid.Row="1"
-                        Grid.Column="1"
-                        Text="{Binding RearPressure, StringFormat='{0:F0}'}" />
+                    <Button
+                        HeightRequest="25"
+                        Text="···"
+                        Style="{StaticResource PlusMinusButton}"
+                        HorizontalOptions="End"
+                        Padding="10"
+                        Clicked="ChangeStateClicked">
 
-                    <Label
-                        Text="PSI"
-                        Style="{StaticResource SuperScript}"
-                        Grid.Row="1"
-                        Grid.Column="2" />
-                    <Label
-                        Text="FRONT"
-                        Style="{StaticResource SmallText}"
-                        Grid.Column="4" />
-                    <Label
-                        Style="{StaticResource BigText}"
-                        Grid.Row="1"
-                        Grid.Column="4"
-                        Text="{Binding FrontPressure, StringFormat='{0:F0}'}" />
-                    <Label
-                        Style="{StaticResource SuperScript}"
-                        Text="PSI"
-                        Grid.Row="1"
-                        Grid.Column="5" />
-                </Grid>
-            </StackLayout>
+                    </Button>
+                    <!--Results section-->
+
+
+                    <Grid
+                        VerticalOptions="EndAndExpand"
+                        RowSpacing="0"
+                        ColumnSpacing="0">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition
+                                Width="*" />
+                            <ColumnDefinition
+                                Width="Auto" />
+                            <ColumnDefinition
+                                Width="Auto" />
+                            <ColumnDefinition
+                                Width="*" />
+                            <ColumnDefinition
+                                Width="Auto" />
+                            <ColumnDefinition
+                                Width="Auto" />
+                            <ColumnDefinition
+                                Width="*" />
+                        </Grid.ColumnDefinitions>
+                        <Grid.RowDefinitions>
+                            <RowDefinition
+                                Height="Auto" />
+                            <RowDefinition
+                                Height="30" />
+                            <RowDefinition
+                                Height="{OnPlatform iOS=60, Android=90}" />
+                            <RowDefinition
+                                Height="Auto" />
+
+                        </Grid.RowDefinitions>
+                        <Label
+                            Text="Tyre pressure to achieve 15% drop for minimum rolling resistance."
+                            Style="{StaticResource BaseText}"
+                            VerticalTextAlignment="End"
+                            VerticalOptions="End"
+                            Grid.ColumnSpan="6" />
+                        <Label
+                            Style="{StaticResource SmallText}"
+                            Grid.Row="1"
+                            Text="REAR"
+                            Grid.Column="1" />
+                        <Label
+                            Style="{StaticResource BigText}"
+                            Grid.Row="2"
+                            Grid.Column="1"
+                            Text="{Binding RearPressure, StringFormat='{0:F0}'}" />
+
+                        <Label
+                            Text="PSI"
+                            Style="{StaticResource SuperScript}"
+                            Grid.Row="2"
+                            Grid.Column="2" />
+                        <Label
+                            Text="FRONT"
+                            Grid.Row="1"
+                            Style="{StaticResource SmallText}"
+                            Grid.Column="4" />
+                        <Label
+                            Style="{StaticResource BigText}"
+                            Grid.Row="2"
+                            Grid.Column="4"
+                            Text="{Binding FrontPressure, StringFormat='{0:F0}'}" />
+                        <Label
+                            Style="{StaticResource SuperScript}"
+                            Text="PSI"
+                            Grid.Row="2"
+                            Grid.Column="5" />
+                        <Label
+                            Style="{StaticResource SmallText}"
+                            Text="*CAUTION: Do not inflate tyre outside manufacturer's recomended range. Over/Underinflated tyres can lead to  dangerous punctures. There is debate about whether 15% drop is ideal."
+                            Margin="0,5"
+                            Grid.Row="3"
+                            Grid.ColumnSpan="7" />
+                    </Grid>
+
+                </StackLayout>
+            </ScrollView>
 
         </yummy:PancakeView>
+
     </ContentPage.Content>
     <ContentPage.Resources>
         <ResourceDictionary>

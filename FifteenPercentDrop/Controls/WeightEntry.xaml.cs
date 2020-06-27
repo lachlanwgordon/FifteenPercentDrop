@@ -45,10 +45,7 @@ namespace FifteenPercentDrop.Controls
             InitializeComponent();
         }
 
-        public void FocusWeightKeyboard(object sender, EventArgs e)
-        {
-            WeightEditor.Focus();
-        }
+        
 
         public void IncrementWeight(object sender, EventArgs e)
         {
@@ -83,27 +80,51 @@ namespace FifteenPercentDrop.Controls
                 var control = (WeightEntry)bindable;
 
                 var value = (double?)newValue;
-
-                control.ApplyWeight(value);
+                control.Weight = value;
+                control.UpdateEntry(control.InnerWeightEntry.IsFocused);
             }
             catch (Exception ex)
             {
                 // TODO: Handle exception.
             }
+
+           
+
+
+
         }
 
-        void ApplyWeight(double? value)
+        void UpdateEntry(bool isFocused)
         {
-            WeightEditor.Text = value.ToString();
+            if(isFocused)
+            {
+                InnerWeightEntry.Text = $"{Weight}";
+            }
+            else
+            {
+                InnerWeightEntry.Text = $"{Weight}kg";
+            }
         }
 
         void WeightEditor_TextChanged(System.Object sender, Xamarin.Forms.TextChangedEventArgs e)
         {
+            if (e.NewTextValue.EndsWith("g"))
+                return;
             if(!e.NewTextValue.EndsWith(".") && double.TryParse(e.NewTextValue, out double weight))
             {
                 Weight = weight;
-
             }
         }
+
+        void WeightEntry_Focused(System.Object sender, Xamarin.Forms.FocusEventArgs e)
+        {
+            UpdateEntry(true);
+        }
+
+        void WeightEntry_Unfocused(System.Object sender, Xamarin.Forms.FocusEventArgs e)
+        {
+            UpdateEntry(false);
+        }
+
     }
 }

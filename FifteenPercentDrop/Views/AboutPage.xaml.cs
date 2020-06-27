@@ -23,8 +23,8 @@ namespace FifteenPercentDrop.Views
             clickCount++;
             if(clickCount < 2)
             {
-                await Task.Delay(500);
-                clickCount = 0;
+                var cell = sender as TextCell;
+                VM.WebsiteCommand.Execute(cell.CommandParameter);
                 return;
             }
             clickCount = 0;
@@ -49,7 +49,7 @@ namespace FifteenPercentDrop.Views
             };
 
             Application.Current.Resources.Add(DebugStyle);
-            DisplayAlert("You found the Debug Rainbow!", "Yay, Thanks Steven Thewissen", "Okay");
+            await DisplayAlert("You found the Debug Rainbow!", "Yay, Thanks Steven Thewissen. \nPlease force quit the app and start again to enjoy this feature.", "Okay");
         }
 
 

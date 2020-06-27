@@ -8,34 +8,40 @@
     x:Class="FifteenPercentDrop.App" xmlns:yummy="clr-namespace:Xamarin.Forms.PancakeView;assembly=Xamarin.Forms.PancakeView">
     <Application.Resources>
         <ResourceDictionary>
+            <Thickness x:Key="SectionMargin">0,6,0,6</Thickness>
+            <Color x:Key="AccentDark">#2B4CA5</Color>
+            <Color x:Key="AccentLight">#5B66DF</Color>
             
             <OnPlatform
-                x:Key="BigFontSize"
+                x:Key="HugeFontSize"
                 x:TypeArguments="x:Double"
                 Android="58"
                 iOS="62" />
             <OnPlatform
-                x:Key="ButtonFontSize"
+                x:Key="LargeFontSize"
                 x:TypeArguments="x:Double"
                 Android="28"
                 iOS="32" />
             <OnPlatform
                 x:Key="MediumFontSize"
                 x:TypeArguments="x:Double"
-                Android="25"
-                iOS="27" />
+                Android="18"
+                iOS="18" />
+            <OnPlatform
+                x:Key="SmallFontSize"
+                x:TypeArguments="x:Double"
+                Android="14"
+                iOS="14"/>
             <Style
-                x:Key="EditorStyle"
-                TargetType="Editor">
-                <Setter
-                    Property="AutoSize"
-                    Value="TextChanges" />
+                x:Key="EntryStyle"
+                TargetType="Entry">
+                
                 <Setter
                     Property="TextColor"
                     Value="White" />
                 <Setter
                     Property="FontSize"
-                    Value="{StaticResource MediumFontSize}" />
+                    Value="{StaticResource LargeFontSize}" />
                 <Setter
                     Property="Keyboard"
                     Value="Numeric" />
@@ -51,7 +57,7 @@
                 TargetType="yummy:PancakeView">
                 <Setter
                     Property="CornerRadius"
-                    Value="29" />
+                    Value="10" />
                 <Setter
                     Property="BorderThickness"
                     Value="1" />
@@ -70,7 +76,7 @@
                 TargetType="Picker">
                 <Setter
                     Property="FontSize"
-                    Value="{StaticResource MediumFontSize}" />
+                    Value="{StaticResource LargeFontSize}" />
                 <Setter
                     Property="TextColor"
                     Value="White" />
@@ -93,7 +99,7 @@
                     Value="White" />
                 <Setter
                     Property="FontSize"
-                    Value="{StaticResource ButtonFontSize}" />
+                    Value="{StaticResource LargeFontSize}" />
                 <Setter
                     Property="BackgroundColor"
                     Value="Transparent" />
@@ -110,9 +116,8 @@
                 <Setter
                     Property="TextColor"
                     Value="White" />
-                <Setter
-                    Property="HorizontalTextAlignment"
-                    Value="End" />
+                <Setter Property="FontSize" Value="Large"/>
+                
             </Style>
             <Style
                 x:Key="BigText"
@@ -120,7 +125,7 @@
                 TargetType="Label">
                 <Setter
                     Property="FontSize"
-                    Value="{StaticResource BigFontSize}" />
+                    Value="{StaticResource HugeFontSize}" />
                 <Setter
                     Property="VerticalOptions"
                     Value="StartAndExpand" />
@@ -150,13 +155,15 @@
                 TargetType="Label">
                 <Setter
                     Property="FontSize"
-                    Value="18" />
+                    Value="{StaticResource SmallFontSize}" />
                 <Setter
                     Property="HorizontalTextAlignment"
                     Value="Start" />
                 <Setter
                     Property="VerticalTextAlignment"
                     Value="Center" />
+               
+
             </Style>
             <Style
                 TargetType="Label"
@@ -168,14 +175,6 @@
                 <Setter
                     Property="Margin"
                     Value="{OnPlatform Android='0,20,0,0', iOS=0}" />
-            </Style>
-            <Style
-                TargetType="Label"
-                x:Key="SectionLabelStyle"
-                BasedOn="{StaticResource SmallText}">
-                <Setter
-                    Property="Margin"
-                    Value="0,20,0,3" />
             </Style>
         </ResourceDictionary>
     </Application.Resources>
