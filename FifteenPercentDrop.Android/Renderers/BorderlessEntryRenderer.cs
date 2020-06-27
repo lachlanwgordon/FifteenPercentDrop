@@ -1,29 +1,29 @@
 ﻿using System;
+using Android.Content;
+using Android.Graphics.Drawables;
 using FifteenPercentDrop.Droid.Renderers;
 using Xamarin.Forms;
 using Xamarin.Forms.Platform.Android;
+using System.Diagnostics;
 
-[assembly: ExportRenderer(typeof(Editor), typeof(BorderlessEntryRenderer))]
+[assembly: ExportRenderer(typeof(Entry), typeof(BorderlessEntryRenderer))]
 namespace FifteenPercentDrop.Droid.Renderers
 {
-    public class BorderlessEntryRenderer : EditorRenderer
+    public class BorderlessEntryRenderer : EntryRenderer
     {
-        public BorderlessEntryRenderer()
+        public BorderlessEntryRenderer(Context context) : base(context) 
         {
+            System.Diagnostics.Debug.WriteLine($"use new renderer");
         }
-
-
-        protected override void OnElementChanged(ElementChangedEventArgs<Editor> e)
+        protected override void OnElementChanged(ElementChangedEventArgs<Entry> e)
         {
             base.OnElementChanged(e);
-
             if (Control != null)
             {
-                //Control.InputType = Android.Text.InputTypes.TextFlagNoSuggestions;
-                Control.SetBackgroundColor(Android.Graphics.Color.Argb(0, 0, 0, 0));
+                GradientDrawable gd = new GradientDrawable();
+                gd.SetColor(Android.Graphics.Color.Transparent);
+                Control.SetBackground(gd);
             }
         }
-
-
     }
 }

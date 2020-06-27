@@ -16,17 +16,14 @@
             x:Name="VM" />
     </ContentPage.BindingContext>
     <ContentPage.Content>
-
         <yummy:PancakeView
-            Margin="0"
-            Padding="{OnPlatform iOS='10,0,10,10', Default='0'}"
+            Padding="10,0"
             BackgroundGradientStartColor="{StaticResource AccentLight}"
             BackgroundGradientEndColor="{StaticResource AccentDark}"
             BackgroundGradientAngle="330">
             <ScrollView
                 Padding="0"
                 Margin="0">
-
                 <StackLayout
                     Margin="0"
                     Padding="0">
@@ -177,11 +174,12 @@
 
                     </StackLayout>
                     <Button
-                        HeightRequest="25"
+                        HeightRequest="40"
                         Text="···"
                         Style="{StaticResource PlusMinusButton}"
                         HorizontalOptions="End"
-                        Padding="10"
+
+                        Padding="{OnPlatform Android=0, iOS=10}"
                         Clicked="ChangeStateClicked">
 
                     </Button>
@@ -224,7 +222,7 @@
                             Style="{StaticResource BaseText}"
                             VerticalTextAlignment="End"
                             VerticalOptions="End"
-                            Grid.ColumnSpan="6" />
+                            Grid.ColumnSpan="7" />
                         <Label
                             Style="{StaticResource SmallText}"
                             Grid.Row="1"

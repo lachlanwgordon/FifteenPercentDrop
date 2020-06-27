@@ -7,7 +7,7 @@
     xmlns:rainbows="clr-namespace:Xamarin.Forms.DebugRainbows;assembly=Xamarin.Forms.DebugRainbows"
     rainbows:DebugRainbow.ShowColors="False"
     xmlns:yummy="clr-namespace:Xamarin.Forms.PancakeView;assembly=Xamarin.Forms.PancakeView"
-                            Margin="{StaticResource SectionMargin}"
+    Margin="{StaticResource SectionMargin}"
     xmlns:vm="clr-namespace:FifteenPercentDrop.Core.ViewModels;assembly=FifteenPercentDrop.Core"
     xmlns:converters="clr-namespace:FifteenPercentDrop.Converters">
     <StackLayout>
@@ -19,23 +19,23 @@
             <Grid>
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition
-                        Width="Auto" />
+                        Width="*" />
                     <ColumnDefinition
                         Width="*" />
                     <ColumnDefinition
-                        Width="Auto" />
+                        Width="*" />
                 </Grid.ColumnDefinitions>
                 <Grid.RowDefinitions>
                 </Grid.RowDefinitions>
                 <Entry
                     HorizontalTextAlignment="Center"
-                    HorizontalOptions="Fill"
+                    HorizontalOptions="Center"
                     Grid.ColumnSpan="3"
-                        Style="{StaticResource EntryStyle}"
-                        x:Name="InnerWeightEntry"
-                        Focused="WeightEntry_Focused"
+                    Style="{StaticResource EntryStyle}"
+                    x:Name="InnerWeightEntry"
+                    Focused="WeightEntry_Focused"
                     Unfocused="WeightEntry_Unfocused"
-                        TextChanged="WeightEditor_TextChanged" />
+                    TextChanged="WeightEditor_TextChanged" />
                 <Button
                     Style="{StaticResource PlusMinusButton}"
                     Clicked="DecrementWeight"
@@ -45,7 +45,7 @@
                     Clicked="IncrementWeight"
                     Text="+"
                     Grid.Column="2" />
-                
+
             </Grid>
         </yummy:PancakeView>
     </StackLayout>
