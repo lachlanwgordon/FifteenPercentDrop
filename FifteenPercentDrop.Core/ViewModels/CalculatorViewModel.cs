@@ -1,9 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Windows.Input;
 using MvvmHelpers;
-using MvvmHelpers.Commands;
 
 namespace FifteenPercentDrop.Core.ViewModels
 {
@@ -39,7 +37,6 @@ namespace FifteenPercentDrop.Core.ViewModels
             }
         }
 
-
         public double? TotalWeight
         {
             get => totalWeight;
@@ -52,9 +49,6 @@ namespace FifteenPercentDrop.Core.ViewModels
                 OnPropertyChanged(nameof(RearPressure));
             }
         }
-
-
-
         
         public double FrontLoad
         {

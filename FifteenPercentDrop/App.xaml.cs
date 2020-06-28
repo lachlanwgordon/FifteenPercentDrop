@@ -2,6 +2,9 @@
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 using FifteenPercentDrop.Views;
+using Microsoft.AppCenter;
+using Microsoft.AppCenter.Crashes;
+using Microsoft.AppCenter.Analytics;
 
 namespace FifteenPercentDrop
 {
@@ -11,6 +14,8 @@ namespace FifteenPercentDrop
         public App()
         {
             InitializeComponent();
+
+            //All this for an easter egg?!
             var rainbows = Xamarin.Essentials.Preferences.Get("Rainbows", false);
             if (rainbows)
             {
@@ -35,6 +40,15 @@ namespace FifteenPercentDrop
 
         protected override void OnStart()
         {
+            var analytics = Xamarin.Essentials.Preferences.Get("Analytics", true);
+            if(analytics)
+            {
+                var iosKey = FifteenPercentDrop.Core.Helpers.SharedSecrets.AppCenteriOS;
+                AppCenter.Start(iosKey,
+                   typeof(Analytics), typeof(Crashes));
+
+            }
+
         }
 
         protected override void OnSleep()

@@ -15,10 +15,16 @@ namespace FifteenPercentDrop.Core.ViewModels
         }
 
 
-        public ICommand WebsiteCommand => new AsyncCommand<string>(DoWebsiteCommandAsync);
+        public ICommand WebsiteCommand => new FifteenPercentDrop.Core.Helpers.SafeCommand<string>(DoWebsiteCommandAsync);
+
+        private void CatchException(Exception ex)
+        {
+            Debug.WriteLine($"Error in Vm {ex}");
+        }
 
         private async Task DoWebsiteCommandAsync(object obj)
         {
+            throw new NotImplementedException();
             var url = obj as string;
             Debug.WriteLine("command");
             await Xamarin.Essentials.Browser.OpenAsync(url);

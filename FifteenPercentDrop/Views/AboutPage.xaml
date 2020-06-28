@@ -71,6 +71,11 @@
                                           Detail="Steven Thewissen" />
                             
                         </TableSection>
+                    <TableSection Title="Settings">
+                       
+                        <SwitchCell Text="Analytics and crash reporting"/>
+                         <TextCell Text="About analytics and crash reporting" ></TextCell>
+                    </TableSection>
                 </TableRoot>
             </TableView>
         </Grid>

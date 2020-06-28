@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Diagnostics;
 using System.Threading.Tasks;
+using FifteenPercentDrop.Services;
 using Xamarin.Forms;
 
 namespace FifteenPercentDrop.Views
@@ -52,6 +53,11 @@ namespace FifteenPercentDrop.Views
             await DisplayAlert("You found the Debug Rainbow!", "Yay, Thanks Steven Thewissen. \nPlease force quit the app and start again to enjoy this feature.", "Okay");
         }
 
-
+        ILogger Logger = new Logger();
+        protected override void OnAppearing()
+        {
+            base.OnAppearing();
+            Logger.Log("About Page Opened");
+        }
     }
 }

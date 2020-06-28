@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
+using FifteenPercentDrop.Services;
 using Xamarin.Forms;
 using Xamarin.Forms.StateSquid;
 
@@ -22,9 +23,11 @@ namespace FifteenPercentDrop.Views
             StateLayout.SetCurrentState(TyreStack, newState);
         }
 
+        ILogger Logger = new Logger();
         protected override void OnAppearing()
         {
             base.OnAppearing();
+            Logger.Log("Calcualtor Page Opened");
         }
     }
 }
