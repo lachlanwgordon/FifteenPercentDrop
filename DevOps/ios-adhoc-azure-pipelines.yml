@@ -48,6 +48,8 @@ steps:
     runNugetRestore: false
     signingIdentity: '$(APPLE_CERTIFICATE_SIGNING_IDENTITY)'
     signingProvisioningProfileID: '$(APPLE_PROV_PROFILE_UUID)'
+  env:
+    Secret_AppCenteriOS: $(AppCenteriOS)
 - task: AppCenterDistribute@3
   inputs:
     serverEndpoint: 'App Center'
