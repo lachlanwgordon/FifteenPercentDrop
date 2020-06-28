@@ -65,7 +65,7 @@
         </Tab>
          <Tab
             Title="About"
-            Icon="tab_feed.png">
+            Icon="tab_about.png">
             <ShellContent
                 ContentTemplate="{DataTemplate pages:AboutPage}" />
         </Tab>
