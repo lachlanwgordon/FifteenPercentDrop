@@ -7,74 +7,100 @@
     rainbows:DebugRainbow.IsDebug="False"
     x:Class="FifteenPercentDrop.Views.AboutPage">
     <ContentPage.BindingContext>
-        <vm:AboutViewModel x:Name="VM"/>
+        <vm:AboutViewModel
+            x:Name="VM" />
     </ContentPage.BindingContext>
     <ContentPage.Content>
         <Grid>
-            <TableView Intent="Settings" >
+            <TableView
+                Intent="Settings">
                 <TableRoot>
-                    <TableSection Title="About 15% Drop">
-                            <TextCell Text="Created By"
-                                      Detail="Lachlan Gordon"
-                                      CommandParameter="https://lachlanwgordon.com"
-                                      Command="{Binding WebsiteCommand}" />
-                            <TextCell Text="Development Blog Post"
-                                      Detail="https://lachlanwgordon.com/FifteenPercentDrop"
-                                      CommandParameter="https://lachlanwgordon.com/FifteenPercentDrop"
-                                      Command="{Binding WebsiteCommand}" />
-                            <TextCell Text="Twitter"
-                                      Detail="@lachlanwgordon"
-                                      Command="{Binding WebsiteCommand}"
-                                      CommandParameter="https://twitter.com/lachlanwgordon" />
-                            <TextCell Text="Source Code"
-                                      Command="{Binding WebsiteCommand}"
-                                      CommandParameter="https://github.com/lachlanwgordon/FifteenPercentDrop"
-                                      Detail="https://github.com/lachlanwgordon/FifteenPercentDrop/" />
-                            <TextCell Text="Explanation"
-                                      Command="{Binding WebsiteCommand}"
-                                      
-                                      CommandParameter="https://www.renehersecycles.com/wp-content/uploads/2015/03/BQTireDrop.pdf"
-                                      Detail="Jan Heine – Optimizing Your Tire Pressure for Your Weight">
-                            </TextCell>
-                        <TextCell Text="Support"
-                                      Command="{Binding WebsiteCommand}"
-                                      
-                                      CommandParameter="https://github.com/lachlanwgordon/FifteenPercentDrop/issues"
-                                      Detail="Need Help? Found a bug? Please post a github issue.">
-                            </TextCell>
-                        
-                        </TableSection>
-                    <TableSection Title="Libraries">
-                            <TextCell Text="Xamarin Forms"
-                                      Command="{Binding WebsiteCommand}"
-                                      CommandParameter="https://docs.microsoft.com/en-us/xamarin/xamarin-forms/"
-                                      Detail="Xamarin" />
-                            <TextCell Text="Xamarin Essentials"
-                                      Command="{Binding WebsiteCommand}"
-                                      CommandParameter="https://docs.microsoft.com/en-us/xamarin/essentials/"
-                                      Detail="Xamarin" />
-                            <TextCell Text="Mvvm Helpers"
-                                      Command="{Binding WebsiteCommand}"
-                                      CommandParameter="https://github.com/jamesmontemagno/mvvm-helpers"
-                                      Detail="James Montemagno" />
-                            <TextCell Text="Pancake View"
-                                      Command="{Binding WebsiteCommand}"
-                                      CommandParameter="https://github.com/sthewissen/Xamarin.Forms.PancakeView"
-                                      Detail="Steven Thewissen" />
-                            <TextCell Text="Debug Rainbows"
-                                      Tapped="DebugRainbows"
-                                      CommandParameter="https://github.com/sthewissen/Xamarin.Forms.DebugRainbows"
-                                      Detail="Steven Thewissen" />
-                            <TextCell Text="State Squid"
-                                          Command="{Binding WebsiteCommand}"
-                                          CommandParameter="https://github.com/sthewissen/Xamarin.Forms.StateSquid"
-                                          Detail="Steven Thewissen" />
-                            
-                        </TableSection>
-                    <TableSection Title="Settings">
-                       
-                        <SwitchCell Text="Analytics and crash reporting"/>
-                         <TextCell Text="About analytics and crash reporting" ></TextCell>
+                    <TableSection
+                        Title="About 15% Drop">
+                        <TextCell
+                            Text="Created By"
+                            Detail="Lachlan Gordon"
+                            CommandParameter="https://lachlanwgordon.com"
+                            Command="{Binding WebsiteCommand}" />
+                        <TextCell
+                            Text="Development Blog Post"
+                            Detail="https://lachlanwgordon.com/fifteen-percent-drop/"
+                            CommandParameter="https://lachlanwgordon.com/fifteen-percent-drop/"
+                            Command="{Binding WebsiteCommand}" />
+                        <TextCell
+                            Text="Twitter"
+                            Detail="@lachlanwgordon"
+                            Command="{Binding WebsiteCommand}"
+                            CommandParameter="https://twitter.com/lachlanwgordon" />
+                        <TextCell
+                            Text="Source Code"
+                            Command="{Binding WebsiteCommand}"
+                            CommandParameter="https://github.com/lachlanwgordon/FifteenPercentDrop"
+                            Detail="https://github.com/lachlanwgordon/FifteenPercentDrop/" />
+                        <TextCell
+                            Text="Explanation"
+                            Command="{Binding WebsiteCommand}"
+                            CommandParameter="https://www.renehersecycles.com/wp-content/uploads/2015/03/BQTireDrop.pdf"
+                            Detail="Jan Heine – Optimizing Your Tire Pressure for Your Weight">
+                        </TextCell>
+                        <TextCell
+                            Text="Support"
+                            Command="{Binding WebsiteCommand}"
+                            CommandParameter="https://github.com/lachlanwgordon/FifteenPercentDrop/issues"
+                            Detail="Need Help? Found a bug? Please post a github issue.">
+                        </TextCell>
+                    </TableSection>
+                    <TableSection
+                        Title="Libraries">
+                        <TextCell
+                            Text="Xamarin Forms"
+                            Command="{Binding WebsiteCommand}"
+                            CommandParameter="https://docs.microsoft.com/en-us/xamarin/xamarin-forms/"
+                            Detail="Xamarin" />
+                        <TextCell
+                            Text="Xamarin Essentials"
+                            Command="{Binding WebsiteCommand}"
+                            CommandParameter="https://docs.microsoft.com/en-us/xamarin/essentials/"
+                            Detail="Xamarin" />
+                        <TextCell
+                            Text="Mvvm Helpers"
+                            Command="{Binding WebsiteCommand}"
+                            CommandParameter="https://github.com/jamesmontemagno/mvvm-helpers"
+                            Detail="James Montemagno" />
+                        <TextCell
+                            Text="Pancake View"
+                            Command="{Binding WebsiteCommand}"
+                            CommandParameter="https://github.com/sthewissen/Xamarin.Forms.PancakeView"
+                            Detail="Steven Thewissen" />
+                        <TextCell
+                            Text="Debug Rainbows"
+                            Tapped="DebugRainbows"
+                            CommandParameter="https://github.com/sthewissen/Xamarin.Forms.DebugRainbows"
+                            Detail="Steven Thewissen" />
+                        <TextCell
+                            Text="State Squid"
+                            Command="{Binding WebsiteCommand}"
+                            CommandParameter="https://github.com/sthewissen/Xamarin.Forms.StateSquid"
+                            Detail="Steven Thewissen" />
+                        <TextCell
+                            Text="Mobile Build Tools"
+                            Command="{Binding WebsiteCommand}"
+                            CommandParameter="https://mobilebuildtools.com/"
+                            Detail="Dan Siegel" />
+                        <TextCell
+                            Text="Xamarin Essentials Interfaces"
+                            Command="{Binding WebsiteCommand}"
+                            CommandParameter="https://github.com/rdavisau/essential-interfaces"
+                            Detail="Ryan Davis" />
+                    </TableSection>
+                    <TableSection
+                        Title="Settings">
+                        <SwitchCell
+                            Text="Analytics and crash reporting"
+                            On="{Binding AnalyticsEnabled}" />
+                        <TextCell
+                            Text="About analytics and crash reporting"
+                            Tapped="TextCell_Tapped"></TextCell>
                     </TableSection>
                 </TableRoot>
             </TableView>

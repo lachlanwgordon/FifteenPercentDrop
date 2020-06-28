@@ -108,7 +108,7 @@
                                                     Value="{Binding PercentageOnFront}" />
 
                                                 <Label
-                                                    Style="{StaticResource SmallText}"
+                                                    Style="{StaticResource MediumText}"
                                                     Grid.Column="2"
                                                     Text="{Binding PercentageOnFront, StringFormat='FRONT {0:F0}%'}" />
                                             </Grid>

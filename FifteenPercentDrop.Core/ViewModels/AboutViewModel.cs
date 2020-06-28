@@ -2,6 +2,7 @@
 using System.Diagnostics;
 using System.Threading.Tasks;
 using System.Windows.Input;
+using FifteenPercentDrop.Services;
 using MvvmHelpers;
 using MvvmHelpers.Commands;
 
@@ -14,20 +15,20 @@ namespace FifteenPercentDrop.Core.ViewModels
         {
         }
 
-
-        public ICommand WebsiteCommand => new FifteenPercentDrop.Core.Helpers.SafeCommand<string>(DoWebsiteCommandAsync);
-
-        private void CatchException(Exception ex)
+        public bool AnalyticsEnabled
         {
-            Debug.WriteLine($"Error in Vm {ex}");
+            get => Xamarin.Essentials.Preferences.Get(PreferencesKeys.Analytics, true);
+            set => Xamarin.Essentials.Preferences.Set(PreferencesKeys.Analytics, value);
         }
+
+        public ICommand WebsiteCommand => new Helpers.SafeCommand<string>(DoWebsiteCommandAsync);
 
         private async Task DoWebsiteCommandAsync(object obj)
         {
-            throw new NotImplementedException();
             var url = obj as string;
             Debug.WriteLine("command");
             await Xamarin.Essentials.Browser.OpenAsync(url);
         }
+
     }
 }

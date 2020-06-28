@@ -13,8 +13,9 @@ namespace FifteenPercentDrop.Views
             InitializeComponent();
         }
 
-        void TextCell_Tapped(object sender, EventArgs e)
+        async void TextCell_Tapped(object sender, EventArgs e)
         {
+            await DisplayAlert("Analytics", "Crash reports and analytics data are collected using Microsoft App Center. No personally identifiable information is collected.", "Okay");
         }
 
 
