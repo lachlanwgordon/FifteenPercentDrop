@@ -26,13 +26,13 @@ steps:
 - task: InstallAppleProvisioningProfile@1
   inputs:
     provisioningProfileLocation: 'secureFiles'
-    provProfileSecureFile: 'Burn_Notification_AdHoc.mobileprovision'
+    provProfileSecureFile: 'Fifteen_Percent_Ad_Hoc.mobileprovision'
     removeProfile: false
 
 - task: InstallAppleCertificate@2
   inputs:
-    certSecureFile: 'burn.p12'
-    certPwd: '$(burnp12password)'
+    certSecureFile: 'fifteen.p12'
+    certPwd: '$(p12password)'
     keychain: 'temp'
 
 - task: XamariniOS@2
@@ -43,12 +43,11 @@ steps:
     runNugetRestore: false
     signingIdentity: '$(APPLE_CERTIFICATE_SIGNING_IDENTITY)'
     signingProvisioningProfileID: '$(APPLE_PROV_PROFILE_UUID)'
-
 - task: AppCenterDistribute@3
   inputs:
-    serverEndpoint: 'AppCenterBurnNotificationDevops'
-    appSlug: 'RFSFSCT/BurnNotificationIOS'
+    serverEndpoint: 'App Center'
+    appSlug: 'Lachlan-Gordon/FifteenPercentDrop'
     appFile: '**/*.ipa'
     releaseNotesOption: 'input'
-    releaseNotesInput: 'Burn Notification for iOS'
+    releaseNotesInput: 'Fifteen Percent Drop'
     destinationType: 'groups'
