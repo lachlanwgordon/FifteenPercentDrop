@@ -8,6 +8,11 @@ trigger:
 
 pool:
   vmImage: 'macos-latest'
+  
+variables:
+  buildConfiguration: 'Release'
+  outputDirectory: '$(build.binariesDirectory)/$(buildConfiguration)'
+
 
 steps:
 # To manually select a Xamarin SDK version on the Microsoft-hosted macOS agent,
