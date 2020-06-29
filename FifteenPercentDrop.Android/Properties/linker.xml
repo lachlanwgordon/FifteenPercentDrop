@@ -1,0 +1,5 @@
+<linker>
+    <assembly fullname="FifteenPercentDrop">
+        <type fullname="FifteenPercentDrop.*" />
+    </assembly>
+</linker>

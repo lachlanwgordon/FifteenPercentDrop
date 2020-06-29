@@ -68,6 +68,8 @@
     <CodesignKey>Apple Development: Lachlan Gordon (5Y5X4YBBC8)</CodesignKey>
     <CodesignEntitlements>Entitlements.plist</CodesignEntitlements>
     <CodesignProvision>VS: WildCard Development</CodesignProvision>
+    <MtouchLink>Full</MtouchLink>
+    <MtouchExtraArgs>--optimize=experimental-xforms-product-type -v -v -v -v</MtouchExtraArgs>
   </PropertyGroup>
   <ItemGroup>
     <Compile Include="Main.cs" />
@@ -156,5 +158,9 @@
     <Folder Include="Assets.xcassets\.appiconset\" />
     <Folder Include="Renderers\" />
     <Folder Include="Assets.xcassets\.imageset\" />
+    <Folder Include="Properties\" />
+  </ItemGroup>
+  <ItemGroup>
+    <LinkDescription Include="Properties\linker.xml" />
   </ItemGroup>
 </Project>
