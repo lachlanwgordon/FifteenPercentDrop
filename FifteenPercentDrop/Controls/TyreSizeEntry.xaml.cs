@@ -1,6 +1,5 @@
 using System;
 using Xamarin.Forms;
-using FifteenPercentDrop.Controls;
 using System.Collections.Generic;
 using System.Linq;
 
