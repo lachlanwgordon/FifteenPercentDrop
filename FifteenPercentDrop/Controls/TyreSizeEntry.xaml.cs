@@ -43,7 +43,6 @@ namespace FifteenPercentDrop.Controls
             TitleLabel.Text = value;
         }
 
-
         public static readonly BindableProperty TyreWidthsProperty = BindableProperty.Create(nameof(TyreWidths), typeof(List<double>), typeof(TyreSizeEntry), default(List<double>), propertyChanged: OnTyreWidthsChanged);
         public List<double> TyreWidths
         {
