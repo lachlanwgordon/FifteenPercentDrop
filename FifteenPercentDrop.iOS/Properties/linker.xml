@@ -2,4 +2,7 @@
     <assembly fullname="FifteenPercentDrop">
         <type fullname="FifteenPercentDrop.*" />
     </assembly>
+    <assembly fullname="FifteenPercentDrop.Core">
+        <type fullname="FifteenPercentDrop.*" />
+    </assembly>
 </linker>
