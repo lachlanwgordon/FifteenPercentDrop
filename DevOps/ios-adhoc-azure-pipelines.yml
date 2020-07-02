@@ -57,6 +57,7 @@ steps:
     signingIdentity: '$(APPLE_CERTIFICATE_SIGNING_IDENTITY)'
     signingProvisioningProfileID: '$(APPLE_PROV_PROFILE_UUID)'
   env:
+    Secret_AppCenterDroid: $(AppCenterDroid)
     Secret_AppCenteriOS: $(AppCenteriOS)
 - task: AppCenterDistribute@3
   inputs:
