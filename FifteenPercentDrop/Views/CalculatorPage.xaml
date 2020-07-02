@@ -28,7 +28,70 @@
                     Margin="0"
                     Spacing="0"
                     Padding="0">
-
+                    <!--Results section-->
+                    <Grid
+                        VerticalOptions="Start"
+                        RowSpacing="0"
+                        ColumnSpacing="0">
+                        <Grid.RowDefinitions>
+                            <RowDefinition
+                                Height="Auto" />
+                            <RowDefinition
+                                Height="60" />
+                        </Grid.RowDefinitions>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition
+                                Width="*" />
+                            <ColumnDefinition
+                                Width="Auto" />
+                            <ColumnDefinition
+                                Width="Auto" />
+                            <ColumnDefinition
+                                Width="*" />
+                            <ColumnDefinition
+                                Width="Auto" />
+                            <ColumnDefinition
+                                Width="Auto" />
+                            <ColumnDefinition
+                                Width="*" />
+                        </Grid.ColumnDefinitions>
+                        <Label
+                            Style="{StaticResource MediumText}"
+                            Grid.Row="0"
+                            Text="REAR"
+                            Grid.Column="1" />
+                        <Label
+                            Style="{StaticResource BigText}"
+                            Grid.Row="1"
+                            Grid.Column="1"
+                            Text="{Binding RearPressure, StringFormat='{0:F0}'}" />
+                        <Label
+                            Text="PSI"
+                            Style="{StaticResource SuperScript}"
+                            Grid.Row="1"
+                            Grid.Column="2" />
+                        <Label
+                            Text="FRONT"
+                            Grid.Row="0"
+                            Style="{StaticResource MediumText}"
+                            Grid.Column="4" />
+                        <Label
+                            Style="{StaticResource BigText}"
+                            Grid.Row="1"
+                            Grid.Column="4"
+                            Text="{Binding FrontPressure, StringFormat='{0:F0}'}" />
+                        <Label
+                            Style="{StaticResource SuperScript}"
+                            Text="PSI"
+                            Grid.Row="1"
+                            Grid.Column="5" />
+                        <!--<Label
+                            Style="{StaticResource SmallText}"
+                            Text="*CAUTION: Do not inflate tyre outside manufacturer's recommended range. Over/Underinflated tyres can lead to  dangerous punctures. There is debate about whether 15% drop is ideal."
+                            Margin="0,5"
+                            Grid.Row="3"
+                            Grid.ColumnSpan="7" />-->
+                    </Grid>
                     <StackLayout
                         Spacing="0">
                         <StackLayout
@@ -58,6 +121,7 @@
                                             Title="RIDER WEIGHT"
                                             Grid.Column="1"
                                             Weight="{Binding RiderWeight}" />
+                                       
                                     </Grid>
                                 </state:StateView>
                             </state:StateLayout.StateViews>
@@ -68,10 +132,6 @@
                         </StackLayout>
                         <StackLayout
                             x:Name="LoadStack">
-                            <!--<Label
-                                Text="BIKE TYPE"
-                                Style="{StaticResource SectionLabelStyle}" />-->
-
                             <state:StateLayout.StateViews>
                                 <!-- Success used in place of Advanced because I can't get custom working-->
                                 <state:StateView
@@ -113,21 +173,22 @@
                                                     Text="{Binding PercentageOnFront, StringFormat='FRONT {0:F0}%'}" />
                                             </Grid>
                                         </yummy:PancakeView>
+                                        
                                     </StackLayout>
-
                                 </state:StateView>
                             </state:StateLayout.StateViews>
                         </StackLayout>
-
-
                         <StackLayout
                             x:Name="TyreStack">
                             <controls:TyreSizeEntry
                                 Title="TYRE WIDTH"
                                 TyreWidth="{Binding TyreWidth}"
                                 TyreWidths="{Binding TyreSizes}" />
-
-
+                             <Button
+                                            Style="{StaticResource BubbleButton}"
+                                            Text="Advanced"
+                                            Clicked="ChangeStateClicked">
+                                        </Button>
                             <state:StateLayout.StateViews>
                                 <state:StateView
                                     StateKey="Success">
@@ -143,6 +204,8 @@
                                                 Height="*" />
                                             <RowDefinition
                                                 Height="*" />
+                                            <RowDefinition
+                                                Height="Auto" />
                                         </Grid.RowDefinitions>
                                         <controls:TyreSizeEntry
                                             Title="REAR TYRE"
@@ -163,111 +226,33 @@
                                             Grid.Row="1"
                                             Grid.Column="1"
                                             Weight="{Binding FrontLoad}" />
-
-
+                                        <Button
+                                            Style="{StaticResource BubbleButton}"
+                                            Grid.Row="2"
+                                            Grid.Column="1"
+                                            Text="Simple"
+                                            Clicked="ChangeStateClicked">
+                                        </Button>
                                     </Grid>
                                 </state:StateView>
                             </state:StateLayout.StateViews>
 
-
-
                         </StackLayout>
 
                     </StackLayout>
-                    <Button
-                        HeightRequest="40"
-                        Text="···"
-                        WidthRequest="30"
-                        Style="{StaticResource PlusMinusButton}"
-                        HorizontalOptions="End"
-                        Padding="{OnPlatform Android=0, iOS=0}"
+                    <!--<Button
+                        Style="{StaticResource BubbleButton}"
+                        Text="Advanced"
                         Clicked="ChangeStateClicked">
-
-                    </Button>
-                    <!--Results section-->
-
-
-                    <Grid
-                        VerticalOptions="EndAndExpand"
-                        RowSpacing="0"
-                        ColumnSpacing="0">
-                        <Grid.ColumnDefinitions>
-                            <ColumnDefinition
-                                Width="*" />
-                            <ColumnDefinition
-                                Width="Auto" />
-                            <ColumnDefinition
-                                Width="Auto" />
-                            <ColumnDefinition
-                                Width="*" />
-                            <ColumnDefinition
-                                Width="Auto" />
-                            <ColumnDefinition
-                                Width="Auto" />
-                            <ColumnDefinition
-                                Width="*" />
-                        </Grid.ColumnDefinitions>
-                        <Grid.RowDefinitions>
-                            <RowDefinition
-                                Height="Auto" />
-                            <RowDefinition
-                                Height="30" />
-                            <RowDefinition
-                                Height="{OnPlatform iOS=60, Android=90}" />
-                            <RowDefinition
-                                Height="Auto" />
-
-                        </Grid.RowDefinitions>
-                        <Label
-                            Text="Tyre pressure to achieve 15% drop for minimum rolling resistance."
-                            Style="{StaticResource BaseText}"
-                            VerticalTextAlignment="End"
-                            VerticalOptions="End"
-                            Grid.ColumnSpan="7" />
-                        <Label
-                            Style="{StaticResource SmallText}"
-                            Grid.Row="1"
-                            Text="REAR"
-                            Grid.Column="1" />
-                        <Label
-                            Style="{StaticResource BigText}"
-                            Grid.Row="2"
-                            Grid.Column="1"
-                            Text="{Binding RearPressure, StringFormat='{0:F0}'}" />
-
-                        <Label
-                            Text="PSI"
-                            Style="{StaticResource SuperScript}"
-                            Grid.Row="2"
-                            Grid.Column="2" />
-                        <Label
-                            Text="FRONT"
-                            Grid.Row="1"
-                            Style="{StaticResource SmallText}"
-                            Grid.Column="4" />
-                        <Label
-                            Style="{StaticResource BigText}"
-                            Grid.Row="2"
-                            Grid.Column="4"
-                            Text="{Binding FrontPressure, StringFormat='{0:F0}'}" />
-                        <Label
-                            Style="{StaticResource SuperScript}"
-                            Text="PSI"
-                            Grid.Row="2"
-                            Grid.Column="5" />
-                        <Label
-                            Style="{StaticResource SmallText}"
-                            Text="*CAUTION: Do not inflate tyre outside manufacturer's recommended range. Over/Underinflated tyres can lead to  dangerous punctures. There is debate about whether 15% drop is ideal."
-                            Margin="0,5"
-                            Grid.Row="3"
-                            Grid.ColumnSpan="7" />
-                    </Grid>
-
+                    </Button>-->
+                    <Label
+                        Text="Tyre pressure to achieve 15% drop for minimum rolling resistance."
+                        Style="{StaticResource BaseText}"
+                        VerticalTextAlignment="End"
+                        VerticalOptions="End" />
                 </StackLayout>
             </ScrollView>
-
         </yummy:PancakeView>
-
     </ContentPage.Content>
     <ContentPage.Resources>
         <ResourceDictionary>

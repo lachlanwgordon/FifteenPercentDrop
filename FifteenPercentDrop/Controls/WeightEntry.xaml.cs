@@ -98,11 +98,18 @@ namespace FifteenPercentDrop.Controls
         {
             if(isFocused)
             {
-                InnerWeightEntry.Text = $"{Weight}";
+                if(Weight.HasValue)
+                {
+                    InnerWeightEntry.Text = $"{Math.Round(Weight.Value, 0)}";
+                }
+
             }
             else
             {
-                InnerWeightEntry.Text = $"{Weight}kg";
+                if(Weight.HasValue)
+                {
+                    InnerWeightEntry.Text = $"{Math.Round(Weight.Value, 0)}kg";
+                }
             }
         }
 

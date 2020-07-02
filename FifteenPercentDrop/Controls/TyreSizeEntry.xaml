@@ -19,8 +19,12 @@
             Style="{StaticResource SectionPancakeStyle}">
             <Grid
                 ColumnSpacing="0"
-                ColumnDefinitions="*,100,*"
                 >
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="100"/>
+                    <ColumnDefinition Width="*"/>
+                </Grid.ColumnDefinitions>
 
                 <Picker
                     HorizontalOptions="Center"

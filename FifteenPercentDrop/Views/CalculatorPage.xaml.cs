@@ -24,10 +24,17 @@ namespace FifteenPercentDrop.Views
         }
 
         ILogger Logger = new Logger();
-        protected override void OnAppearing()
+
+        bool firstRender = true;
+        protected override async void OnAppearing()
         {
             base.OnAppearing();
             Logger.Log("Calcualtor Page Opened");
+            if(firstRender)
+            {
+                await DisplayAlert("Caution", "CAUTION: Do not inflate tyre outside manufacturer's recommended range. Over/Underinflated tyres can lead to  dangerous punctures. There is debate about whether 15% drop is ideal.", "Okay");
+            }
+            firstRender = false;
         }
     }
 }

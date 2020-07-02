@@ -8,6 +8,7 @@
     x:Class="FifteenPercentDrop.App" xmlns:yummy="clr-namespace:Xamarin.Forms.PancakeView;assembly=Xamarin.Forms.PancakeView">
     <Application.Resources>
         <ResourceDictionary>
+            
             <Thickness x:Key="SectionMargin">0,6,0,6</Thickness>
             <Color x:Key="AccentDark">#2B4CA5</Color>
             <Color x:Key="AccentLight">#5B66DF</Color>
@@ -31,6 +32,16 @@
                 x:TypeArguments="x:Double"
                 Android="14"
                 iOS="14"/>
+            <Style x:Key="BubbleButton" TargetType="Button">
+                <Setter Property="Padding" Value="6"/>
+                <Setter Property="BorderColor" Value="White"/>
+                <Setter Property="CornerRadius" Value="20"/>
+                <Setter Property="BorderWidth" Value="1"/>
+                <Setter Property="TextColor" Value="White"/>
+                <Setter Property="FontSize" Value="{StaticResource MediumFontSize}"/>
+                <Setter Property="HorizontalOptions" Value="End"/>
+                <Setter Property="HeightRequest" Value="40"/>
+            </Style>
             <Style
                 x:Key="EntryStyle"
                 TargetType="Entry">
