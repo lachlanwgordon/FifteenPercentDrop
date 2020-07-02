@@ -37,7 +37,7 @@
                             <RowDefinition
                                 Height="Auto" />
                             <RowDefinition
-                                Height="60" />
+                                Height="{OnPlatform iOS=60, Android=65}" />
                         </Grid.RowDefinitions>
                         <Grid.ColumnDefinitions>
                             <ColumnDefinition

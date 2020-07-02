@@ -37,6 +37,7 @@
                 <Setter Property="BorderColor" Value="White"/>
                 <Setter Property="CornerRadius" Value="20"/>
                 <Setter Property="BorderWidth" Value="1"/>
+                <Setter Property="BackgroundColor" Value="Transparent"/>
                 <Setter Property="TextColor" Value="White"/>
                 <Setter Property="FontSize" Value="{StaticResource MediumFontSize}"/>
                 <Setter Property="HorizontalOptions" Value="End"/>

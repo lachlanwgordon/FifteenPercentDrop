@@ -44,9 +44,13 @@ namespace FifteenPercentDrop
             if(analytics)
             {
                 var iosKey = FifteenPercentDrop.Core.Helpers.SharedSecrets.AppCenteriOS;
+                var droidKey = FifteenPercentDrop.Core.Helpers.SharedSecrets.AppCenterDroid;
                 AppCenter.Start(iosKey,
                    typeof(Analytics), typeof(Crashes));
 
+                AppCenter.Start($"android={droidKey};" +
+                  $"ios={iosKey}",
+                  typeof(Analytics), typeof(Crashes));
             }
 
         }
