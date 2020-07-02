@@ -1,0 +1,55 @@
+# Xamarin.Android
+# Build a Xamarin.Android project.
+# Add steps that test, sign, and distribute an app, save build artifacts, and more:
+# https://docs.microsoft.com/azure/devops/pipelines/languages/xamarin
+
+trigger:
+  branches:
+    include:
+    - release/adhoc/androi*
+
+pool:
+  vmImage: 'macos-latest'
+
+variables:
+  buildConfiguration: 'Release'
+  outputDirectory: '$(build.binariesDirectory)/$(buildConfiguration)'
+
+steps:
+- task: NuGetToolInstaller@1
+
+- task: NuGetCommand@2
+  inputs:
+    restoreSolution: '**/*.sln'
+
+- task: android-manifest-version@1
+  inputs:
+    sourcePath: 'FifteenPercentDrop.Android/Properties/AndroidManifest.xml'
+    versionCodeOption: 'timestamp'
+    printFile: true
+
+- task: XamarinAndroid@1
+  inputs:
+    projectFile: '**/*droid*.csproj'
+    outputDirectory: '$(outputDirectory)'
+    configuration: '$(buildConfiguration)'
+  env:
+    Secret_AppCenterDroid: $(AppCenterDroid)
+
+- task: AndroidSigning@3
+  inputs:
+    apkFiles: '''$(outputDirectory)/*.apk'''
+    apksignerKeystoreFile: 'fifteen.keystore'
+    apksignerKeystorePassword: '$(keystorepassword)'
+    apksignerKeystoreAlias: '$(keystorealias)'
+    apksignerKeyPassword: '$(keystorepassword)'
+
+- task: AppCenterDistribute@3
+  inputs:
+    serverEndpoint: 'App Center'
+    appSlug: 'Lachlan-Gordon/FifteenPercentDropDroid'
+    appFile: '''$(outputDirectory)/*.apk'''
+    symbolsOption: 'Android'
+    releaseNotesOption: 'file'
+    releaseNotesFile: 'Devops/android.txt'
+    destinationType: 'groups'

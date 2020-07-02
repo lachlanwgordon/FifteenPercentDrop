@@ -42,6 +42,12 @@ steps:
     certPwd: '$(p12password)'
     keychain: 'temp'
 
+- task: ios-bundle-version@1
+  inputs:
+    sourcePath: 'FifteenPercentDrop.iOS/Info.plist'
+    versionCodeOption: 'timestamp'
+    printFile: true
+
 - task: XamariniOS@2
   inputs:
     solutionFile: '**/*iOS.csproj'
@@ -57,6 +63,6 @@ steps:
     serverEndpoint: 'App Center'
     appSlug: 'Lachlan-Gordon/FifteenPercentDrop'
     appFile: '**/*.ipa'
-    releaseNotesOption: 'input'
-    releaseNotesInput: 'Fifteen Percent Drop'
+    releaseNotesOption: 'file'
+    releaseNotesFile: 'Devops/ios.txt'
     destinationType: 'groups'
