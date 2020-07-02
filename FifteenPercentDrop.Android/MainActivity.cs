@@ -9,7 +9,7 @@ using Android.OS;
 
 namespace FifteenPercentDrop.Droid
 {
-    [Activity(Label = "FifteenPercentDrop", Icon = "@mipmap/ic_launcher", Theme = "@style/MainTheme", MainLauncher = true, ConfigurationChanges = ConfigChanges.ScreenSize | ConfigChanges.Orientation)]
+    [Activity(Label = "FifteenPercentDrop", Icon = "@mipmap/fifteenicon", RoundIcon = "@mipmap/fifteenicon_round", Theme = "@style/MainTheme", MainLauncher = true, ConfigurationChanges = ConfigChanges.ScreenSize | ConfigChanges.Orientation)]
     public class MainActivity : global::Xamarin.Forms.Platform.Android.FormsAppCompatActivity
     {
         protected override void OnCreate(Bundle savedInstanceState)
