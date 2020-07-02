@@ -37,9 +37,15 @@ steps:
     Secret_AppCenterDroid: $(AppCenterDroid)
     Secret_AppCenteriOS: $(AppCenteriOS)
 
+- script: |
+   echo built 15pc android, where is the apk?
+   pwd
+   ls -R
+
+
 - task: AndroidSigning@3
   inputs:
-    apkFiles: '''$(outputDirectory)/*.apk'''
+    apkFiles: '$(outputDirectory)/*.apk'
     apksignerKeystoreFile: 'fifteen.keystore'
     apksignerKeystorePassword: '$(keystorepassword)'
     apksignerKeystoreAlias: '$(keystorealias)'
@@ -49,7 +55,7 @@ steps:
   inputs:
     serverEndpoint: 'App Center'
     appSlug: 'Lachlan-Gordon/FifteenPercentDropDroid'
-    appFile: '''$(outputDirectory)/*.apk'''
+    appFile: $(outputDirectory)/*.apk
     symbolsOption: 'Android'
     releaseNotesOption: 'file'
     releaseNotesFile: 'Devops/android.txt'
