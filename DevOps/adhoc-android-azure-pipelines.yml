@@ -35,6 +35,7 @@ steps:
     configuration: '$(buildConfiguration)'
   env:
     Secret_AppCenterDroid: $(AppCenterDroid)
+    Secret_AppCenteriOS: $(AppCenteriOS)
 
 - task: AndroidSigning@3
   inputs:
