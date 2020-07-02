@@ -33,6 +33,8 @@ steps:
     projectFile: '**/*droid*.csproj'
     outputDirectory: '$(outputDirectory)'
     configuration: '$(buildConfiguration)'
+  env:
+    Secret_AppCenterDroid: $(AppCenterDroid)
 
 - task: AndroidSigning@3
   inputs:
