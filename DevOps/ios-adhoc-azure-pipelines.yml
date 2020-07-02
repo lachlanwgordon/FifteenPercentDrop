@@ -42,6 +42,12 @@ steps:
     certPwd: '$(p12password)'
     keychain: 'temp'
 
+- task: ios-bundle-version@1
+  inputs:
+    sourcePath: 'FifteenPercentDrop.iOS/Info.plist'
+    versionCodeOption: 'timestamp'
+    printFile: true
+
 - task: XamariniOS@2
   inputs:
     solutionFile: '**/*iOS.csproj'
