@@ -67,4 +67,4 @@ steps:
     releaseNotesOption: 'file'
     releaseNotesFile: 'Devops/ios.txt'
     destinationType: 'store'
-    destinationStoreId: 'Production'
+    destinationStoreId: '8946c65a-12f6-464a-9fc2-aee126edd217'
