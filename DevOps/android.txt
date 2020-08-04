@@ -1,1 +1,1 @@
-15% Drop now available on Android
+Updates to user interface to make it sit more comfortable on large screens.
