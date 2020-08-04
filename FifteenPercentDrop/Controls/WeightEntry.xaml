@@ -10,7 +10,8 @@
     Margin="{StaticResource SectionMargin}"
     xmlns:vm="clr-namespace:FifteenPercentDrop.Core.ViewModels;assembly=FifteenPercentDrop.Core"
     xmlns:converters="clr-namespace:FifteenPercentDrop.Converters">
-    <StackLayout>
+    <StackLayout
+        >
         <Label
             x:Name="TitleLabel"
             Style="{StaticResource MediumText}" />

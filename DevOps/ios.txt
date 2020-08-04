@@ -1,1 +1,1 @@
-Rearranged user interface to make it easier to see the results.
+Updates to user interface to make it sit more comfortable on large screens.

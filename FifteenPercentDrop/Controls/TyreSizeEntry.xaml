@@ -11,7 +11,8 @@
     xmlns:vm="clr-namespace:FifteenPercentDrop.Core.ViewModels;assembly=FifteenPercentDrop.Core"
     xmlns:converters="clr-namespace:FifteenPercentDrop.Converters"
     xmlns:controls="clr-namespace:FifteenPercentDrop.Controls">
-    <StackLayout>
+    <StackLayout
+        >
         <Label
             x:Name="TitleLabel"
             Style="{StaticResource MediumText}" />

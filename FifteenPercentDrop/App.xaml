@@ -9,7 +9,7 @@
     <Application.Resources>
         <ResourceDictionary>
             
-            <Thickness x:Key="SectionMargin">0,6,0,6</Thickness>
+            <Thickness x:Key="SectionMargin">1,6,1,6</Thickness>
             <Color x:Key="AccentDark">#2B4CA5</Color>
             <Color x:Key="AccentLight">#5B66DF</Color>
             <OnPlatform

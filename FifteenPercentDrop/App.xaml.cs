@@ -13,7 +13,9 @@ namespace FifteenPercentDrop
 
         public App()
         {
+
             InitializeComponent();
+            Xamarin.Forms.Device.SetFlags(new[] {"StateTriggers_Experimental"});
 
             //All this for an easter egg?!
             var rainbows = Xamarin.Essentials.Preferences.Get("Rainbows", false);
@@ -35,13 +37,13 @@ namespace FifteenPercentDrop
 
                 Current.Resources.Add(DebugStyle);
             }
-            MainPage = new AppShell(); 
+            MainPage = new AppShell();
         }
 
         protected override void OnStart()
         {
             var analytics = Xamarin.Essentials.Preferences.Get("Analytics", true);
-            if(analytics)
+            if (analytics)
             {
                 var iosKey = FifteenPercentDrop.Core.Helpers.SharedSecrets.AppCenteriOS;
                 var droidKey = FifteenPercentDrop.Core.Helpers.SharedSecrets.AppCenterDroid;

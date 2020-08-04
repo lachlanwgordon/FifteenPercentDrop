@@ -17,7 +17,8 @@
     </ContentPage.BindingContext>
     <ContentPage.Content>
         <yummy:PancakeView
-            Padding="8,0"
+            Style="{StaticResource OrientationMargin}"
+
             BackgroundGradientStartColor="{StaticResource AccentLight}"
             BackgroundGradientEndColor="{StaticResource AccentDark}"
             BackgroundGradientAngle="330">
@@ -37,7 +38,7 @@
                             <RowDefinition
                                 Height="Auto" />
                             <RowDefinition
-                                Height="{OnPlatform iOS=60, Android=65}" />
+                                Height="{OnPlatform iOS=60, Android=70}" />
                         </Grid.RowDefinitions>
                         <Grid.ColumnDefinitions>
                             <ColumnDefinition
@@ -121,7 +122,7 @@
                                             Title="RIDER WEIGHT"
                                             Grid.Column="1"
                                             Weight="{Binding RiderWeight}" />
-                                       
+
                                     </Grid>
                                 </state:StateView>
                             </state:StateLayout.StateViews>
@@ -173,7 +174,7 @@
                                                     Text="{Binding PercentageOnFront, StringFormat='FRONT {0:F0}%'}" />
                                             </Grid>
                                         </yummy:PancakeView>
-                                        
+
                                     </StackLayout>
                                 </state:StateView>
                             </state:StateLayout.StateViews>
@@ -184,11 +185,11 @@
                                 Title="TYRE WIDTH"
                                 TyreWidth="{Binding TyreWidth}"
                                 TyreWidths="{Binding TyreSizes}" />
-                             <Button
-                                            Style="{StaticResource BubbleButton}"
-                                            Text="Advanced"
-                                            Clicked="ChangeStateClicked">
-                                        </Button>
+                            <Button
+                                Style="{StaticResource BubbleButton}"
+                                Text="Advanced"
+                                Clicked="ChangeStateClicked">
+                            </Button>
                             <state:StateLayout.StateViews>
                                 <state:StateView
                                     StateKey="Success">
@@ -262,6 +263,41 @@
                 x:Key="doubleToBooleanConverter" />
             <converters:StringToNullableDoubleConverter
                 x:Key="stringToNullableDoubleConverter" />
+            <Style
+                x:Key="OrientationMargin"
+                TargetType="yummy:PancakeView">
+                <Setter
+                    Property="VisualStateManager.VisualStateGroups">
+                    <VisualStateGroupList>
+                        <VisualStateGroup>
+                            <VisualState
+                                x:Name="Portrait">
+                                <VisualState.StateTriggers>
+                                    <OrientationStateTrigger
+                                        Orientation="Portrait" />
+                                </VisualState.StateTriggers>
+                                <VisualState.Setters>
+                                    <Setter
+                                        Property="Padding"
+                                        Value="{OnIdiom Tablet='50,20,50,20', Phone=5}" />
+                                </VisualState.Setters>
+                            </VisualState>
+                            <VisualState
+                                x:Name="Landscape">
+                                <VisualState.StateTriggers>
+                                    <OrientationStateTrigger
+                                        Orientation="Landscape" />
+                                </VisualState.StateTriggers>
+                                <VisualState.Setters>
+                                    <Setter
+                                        Property="Padding"
+                                        Value="{OnIdiom Tablet='290,20,290,20', Phone=5}" />
+                                </VisualState.Setters>
+                            </VisualState>
+                        </VisualStateGroup>
+                    </VisualStateGroupList>
+                </Setter>
+            </Style>
         </ResourceDictionary>
     </ContentPage.Resources>
 </ContentPage>
