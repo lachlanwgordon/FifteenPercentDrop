@@ -10,10 +10,8 @@ namespace FifteenPercentDrop
 {
     public partial class App : Application
     {
-
         public App()
         {
-
             InitializeComponent();
             Xamarin.Forms.Device.SetFlags(new[] {"StateTriggers_Experimental"});
 
