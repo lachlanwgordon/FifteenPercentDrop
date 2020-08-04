@@ -55,8 +55,9 @@ steps:
   inputs:
     serverEndpoint: 'App Center'
     appSlug: 'Lachlan-Gordon/FifteenPercentDropDroid'
-    appFile: $(outputDirectory)/*.apk
+    appFile: '$(outputDirectory)/*.apk'
     symbolsOption: 'Android'
     releaseNotesOption: 'file'
     releaseNotesFile: 'Devops/android.txt'
-    destinationType: 'groups'
+    destinationType: 'store'
+    destinationStoreId: '409f53f3-5538-48c3-96a2-e66d6b9749af'
