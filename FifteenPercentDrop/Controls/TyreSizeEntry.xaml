@@ -28,14 +28,16 @@
                 </Grid.ColumnDefinitions>
 
                 <Picker
-                    HorizontalOptions="Center"
                     Margin="0"
                     Grid.ColumnSpan="3"
                     Style="{StaticResource PickerStyle}"
                     x:Name="SizePicker"
+                    HorizontalOptions="Fill"
+                    HorizontalTextAlignment="Center"
                     SelectedIndexChanged="SizePicker_SelectedIndexChanged"
                     ItemDisplayBinding="{Binding ., StringFormat='{0:F0}mm'}"
-                   />
+                   >
+                </Picker>
                 <Button
                     Style="{StaticResource PlusMinusButton}"
                     Clicked="DecrementWidth"
