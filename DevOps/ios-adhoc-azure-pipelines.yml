@@ -8,6 +8,8 @@ trigger:
     include:
     - release/adhoc/io*
 
+pr: none
+
 pool:
   vmImage: 'macos-latest'
   
