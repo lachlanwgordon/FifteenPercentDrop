@@ -8,6 +8,8 @@ trigger:
     include:
     - release/appstore/io*
 
+pr: none
+
 pool:
   vmImage: 'macos-latest'
   

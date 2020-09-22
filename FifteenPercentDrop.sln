@@ -21,9 +21,6 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Devops", "Devops", "{A1BF2F
 		DevOps\ios-adhoc-azure-pipelines.yml = DevOps\ios-adhoc-azure-pipelines.yml
 		DevOps\android.txt = DevOps\android.txt
 		DevOps\adhoc-android-azure-pipelines.yml = DevOps\adhoc-android-azure-pipelines.yml
-		DevOps\azure-pipelines-dev.yml = DevOps\azure-pipelines-dev.yml
-		DevOps\azure-pipelines-testers.yml = DevOps\azure-pipelines-testers.yml
-		DevOps\azure-pipelines-master.yml = DevOps\azure-pipelines-master.yml
 		DevOps\azure-pipelines-pull-requests.yml = DevOps\azure-pipelines-pull-requests.yml
 	EndProjectSection
 EndProject
