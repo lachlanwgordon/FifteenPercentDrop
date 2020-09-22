@@ -13,6 +13,20 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FifteenPercentDrop.Core", "
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FifteenPercentDrop.Tests", "FifteenPercentDrop.Tests\FifteenPercentDrop.Tests.csproj", "{A1D48A6B-500F-4CF6-A3CE-75168564897B}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Devops", "Devops", "{A1BF2FA6-6DA1-4666-A647-0701F04CF738}"
+	ProjectSection(SolutionItems) = preProject
+		DevOps\store-android-azure-pipelines.yml = DevOps\store-android-azure-pipelines.yml
+		DevOps\ios.txt = DevOps\ios.txt
+		DevOps\ios-appstore-azure-pipelines.yml = DevOps\ios-appstore-azure-pipelines.yml
+		DevOps\ios-adhoc-azure-pipelines.yml = DevOps\ios-adhoc-azure-pipelines.yml
+		DevOps\android.txt = DevOps\android.txt
+		DevOps\adhoc-android-azure-pipelines.yml = DevOps\adhoc-android-azure-pipelines.yml
+		DevOps\azure-pipelines-dev.yml = DevOps\azure-pipelines-dev.yml
+		DevOps\azure-pipelines-testers.yml = DevOps\azure-pipelines-testers.yml
+		DevOps\azure-pipelines-master.yml = DevOps\azure-pipelines-master.yml
+		DevOps\azure-pipelines-pull-requests.yml = DevOps\azure-pipelines-pull-requests.yml
+	EndProjectSection
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
