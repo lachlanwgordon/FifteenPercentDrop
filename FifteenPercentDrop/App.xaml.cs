@@ -5,6 +5,7 @@ using FifteenPercentDrop.Views;
 using Microsoft.AppCenter;
 using Microsoft.AppCenter.Crashes;
 using Microsoft.AppCenter.Analytics;
+using FifteenPercentDrop.Helpers;
 
 namespace FifteenPercentDrop
 {
@@ -43,10 +44,8 @@ namespace FifteenPercentDrop
             var analytics = Xamarin.Essentials.Preferences.Get("Analytics", true);
             if (analytics)
             {
-                var iosKey = FifteenPercentDrop.Core.Helpers.SharedSecrets.AppCenteriOS;
-                var droidKey = FifteenPercentDrop.Core.Helpers.SharedSecrets.AppCenterDroid;
-                AppCenter.Start(iosKey,
-                   typeof(Analytics), typeof(Crashes));
+                var iosKey = Secrets.AppCenteriOS;
+                var droidKey = Secrets.AppCenterDroid;
 
                 AppCenter.Start($"android={droidKey};" +
                   $"ios={iosKey}",
