@@ -33,29 +33,9 @@
                     <Grid
                         VerticalOptions="Start"
                         RowSpacing="0"
+                        ColumnDefinitions="*,Auto,Auto, *,Auto,Auto,*"
+                        RowDefinitions="{OnPlatform iOS='Auto, 60', Android='Auto,70'}"
                         ColumnSpacing="0">
-                        <Grid.RowDefinitions>
-                            <RowDefinition
-                                Height="Auto" />
-                            <RowDefinition
-                                Height="{OnPlatform iOS=60, Android=70}" />
-                        </Grid.RowDefinitions>
-                        <Grid.ColumnDefinitions>
-                            <ColumnDefinition
-                                Width="*" />
-                            <ColumnDefinition
-                                Width="Auto" />
-                            <ColumnDefinition
-                                Width="Auto" />
-                            <ColumnDefinition
-                                Width="*" />
-                            <ColumnDefinition
-                                Width="Auto" />
-                            <ColumnDefinition
-                                Width="Auto" />
-                            <ColumnDefinition
-                                Width="*" />
-                        </Grid.ColumnDefinitions>
                         <Label
                             Style="{StaticResource MediumText}"
                             Grid.Row="0"
@@ -103,17 +83,7 @@
                                 <!-- Success used in place of Advanced because I can't get custom working-->
                                 <state:StateView
                                     StateKey="Success">
-                                    <Grid>
-                                        <Grid.ColumnDefinitions>
-                                            <ColumnDefinition
-                                                Width="*" />
-                                            <ColumnDefinition
-                                                Width="*" />
-                                        </Grid.ColumnDefinitions>
-                                        <Grid.RowDefinitions>
-                                            <RowDefinition
-                                                Height="*" />
-                                        </Grid.RowDefinitions>
+                                    <Grid ColumnDefinitions="*, *" RowDefinitions="*">
                                         <controls:WeightEntry
                                             Title="BIKE WEIGHT"
                                             Weight="{Binding BikeWeight}" />
@@ -144,15 +114,7 @@
                                             Style="{StaticResource MediumText}" />
                                         <yummy:PancakeView
                                             Style="{StaticResource SectionPancakeStyle}">
-                                            <Grid>
-                                                <Grid.ColumnDefinitions>
-                                                    <ColumnDefinition
-                                                        Width="Auto" />
-                                                    <ColumnDefinition
-                                                        Width="*" />
-                                                    <ColumnDefinition
-                                                        Width="Auto" />
-                                                </Grid.ColumnDefinitions>
+                                            <Grid ColumnDefinitions="Auto, *, Auto">
                                                 <Grid.RowDefinitions>
                                                 </Grid.RowDefinitions>
                                                 <Label
@@ -193,21 +155,7 @@
                             <state:StateLayout.StateViews>
                                 <state:StateView
                                     StateKey="Success">
-                                    <Grid>
-                                        <Grid.ColumnDefinitions>
-                                            <ColumnDefinition
-                                                Width="*" />
-                                            <ColumnDefinition
-                                                Width="*" />
-                                        </Grid.ColumnDefinitions>
-                                        <Grid.RowDefinitions>
-                                            <RowDefinition
-                                                Height="*" />
-                                            <RowDefinition
-                                                Height="*" />
-                                            <RowDefinition
-                                                Height="Auto" />
-                                        </Grid.RowDefinitions>
+                                    <Grid ColumnDefinitions="*, *" RowDefinitions="*, *, Auto">
                                         <controls:TyreSizeEntry
                                             Title="REAR TYRE"
                                             TyreWidth="{Binding RearTyreWidth}"
