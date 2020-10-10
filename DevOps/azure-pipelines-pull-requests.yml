@@ -3,7 +3,7 @@ jobs:
 
 - job: BuildApp
   pool:
-    vmImage: 'macOS latest'
+    vmImage: 'macOS-latest'
 
   variables:
     buildConfiguration: 'Debug'
